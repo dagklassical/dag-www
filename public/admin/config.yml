@@ -1,6 +1,6 @@
 backend:
   name: gitlab
-  repo: dagklassical/dag-www
+  repo: aprado4/dag-www  # ← Cambiar por tu usuario
   branch: main
 
 media_folder: "public/uploads"

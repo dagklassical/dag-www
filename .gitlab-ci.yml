@@ -8,9 +8,8 @@ pages:
     - npm install
     - npm run build
   script:
-    - echo "🎵 DagKlassical - Build completado"
-    - ls -la public/  # ← Ver qué archivos hay
-    - echo "🎵 Build completado"
+    - ls -la public/ || ls -la dist/ || ls -la  # Ver qué se genera
+    - echo "🎵 Debug completo"
   artifacts:
     paths:
       - public/  # ← VOLVEMOS A public
