@@ -9,8 +9,11 @@ pages:
     - npm run build
   script:
     - echo "🎵 DagKlassical - Build completado"
+    - ls -la public/  # ← Ver qué archivos hay
+    - echo "🎵 Build completado"
   artifacts:
     paths:
-      - dist/  # ← CORRECCIÓN CLAVE: dist en lugar de public
+      - public/  # ← VOLVEMOS A public
   only:
     - main
+ 
