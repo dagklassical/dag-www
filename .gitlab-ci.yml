@@ -8,14 +8,10 @@ pages:
     - npm install
     - npm run build
   script:
-    - ls -la public/ || ls -la dist/ || ls -la  # Ver qué se genera
-    - echo "🎵 Debug completo"
-    - npm run build
-    - find . -name "*.html" -o -name "index.*"  # Buscar archivos generados
-    - echo "🎵 Verificando build..."
+    - cp -r dist/* public/  # ← COPIA dist a public
+    - echo "🎵 Build + Copy completado"
   artifacts:
     paths:
-      - dist/  # ← VOLVEMOS A dist
+      - public/  # ← SIGUE siendo public
   only:
     - main
- 
