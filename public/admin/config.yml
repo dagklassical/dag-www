@@ -1,0 +1,16 @@
+backend:
+  name: gitlab
+  repo: dagklassical/dag-www
+  branch: main
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "pruebas"
+    label: "Pruebas"
+    folder: "src/content/pruebas"
+    create: true
+    fields:
+      - { name: "titulo", label: "Título", widget: "string" }
+      - { name: "contenido", label: "Contenido", widget: "markdown" }
