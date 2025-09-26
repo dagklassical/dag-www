@@ -15,7 +15,7 @@ pages:
     - echo "🎵 Verificando build..."
   artifacts:
     paths:
-      - public/  # ← VOLVEMOS A public
+      - dist/  # ← VOLVEMOS A dist
   only:
     - main
  
