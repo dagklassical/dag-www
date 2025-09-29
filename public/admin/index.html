@@ -1,14 +1,49 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DAG Klassical - Administrador de Contenido</title>
-  <!-- Decap CMS -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  <!-- Configuración personalizada -->
+  <meta name="robots" content="noindex, nofollow" />
+  
+  <!-- Personalización visual del CMS -->
   <style>
-    /* Personalización del CMS */
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    
+    /* Loading spinner */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #fafafa;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .loading-text {
+      color: #8B0000;
+      font-size: 18px;
+      margin-left: 10px;
+    }
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #8B0000;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    /* Personalización del CMS cuando cargue */
     [data-slate-editor] {
       font-family: 'Inter', sans-serif;
     }
@@ -23,33 +58,84 @@
   </style>
 </head>
 <body>
-  <!-- Decap CMS se cargará aquí -->
+  <!-- Elemento donde se monta Decap CMS -->
+  <div id="nc-root">
+    <div class="loading">
+      <div class="spinner"></div>
+      <div class="loading-text">Cargando DAG Klassical CMS...</div>
+    </div>
+  </div>
+  
+  <!-- Cargar Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
+  <!-- Configuración personalizada (después de que CMS cargue) -->
   <script>
-    // Configuración personalizada del CMS
-    CMS.registerPreviewStyle('/dag-www/admin/preview.css');
-    
-    // Personalizar el logo
-    CMS.registerPreviewTemplate('discografia', ({ entry, widgetFor, widgetsFor, getAsset }) => {
-      const title = entry.getIn(['data', 'title']) || '';
-      const artist = entry.getIn(['data', 'artist']) || '';
-      const description = entry.getIn(['data', 'description']) || '';
-      const coverImage = entry.getIn(['data', 'cover_image']);
-      
-      return `
-        <div class="album-preview">
-          <div class="album-header">
-            ${coverImage ? `<img src="${getAsset(coverImage)}" alt="${title}" class="cover-image" />` : ''}
-            <div class="album-info">
-              <h1 class="album-title">${title}</h1>
-              <h2 class="album-artist">${artist}</h2>
-              <p class="album-description">${description}</p>
+    // Esperar a que Decap CMS esté disponible
+    window.addEventListener('load', function() {
+      // Verificar que CMS esté disponible
+      if (typeof CMS !== 'undefined') {
+        console.log('✅ Decap CMS cargado correctamente');
+        
+        // Registrar estilos de vista previa
+        try {
+          CMS.registerPreviewStyle('/dag-www/admin/preview.css');
+          console.log('✅ Estilos de vista previa registrados');
+        } catch (error) {
+          console.warn('⚠️ Error registrando estilos:', error);
+        }
+        
+        // Personalizar vista previa de álbumes
+        try {
+          CMS.registerPreviewTemplate('discografia', ({ entry, widgetFor, widgetsFor, getAsset }) => {
+            const title = entry.getIn(['data', 'title']) || 'Sin título';
+            const artist = entry.getIn(['data', 'artist']) || 'Sin artista';
+            const description = entry.getIn(['data', 'description']) || '';
+            const coverImage = entry.getIn(['data', 'cover_image']);
+            
+            return `
+              <div class="album-preview">
+                <div class="album-header">
+                  ${coverImage ? `<img src="${getAsset(coverImage)}" alt="${title}" class="cover-image" />` : ''}
+                  <div class="album-info">
+                    <h1 class="album-title">${title}</h1>
+                    <h2 class="album-artist">${artist}</h2>
+                    <p class="album-description">${description}</p>
+                  </div>
+                </div>
+                <div class="album-content">
+                  ${widgetFor('body')}
+                </div>
+              </div>
+            `;
+          });
+          console.log('✅ Template de vista previa registrado');
+        } catch (error) {
+          console.warn('⚠️ Error registrando template:', error);
+        }
+        
+        // Configuraciones adicionales
+        try {
+          CMS.init();
+          console.log('✅ Decap CMS inicializado');
+        } catch (error) {
+          console.warn('⚠️ CMS ya inicializado o error:', error);
+        }
+        
+      } else {
+        console.error('❌ Error: Decap CMS no se cargó correctamente');
+        document.getElementById('nc-root').innerHTML = `
+          <div class="loading">
+            <div style="color: #dc3545; text-align: center;">
+              <h2>Error cargando CMS</h2>
+              <p>Por favor, recarga la página o contacta al administrador.</p>
+              <button onclick="location.reload()" style="padding: 10px 20px; background: #8B0000; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                Recargar página
+              </button>
             </div>
           </div>
-          <div class="album-content">
-            ${widgetFor('body')}
-          </div>
-        </div>
-      `;
+        `;
+      }
     });
   </script>
 </body>

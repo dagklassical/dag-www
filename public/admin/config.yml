@@ -2,7 +2,7 @@ backend:
   name: gitlab
   repo: aprado4/dag-www
   auth_type: pkce
-  app_id: YOUR_GITLAB_APP_ID # Reemplazar con el Application ID de GitLab
+  app_id: 388bfeef3cb994fbd25ffd4e47d18b18050048eb1980a3b46886abf11e3bf598 # Reemplazar con el Application ID de GitLab
   base_url: https://gitlab.com # Para GitLab.com, usar esta URL
 
 media_folder: "public/images/uploads"
