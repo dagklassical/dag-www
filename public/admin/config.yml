@@ -1,16 +1,51 @@
 backend:
-  name: gitlab
-  repo: aprado4/dag-www  # ← Cambiar por tu usuario
+  name: git-gateway
   branch: main
 
-media_folder: "public/uploads"
-public_folder: "/uploads"
+media_folder: "public/images"
+public_folder: "/images"
 
 collections:
-  - name: "pruebas"
-    label: "Pruebas"
-    folder: "src/content/pruebas"
+  - name: "releases"
+    label: "Lanzamientos"
+    folder: "src/content/releases"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { name: "titulo", label: "Título", widget: "string" }
-      - { name: "contenido", label: "Contenido", widget: "markdown" }
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Artista", name: "artist", widget: "string"}
+      - {label: "Fecha de Lanzamiento", name: "releaseDate", widget: "datetime"}
+      - {label: "Descripción", name: "description", widget: "text"}
+      - {label: "Imagen", name: "image", widget: "image"}
+      - {label: "Precio NFT (ALGO)", name: "nftPrice", widget: "number"}
+      - {label: "Ediciones Disponibles", name: "editions", widget: "number"}
+      - {label: "Porcentaje de Regalías", name: "royaltyPercent", widget: "number"}
+      - {label: "Estado", name: "status", widget: "select", options: ["Disponible", "Próximo", "Agotado"]}
+      - {label: "Contenido", name: "body", widget: "markdown"}
+
+  - name: "artists"
+    label: "Artistas"
+    folder: "src/content/artists"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nombre", name: "name", widget: "string"}
+      - {label: "Biografía Corta", name: "shortBio", widget: "text"}
+      - {label: "Foto", name: "photo", widget: "image"}
+      - {label: "País", name: "country", widget: "string"}
+      - {label: "Instrumentos", name: "instruments", widget: "list"}
+      - {label: "Biografía Completa", name: "body", widget: "markdown"}
+
+  - name: "news"
+    label: "Noticias"
+    folder: "src/content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Fecha", name: "date", widget: "datetime"}
+      - {label: "Autor", name: "author", widget: "string"}
+      - {label: "Extracto", name: "excerpt", widget: "text"}
+      - {label: "Imagen Destacada", name: "featuredImage", widget: "image"}
+      - {label: "Categoría", name: "category", widget: "select", options: ["Lanzamiento", "Evento", "Entrevista", "Blockchain", "General"]}
+      - {label: "Contenido", name: "body", widget: "markdown"}

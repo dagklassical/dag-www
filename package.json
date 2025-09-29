@@ -2,13 +2,25 @@
   "name": "dagklassical-website",
   "type": "module",
   "version": "1.0.0",
+  "description": "Sitio web oficial de DAG Klassical - Casa disquera venezolana",
+  "author": "DAG Klassical",
+  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build", 
-    "preview": "astro preview"
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.0.0"
+    "astro": "^4.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/rss": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

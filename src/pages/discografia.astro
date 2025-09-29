@@ -1,0 +1,174 @@
+---
+title: "Discografía - DAG Klassical"
+description: "Catálogo completo de grabaciones de DAG Klassical"
+layout: "../layouts/Layout.astro"
+---
+
+<main>
+    <div class="container">
+        <header class="page-header">
+            <h1>Discografía</h1>
+            <p>Nuestro catálogo completo de grabaciones clásicas</p>
+        </header>
+
+        <section class="discography-grid">
+            <div class="album-card">
+                <div class="album-cover">
+                    <div class="placeholder-cover">🎹</div>
+                </div>
+                <div class="album-info">
+                    <h3>Piano Aguinaldo - Gerardo Gerulewicz</h3>
+                    <p>Colección de aguinaldos venezolanos interpretados al piano</p>
+                    <div class="album-actions">
+                        <a href="#" class="btn btn-primary">Escuchar</a>
+                        <a href="#" class="btn btn-secondary">NFT</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="album-card">
+                <div class="album-cover">
+                    <div class="placeholder-cover">🎶</div>
+                </div>
+                <div class="album-info">
+                    <h3>Momentos Musicales Vol. 1</h3>
+                    <p>Primera entrega de momentos musicales clásicos</p>
+                    <div class="album-actions">
+                        <a href="#" class="btn btn-primary">Escuchar</a>
+                        <a href="#" class="btn btn-secondary">NFT</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="album-card">
+                <div class="album-cover">
+                    <div class="placeholder-cover">🎵</div>
+                </div>
+                <div class="album-info">
+                    <h3>Schubert - Goulnara Galimchina</h3>
+                    <p>Interpretaciones de obras de Franz Schubert</p>
+                    <div class="album-actions">
+                        <a href="#" class="btn btn-primary">Escuchar</a>
+                        <a href="#" class="btn btn-secondary">NFT</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="album-card">
+                <div class="album-cover">
+                    <div class="placeholder-cover">🎼</div>
+                </div>
+                <div class="album-info">
+                    <h3>Rachmaninoff Variations - Teodor Dore</h3>
+                    <p>Variaciones sobre temas de Rachmaninoff</p>
+                    <div class="album-actions">
+                        <a href="#" class="btn btn-primary">Escuchar</a>
+                        <a href="#" class="btn btn-secondary">NFT</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    .page-header h1 {
+        font-size: 3rem;
+        color: #1e3c72;
+        margin-bottom: 1rem;
+    }
+
+    .page-header p {
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    .discography-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .album-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .album-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .album-cover {
+        height: 250px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .placeholder-cover {
+        font-size: 4rem;
+        color: white;
+    }
+
+    .album-info {
+        padding: 1.5rem;
+    }
+
+    .album-info h3 {
+        color: #1e3c72;
+        margin-bottom: 0.5rem;
+        font-size: 1.3rem;
+    }
+
+    .album-info p {
+        color: #666;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+
+    .album-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        text-decoration: none;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.3s;
+        text-align: center;
+        flex: 1;
+    }
+
+    .btn-primary {
+        background: #ff6b35;
+        color: white;
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: #1e3c72;
+        border: 2px solid #1e3c72;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+</style>
