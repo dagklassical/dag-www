@@ -1,0 +1,85 @@
+/* Estilos para la vista previa del CMS */
+
+/* Variables CSS matching the main site */
+:root {
+  --color-primary: #8B0000;
+  --color-secondary: #B8860B;
+  --color-accent: #191970;
+  --color-text: #2c2c2c;
+  --color-text-light: #666;
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* Preview styles */
+.album-preview {
+  font-family: var(--font-body);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--color-surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.album-header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.cover-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.album-info {
+  flex: 1;
+}
+
+.album-title {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.album-artist {
+  color: var(--color-accent);
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.album-description {
+  color: var(--color-text-light);
+  line-height: 1.6;
+}
+
+.album-content {
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.album-content h1,
+.album-content h2,
+.album-content h3 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.album-content p {
+  margin-bottom: 1rem;
+}
+
+.album-content ul,
+.album-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}

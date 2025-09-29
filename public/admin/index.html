@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DAG Klassical - Administrador de Contenido</title>
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Configuración personalizada -->
+  <style>
+    /* Personalización del CMS */
+    [data-slate-editor] {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .css-1wa3eu0-App-AppMainContainer {
+      background: #fafafa;
+    }
+    
+    .css-v758ki-AppHeaderContent {
+      background: #8B0000;
+    }
+  </style>
+</head>
+<body>
+  <!-- Decap CMS se cargará aquí -->
+  <script>
+    // Configuración personalizada del CMS
+    CMS.registerPreviewStyle('/dag-www/admin/preview.css');
+    
+    // Personalizar el logo
+    CMS.registerPreviewTemplate('discografia', ({ entry, widgetFor, widgetsFor, getAsset }) => {
+      const title = entry.getIn(['data', 'title']) || '';
+      const artist = entry.getIn(['data', 'artist']) || '';
+      const description = entry.getIn(['data', 'description']) || '';
+      const coverImage = entry.getIn(['data', 'cover_image']);
+      
+      return `
+        <div class="album-preview">
+          <div class="album-header">
+            ${coverImage ? `<img src="${getAsset(coverImage)}" alt="${title}" class="cover-image" />` : ''}
+            <div class="album-info">
+              <h1 class="album-title">${title}</h1>
+              <h2 class="album-artist">${artist}</h2>
+              <p class="album-description">${description}</p>
+            </div>
+          </div>
+          <div class="album-content">
+            ${widgetFor('body')}
+          </div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
