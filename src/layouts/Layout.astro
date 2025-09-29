@@ -306,8 +306,9 @@ const { title, description } = Astro.props;
       
       /* Main Content */
       main {
-        margin-top: 80px;
-        min-height: calc(100vh - 80px - 200px);
+        margin-top: 120px; /* Increased from 80px to prevent header overlap */
+        min-height: calc(100vh - 120px - 200px);
+        padding-top: 2rem; /* Additional padding for content breathing room */
       }
       
       /* Footer */

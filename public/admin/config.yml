@@ -1,42 +1,77 @@
 backend:
-  name: git-gateway
-  branch: main
+  name: gitlab
+  repo: aprado4/dag-www
+  auth_type: pkce
+  app_id: YOUR_GITLAB_APP_ID # Reemplazar con el Application ID de GitLab
+  base_url: https://gitlab.com # Para GitLab.com, usar esta URL
 
-media_folder: "public/images"
-public_folder: "/images"
+media_folder: "public/images/uploads"
+public_folder: "/dag-www/images/uploads"
+
+locale: 'es'
 
 collections:
-  - name: "releases"
-    label: "Lanzamientos"
-    folder: "src/content/releases"
+  # Configuración para álbumes/discografía
+  - name: "discografia"
+    label: "Discografía"
+    folder: "src/content/albums"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Título del Álbum", name: "title", widget: "string"}
       - {label: "Artista", name: "artist", widget: "string"}
-      - {label: "Fecha de Lanzamiento", name: "releaseDate", widget: "datetime"}
+      - {label: "Fecha de Publicación", name: "date", widget: "datetime"}
+      - {label: "Género", name: "genre", widget: "select", options: ["Clásica", "Barroca", "Romántica", "Contemporánea", "Ópera", "Sinfónica", "Cámara"]}
       - {label: "Descripción", name: "description", widget: "text"}
-      - {label: "Imagen", name: "image", widget: "image"}
-      - {label: "Precio NFT (ALGO)", name: "nftPrice", widget: "number"}
-      - {label: "Ediciones Disponibles", name: "editions", widget: "number"}
-      - {label: "Porcentaje de Regalías", name: "royaltyPercent", widget: "number"}
-      - {label: "Estado", name: "status", widget: "select", options: ["Disponible", "Próximo", "Agotado"]}
+      - {label: "Imagen de Portada", name: "cover_image", widget: "image"}
+      - {label: "Precio (USD)", name: "price", widget: "number", value_type: "float", min: 0}
+      - {label: "Disponible", name: "available", widget: "boolean", default: true}
+      - {label: "Destacado", name: "featured", widget: "boolean", default: false}
       - {label: "Contenido", name: "body", widget: "markdown"}
+      - label: "Lista de Pistas"
+        name: "tracklist"
+        widget: "list"
+        fields:
+          - {label: "Número", name: "track_number", widget: "number"}
+          - {label: "Título", name: "track_title", widget: "string"}
+          - {label: "Duración", name: "duration", widget: "string"}
+          - {label: "Compositor", name: "composer", widget: "string", required: false}
+      - label: "Información Técnica"
+        name: "technical_info"
+        widget: "object"
+        fields:
+          - {label: "Formato", name: "format", widget: "select", options: ["CD", "Vinilo", "Digital", "SACD"]}
+          - {label: "Calidad", name: "quality", widget: "string"}
+          - {label: "Estudio de Grabación", name: "studio", widget: "string"}
+          - {label: "Ingeniero de Sonido", name: "engineer", widget: "string"}
 
-  - name: "artists"
+  # Configuración para artistas
+  - name: "artistas"
     label: "Artistas"
     folder: "src/content/artists"
     create: true
     slug: "{{slug}}"
     fields:
-      - {label: "Nombre", name: "name", widget: "string"}
-      - {label: "Biografía Corta", name: "shortBio", widget: "text"}
-      - {label: "Foto", name: "photo", widget: "image"}
-      - {label: "País", name: "country", widget: "string"}
-      - {label: "Instrumentos", name: "instruments", widget: "list"}
+      - {label: "Nombre del Artista", name: "title", widget: "string"}
+      - {label: "Fecha de Publicación", name: "date", widget: "datetime"}
+      - {label: "Tipo", name: "type", widget: "select", options: ["Solista", "Conjunto", "Orquesta", "Coro", "Dúo"]}
+      - {label: "Especialidad", name: "specialty", widget: "string"}
+      - {label: "Biografía Corta", name: "description", widget: "text"}
+      - {label: "Foto del Artista", name: "photo", widget: "image"}
+      - {label: "País de Origen", name: "country", widget: "string"}
+      - {label: "Activo", name: "active", widget: "boolean", default: true}
       - {label: "Biografía Completa", name: "body", widget: "markdown"}
+      - label: "Enlaces"
+        name: "links"
+        widget: "object"
+        fields:
+          - {label: "Sitio Web", name: "website", widget: "string", required: false}
+          - {label: "Spotify", name: "spotify", widget: "string", required: false}
+          - {label: "YouTube", name: "youtube", widget: "string", required: false}
+          - {label: "Instagram", name: "instagram", widget: "string", required: false}
 
-  - name: "news"
+  # Configuración para noticias/blog
+  - name: "noticias"
     label: "Noticias"
     folder: "src/content/news"
     create: true
@@ -45,7 +80,77 @@ collections:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Fecha", name: "date", widget: "datetime"}
       - {label: "Autor", name: "author", widget: "string"}
-      - {label: "Extracto", name: "excerpt", widget: "text"}
-      - {label: "Imagen Destacada", name: "featuredImage", widget: "image"}
-      - {label: "Categoría", name: "category", widget: "select", options: ["Lanzamiento", "Evento", "Entrevista", "Blockchain", "General"]}
+      - {label: "Resumen", name: "description", widget: "text"}
+      - {label: "Imagen Destacada", name: "featured_image", widget: "image"}
+      - {label: "Categoría", name: "category", widget: "select", options: ["Lanzamiento", "Evento", "Entrevista", "Anuncio", "Colaboración"]}
+      - {label: "Destacada", name: "featured", widget: "boolean", default: false}
+      - {label: "Contenido", name: "body", widget: "markdown"}
+
+  # Configuración para páginas principales
+  - name: "paginas"
+    label: "Páginas"
+    files:
+      - label: "Página de Inicio"
+        name: "inicio"
+        file: "src/content/pages/home.md"
+        fields:
+          - {label: "Título", name: "title", widget: "string"}
+          - {label: "Subtítulo", name: "subtitle", widget: "text"}
+          - {label: "Imagen Hero", name: "hero_image", widget: "image"}
+          - {label: "Contenido", name: "body", widget: "markdown"}
+          - label: "Álbumes Destacados"
+            name: "featured_albums"
+            widget: "list"
+            field: {label: "ID del Álbum", name: "album_id", widget: "string"}
+      
+      - label: "Acerca de DAG Klassical"
+        name: "acerca"
+        file: "src/content/pages/about.md"
+        fields:
+          - {label: "Título", name: "title", widget: "string"}
+          - {label: "Descripción", name: "description", widget: "text"}
+          - {label: "Imagen", name: "image", widget: "image"}
+          - {label: "Historia", name: "body", widget: "markdown"}
+          - label: "Equipo"
+            name: "team"
+            widget: "list"
+            fields:
+              - {label: "Nombre", name: "name", widget: "string"}
+              - {label: "Cargo", name: "position", widget: "string"}
+              - {label: "Foto", name: "photo", widget: "image"}
+              - {label: "Biografía", name: "bio", widget: "text"}
+      
+      - label: "Contacto"
+        name: "contacto"
+        file: "src/content/pages/contact.md"
+        fields:
+          - {label: "Título", name: "title", widget: "string"}
+          - {label: "Descripción", name: "description", widget: "text"}
+          - label: "Información de Contacto"
+            name: "contact_info"
+            widget: "object"
+            fields:
+              - {label: "Email", name: "email", widget: "string"}
+              - {label: "Teléfono", name: "phone", widget: "string"}
+              - {label: "Dirección", name: "address", widget: "text"}
+              - {label: "Horario", name: "hours", widget: "text"}
+          - {label: "Contenido", name: "body", widget: "markdown"}
+
+  # Configuración para eventos
+  - name: "eventos"
+    label: "Eventos"
+    folder: "src/content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título del Evento", name: "title", widget: "string"}
+      - {label: "Fecha del Evento", name: "event_date", widget: "datetime"}
+      - {label: "Fecha de Creación", name: "date", widget: "datetime"}
+      - {label: "Lugar", name: "venue", widget: "string"}
+      - {label: "Ciudad", name: "city", widget: "string"}
+      - {label: "Descripción", name: "description", widget: "text"}
+      - {label: "Imagen del Evento", name: "image", widget: "image"}
+      - {label: "Precio de Entrada", name: "ticket_price", widget: "string"}
+      - {label: "Link de Tickets", name: "tickets_link", widget: "string", required: false}
+      - {label: "Artistas Participantes", name: "artists", widget: "list", field: {label: "Artista", name: "artist", widget: "string"}}
       - {label: "Contenido", name: "body", widget: "markdown"}
