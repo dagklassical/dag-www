@@ -6,7 +6,7 @@ const description = "Casa disquera venezolana con amplia trayectoria. Música cl
 <html lang="es">
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/dag-www/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -16,7 +16,12 @@ const description = "Casa disquera venezolana con amplia trayectoria. Música cl
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/images/dag-klassical-og.jpg" />
+    <meta property="og:image" content="/dag-www/images/dag-klassical-og.jpg" />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS base -->
     <style>
@@ -26,11 +31,21 @@ const description = "Casa disquera venezolana con amplia trayectoria. Música cl
             box-sizing: border-box;
         }
         
+        :root {
+            --dag-burgundy: #8B1538;
+            --dag-dark-burgundy: #6B1028;
+            --dag-gold: #C9A961;
+            --dag-dark-blue: #1a2332;
+            --dag-light-gray: #f8f9fa;
+            --dag-text-dark: #2c3e50;
+            --dag-text-light: #64748b;
+        }
+        
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: var(--dag-text-dark);
+            background: linear-gradient(135deg, var(--dag-dark-blue) 0%, var(--dag-burgundy) 100%);
         }
         
         .container {
@@ -40,13 +55,15 @@ const description = "Casa disquera venezolana con amplia trayectoria. Música cl
         }
         
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 21, 56, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
         
         nav {
@@ -56,141 +73,370 @@ const description = "Casa disquera venezolana con amplia trayectoria. Música cl
         }
         
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dag-burgundy);
+        }
+        
+        .logo-mark {
+            width: 45px;
+            height: 45px;
+            background: var(--dag-burgundy);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            font-weight: bold;
-            color: #1e3c72;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
         
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: var(--dag-text-dark);
             font-weight: 500;
-            transition: color 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
         .nav-links a:hover {
-            color: #1e3c72;
+            color: var(--dag-burgundy);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--dag-burgundy);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
         }
         
         main {
             margin-top: 80px;
-            min-height: 80vh;
         }
         
         .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
             text-align: center;
-            padding: 4rem 0;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 21, 56, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(26, 35, 50, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            line-height: 1.7;
         }
         
         .cta-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
         
         .btn {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 16px 32px;
             text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: transform 0.3s;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
         
         .btn-primary {
-            background: #ff6b35;
-            color: white;
+            background: linear-gradient(135deg, var(--dag-gold) 0%, #e6c270 100%);
+            color: var(--dag-dark-blue);
+            font-weight: 700;
         }
         
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            border: 2px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
         
         .features {
-            background: white;
-            padding: 4rem 0;
+            background: var(--dag-light-gray);
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .features::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, var(--dag-dark-blue), var(--dag-light-gray));
+        }
+        
+        .features-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--dag-burgundy);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--dag-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
         }
         
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
         }
         
         .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
             text-align: center;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 40px rgba(139, 21, 56, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dag-burgundy), var(--dag-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(139, 21, 56, 0.15);
         }
         
         .feature-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dag-burgundy);
             margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: var(--dag-text-light);
+            line-height: 1.7;
+            font-size: 1rem;
         }
         
         footer {
-            background: #1a1a1a;
+            background: var(--dag-dark-blue);
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
+            position: relative;
         }
         
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--dag-gold), transparent);
+        }
+        
+        .footer-content p {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        
+        .footer-content p:first-child {
+            font-weight: 600;
+        }
+        
+        .footer-content p:last-child {
+            opacity: 0.7;
+            font-size: 0.95rem;
+        }
+        
+        /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
             
-            .hero h1 {
-                font-size: 2rem;
+            .hero {
+                min-height: 70vh;
+                padding: 2rem 0;
             }
             
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .feature-card {
+                padding: 2rem 1.5rem;
             }
         }
+        
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .feature-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
     </style>
 </head>
 
 <body>
     <header>
         <nav class="container">
-            <div class="logo">DAG Klassical</div>
+            <a href="/dag-www/" class="logo">
+                <div class="logo-mark">DAG</div>
+                <div class="logo-text">Klassical</div>
+            </a>
             <ul class="nav-links">
-                <li><a href="/">Inicio</a></li>
+                <li><a href="/dag-www/">Inicio</a></li>
                 <li><a href="/dag-www/discografia">Discografía</a></li>
                 <li><a href="/dag-www/lanzamientos">Lanzamientos</a></li>
                 <li><a href="/dag-www/tienda">Tienda</a></li>
@@ -203,33 +449,40 @@ const description = "Casa disquera venezolana con amplia trayectoria. Música cl
     <main>
         <section class="hero">
             <div class="container">
-                <h1>DAG Klassical</h1>
-                <p>Casa disquera venezolana pionera en música clásica y tecnología blockchain</p>
-                <div class="cta-buttons">
-                    <a href="/discografia" class="btn btn-primary">Explora nuestra música</a>
-                    <a href="/tienda" class="btn btn-secondary">Tienda NFT</a>
+                <div class="hero-content">
+                    <h1>DAG Klassical</h1>
+                    <p>Casa disquera venezolana pionera en música clásica y tecnología blockchain</p>
+                    <div class="cta-buttons">
+                        <a href="/dag-www/discografia" class="btn btn-primary">Explora nuestra música</a>
+                        <a href="/dag-www/tienda" class="btn btn-secondary">Tienda NFT</a>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="features">
             <div class="container">
-                <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2.5rem; color: #1e3c72;">Nuestros Servicios</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🎵</div>
-                        <h3>Música Clásica</h3>
-                        <p>Catálogo exclusivo de música clásica venezolana e internacional con los mejores intérpretes.</p>
+                <div class="features-content">
+                    <div class="section-title">
+                        <h2>Nuestros Servicios</h2>
+                        <p class="section-subtitle">Combinamos la tradición musical venezolana con la innovación tecnológica más avanzada</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🗃️</div>
-                        <h3>MusicCards</h3>
-                        <p>Innovador formato de colección musical que combina arte, música y tecnología.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔗</div>
-                        <h3>NFTs en Algorand</h3>
-                        <p>Venta de música como NFTs con gestión de regalías y contratos inteligentes.</p>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <span class="feature-icon">🎵</span>
+                            <h3>Música Clásica</h3>
+                            <p>Catálogo exclusivo de música clásica venezolana e internacional con los mejores intérpretes y compositores de nuestra región.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🗃️</span>
+                            <h3>MusicCards</h3>
+                            <p>Innovador formato de colección musical que combina arte visual, música de alta calidad y tecnología blockchain.</p>
+                        </div>
+                        <div class="feature-card">
+                            <span class="feature-icon">🔗</span>
+                            <h3>NFTs en Algorand</h3>
+                            <p>Venta de música como NFTs con gestión automática de regalías y contratos inteligentes transparentes.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -238,8 +491,10 @@ const description = "Casa disquera venezolana con amplia trayectoria. Música cl
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 DAG Klassical. Todos los derechos reservados.</p>
-            <p>Casa disquera venezolana • Música clásica • Tecnología blockchain</p>
+            <div class="footer-content">
+                <p>&copy; 2025 DAG Klassical. Todos los derechos reservados.</p>
+                <p>Casa disquera venezolana • Música clásica • Tecnología blockchain</p>
+            </div>
         </div>
     </footer>
 </body>

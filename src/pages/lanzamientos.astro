@@ -1,282 +1,499 @@
 ---
-title: "Lanzamientos - DAG Klassical"
-description: "Próximos lanzamientos y novedades musicales"
+const title = "Lanzamientos - DAG Klassical";
+const description = "Próximos lanzamientos y novedades musicales";
 ---
 
-<main>
-    <div class="container">
-        <header class="page-header">
-            <h1>Lanzamientos</h1>
-            <p>Próximos lanzamientos y novedades musicales</p>
-        </header>
-
-        <section class="releases-grid">
-            <div class="release-card featured">
-                <div class="release-badge">PRÓXIMO</div>
-                <div class="release-cover">
-                    <div class="placeholder-cover">🎆</div>
-                </div>
-                <div class="release-info">
-                    <h3>Momentos Musicales Vol. 3</h3>
-                    <p class="artist">Varios Artistas</p>
-                    <p class="release-date">Diciembre 2025</p>
-                    <p class="description">
-                        Tercera entrega de nuestra colección de momentos musicales, 
-                        con interpretaciones exclusivas de artistas venezolanos.
-                    </p>
-                    <div class="release-actions">
-                        <a href="#" class="btn btn-primary">Pre-orden NFT</a>
-                        <a href="#" class="btn btn-secondary">Notificarme</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="release-card">
-                <div class="release-badge">NUEVO</div>
-                <div class="release-cover">
-                    <div class="placeholder-cover">🎹</div>
-                </div>
-                <div class="release-info">
-                    <h3>Proyecto Enmanuel</h3>
-                    <p class="artist">Enmanuel Vivas</p>
-                    <p class="release-date">Noviembre 2025</p>
-                    <p class="description">
-                        Interpretaciones contemporáneas de clásicos venezolanos 
-                        en una propuesta fresca y emotiva.
-                    </p>
-                    <div class="release-actions">
-                        <a href="#" class="btn btn-primary">Adquirir NFT</a>
-                        <a href="#" class="btn btn-secondary">Escuchar</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="release-card">
-                <div class="release-badge">DISPONIBLE</div>
-                <div class="release-cover">
-                    <div class="placeholder-cover">🎼</div>
-                </div>
-                <div class="release-info">
-                    <h3>Capítulos - Virginia Ramírez</h3>
-                    <p class="artist">Virginia Ramírez</p>
-                    <p class="release-date">Octubre 2025</p>
-                    <p class="description">
-                        Una colección intimista de piezas para piano que narran 
-                        diferentes capítulos de la vida musical venezolana.
-                    </p>
-                    <div class="release-actions">
-                        <a href="#" class="btn btn-primary">Comprar NFT</a>
-                        <a href="#" class="btn btn-secondary">Streaming</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="newsletter">
-            <div class="newsletter-content">
-                <h2>No te pierdas nuestros lanzamientos</h2>
-                <p>Suscríbete para recibir notificaciones de nuevos lanzamientos y ofertas exclusivas en NFTs</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Tu email" required>
-                    <button type="submit" class="btn btn-primary">Suscribirse</button>
-                </form>
-            </div>
-        </section>
-    </div>
-</main>
-
-<style>
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-
-    .page-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-
-    .page-header h1 {
-        font-size: 3rem;
-        color: #1e3c72;
-        margin-bottom: 1rem;
-    }
-
-    .page-header p {
-        font-size: 1.2rem;
-        color: #666;
-    }
-
-    .releases-grid {
-        display: grid;
-        gap: 2rem;
-        margin-bottom: 4rem;
-    }
-
-    .release-card {
-        background: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        transition: transform 0.3s;
-        position: relative;
-    }
-
-    .release-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .release-card.featured {
-        border: 3px solid #ff6b35;
-    }
-
-    .release-badge {
-        position: absolute;
-        top: 1rem;
-        left: 1rem;
-        background: #ff6b35;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 15px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        z-index: 10;
-    }
-
-    .release-card.featured .release-badge {
-        background: #1e3c72;
-    }
-
-    .release-cover {
-        height: 250px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .placeholder-cover {
-        font-size: 4rem;
-        color: white;
-    }
-
-    .release-info {
-        padding: 2rem;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .release-info h3 {
-        color: #1e3c72;
-        margin-bottom: 0.5rem;
-        font-size: 1.5rem;
-    }
-
-    .artist {
-        color: #ff6b35;
-        font-weight: 600;
-        margin-bottom: 0.5rem;
-    }
-
-    .release-date {
-        color: #666;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-    }
-
-    .description {
-        color: #666;
-        line-height: 1.6;
-        margin-bottom: 2rem;
-        flex-grow: 1;
-    }
-
-    .release-actions {
-        display: flex;
-        gap: 1rem;
-    }
-
-    .btn {
-        padding: 12px 24px;
-        text-decoration: none;
-        border-radius: 25px;
-        font-weight: 600;
-        transition: all 0.3s;
-        text-align: center;
-        border: none;
-        cursor: pointer;
-        font-size: 0.9rem;
-    }
-
-    .btn-primary {
-        background: #ff6b35;
-        color: white;
-        flex: 1;
-    }
-
-    .btn-secondary {
-        background: transparent;
-        color: #1e3c72;
-        border: 2px solid #1e3c72;
-        flex: 1;
-    }
-
-    .btn:hover {
-        transform: translateY(-2px);
-    }
-
-    .newsletter {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
-        padding: 3rem;
-        border-radius: 20px;
-        text-align: center;
-    }
-
-    .newsletter h2 {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-    }
-
-    .newsletter p {
-        margin-bottom: 2rem;
-        opacity: 0.9;
-    }
-
-    .newsletter-form {
-        display: flex;
-        max-width: 500px;
-        margin: 0 auto;
-        gap: 1rem;
-    }
-
-    .newsletter-form input {
-        flex: 1;
-        padding: 15px;
-        border: none;
-        border-radius: 25px;
-        font-size: 1rem;
-    }
-
-    .newsletter-form .btn {
-        background: #ff6b35;
-        white-space: nowrap;
-    }
-
-    @media (max-width: 768px) {
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/dag-www/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --dag-burgundy: #8B1538;
+            --dag-dark-burgundy: #6B1028;
+            --dag-gold: #C9A961;
+            --dag-dark-blue: #1a2332;
+            --dag-light-gray: #f8f9fa;
+            --dag-text-dark: #2c3e50;
+            --dag-text-light: #64748b;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dag-text-dark);
+            background: var(--dag-light-gray);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 21, 56, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dag-burgundy);
+        }
+        
+        .logo-mark {
+            width: 45px;
+            height: 45px;
+            background: var(--dag-burgundy);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dag-text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--dag-burgundy);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--dag-burgundy);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        main {
+            margin-top: 100px;
+            padding: 3rem 0;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+        }
+        
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            color: var(--dag-burgundy);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--dag-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .releases-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+        
         .release-card {
-            grid-template-columns: 1fr;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(139, 21, 56, 0.08);
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .release-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(139, 21, 56, 0.15);
+        }
+        
+        .release-card.featured {
+            border: 3px solid var(--dag-gold);
+        }
+        
+        .release-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: var(--dag-burgundy);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .release-card.featured .release-badge {
+            background: var(--dag-gold);
+            color: var(--dag-dark-blue);
         }
         
         .release-cover {
-            height: 200px;
+            height: 280px;
+            background: linear-gradient(135deg, var(--dag-burgundy) 0%, var(--dag-dark-burgundy) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .release-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+        
+        .placeholder-cover {
+            font-size: 4.5rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .release-info {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .release-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dag-burgundy);
+            margin-bottom: 0.8rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .artist {
+            color: var(--dag-gold);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .release-date {
+            color: var(--dag-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .description {
+            color: var(--dag-text-light);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+        
+        .release-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--dag-gold) 0%, #e6c270 100%);
+            color: var(--dag-dark-blue);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--dag-burgundy);
+            border: 2px solid var(--dag-burgundy);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--dag-burgundy);
+            color: white;
+        }
+        
+        .newsletter {
+            background: linear-gradient(135deg, var(--dag-dark-blue) 0%, var(--dag-burgundy) 100%);
+            color: white;
+            padding: 4rem 3rem;
+            border-radius: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+        
+        .newsletter-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .newsletter p {
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
         
         .newsletter-form {
-            flex-direction: column;
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 1rem;
         }
-    }
-</style>
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        .newsletter-form .btn {
+            background: var(--dag-gold);
+            color: var(--dag-dark-blue);
+            white-space: nowrap;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .release-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .release-cover {
+                height: 220px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter {
+                padding: 3rem 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <a href="/dag-www/" class="logo">
+                <div class="logo-mark">DAG</div>
+                <div class="logo-text">Klassical</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/dag-www/">Inicio</a></li>
+                <li><a href="/dag-www/discografia">Discografía</a></li>
+                <li><a href="/dag-www/lanzamientos">Lanzamientos</a></li>
+                <li><a href="/dag-www/tienda">Tienda</a></li>
+                <li><a href="/dag-www/sobre-nosotros">Nosotros</a></li>
+                <li><a href="/dag-www/contactos">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="page-header">
+                <h1>Lanzamientos</h1>
+                <p>Próximos lanzamientos y novedades musicales de nuestra casa disquera</p>
+            </header>
+
+            <section class="releases-grid">
+                <div class="release-card featured">
+                    <div class="release-badge">Próximo</div>
+                    <div class="release-cover">
+                        <div class="placeholder-cover">🎆</div>
+                    </div>
+                    <div class="release-info">
+                        <h3>Momentos Musicales Vol. 3</h3>
+                        <p class="artist">Varios Artistas</p>
+                        <p class="release-date">Diciembre 2025</p>
+                        <p class="description">
+                            Tercera entrega de nuestra aclamada colección de momentos musicales, 
+                            con interpretaciones exclusivas de los artistas venezolanos más destacados 
+                            de la escena clásica contemporánea.
+                        </p>
+                        <div class="release-actions">
+                            <a href="/dag-www/tienda" class="btn btn-primary">Pre-orden NFT</a>
+                            <a href="#" class="btn btn-secondary">Notificarme</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="release-card">
+                    <div class="release-badge">Nuevo</div>
+                    <div class="release-cover">
+                        <div class="placeholder-cover">🎹</div>
+                    </div>
+                    <div class="release-info">
+                        <h3>Proyecto Enmanuel</h3>
+                        <p class="artist">Enmanuel Vivas</p>
+                        <p class="release-date">Noviembre 2025</p>
+                        <p class="description">
+                            Interpretaciones contemporáneas de clásicos venezolanos 
+                            en una propuesta fresca y emotiva que conecta generaciones 
+                            a través de la música.
+                        </p>
+                        <div class="release-actions">
+                            <a href="/dag-www/tienda" class="btn btn-primary">Adquirir NFT</a>
+                            <a href="#" class="btn btn-secondary">Escuchar</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="release-card">
+                    <div class="release-badge">Disponible</div>
+                    <div class="release-cover">
+                        <div class="placeholder-cover">🎼</div>
+                    </div>
+                    <div class="release-info">
+                        <h3>Capítulos - Virginia Ramírez</h3>
+                        <p class="artist">Virginia Ramírez</p>
+                        <p class="release-date">Octubre 2025</p>
+                        <p class="description">
+                            Una colección intimista de piezas para piano que narran 
+                            diferentes capítulos de la vida musical venezolana con 
+                            sensibilidad y virtuosismo excepcionales.
+                        </p>
+                        <div class="release-actions">
+                            <a href="/dag-www/tienda" class="btn btn-primary">Comprar NFT</a>
+                            <a href="#" class="btn btn-secondary">Streaming</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="newsletter">
+                <div class="newsletter-content">
+                    <h2>No te pierdas nuestros lanzamientos</h2>
+                    <p>Suscríbete para recibir notificaciones de nuevos lanzamientos y ofertas exclusivas en NFTs</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Tu email" required>
+                        <button type="submit" class="btn btn-primary">Suscribirse</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

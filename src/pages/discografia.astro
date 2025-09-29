@@ -1,174 +1,383 @@
 ---
-title: "Discografía - DAG Klassical"
-description: "Catálogo completo de grabaciones de DAG Klassical"
-layout: "../layouts/Layout.astro"
+const title = "Discografía - DAG Klassical";
+const description = "Catálogo completo de grabaciones de DAG Klassical";
 ---
 
-<main>
-    <div class="container">
-        <header class="page-header">
-            <h1>Discografía</h1>
-            <p>Nuestro catálogo completo de grabaciones clásicas</p>
-        </header>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/dag-www/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --dag-burgundy: #8B1538;
+            --dag-dark-burgundy: #6B1028;
+            --dag-gold: #C9A961;
+            --dag-dark-blue: #1a2332;
+            --dag-light-gray: #f8f9fa;
+            --dag-text-dark: #2c3e50;
+            --dag-text-light: #64748b;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dag-text-dark);
+            background: var(--dag-light-gray);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 21, 56, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dag-burgundy);
+        }
+        
+        .logo-mark {
+            width: 45px;
+            height: 45px;
+            background: var(--dag-burgundy);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dag-text-dark);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--dag-burgundy);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--dag-burgundy);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        main {
+            margin-top: 100px;
+            padding: 3rem 0;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+        }
+        
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            color: var(--dag-burgundy);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--dag-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .discography-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .album-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(139, 21, 56, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .album-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dag-burgundy), var(--dag-gold));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+        
+        .album-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .album-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 60px rgba(139, 21, 56, 0.15);
+        }
+        
+        .album-cover {
+            height: 280px;
+            background: linear-gradient(135deg, var(--dag-burgundy) 0%, var(--dag-dark-burgundy) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .album-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(201, 169, 97, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        }
+        
+        .placeholder-cover {
+            font-size: 4.5rem;
+            color: white;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .album-info {
+            padding: 2rem;
+        }
+        
+        .album-info h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dag-burgundy);
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .album-info p {
+            color: var(--dag-text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .album-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            flex: 1;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--dag-gold) 0%, #e6c270 100%);
+            color: var(--dag-dark-blue);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--dag-burgundy);
+            border: 2px solid var(--dag-burgundy);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--dag-burgundy);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .discography-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .album-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
 
-        <section class="discography-grid">
-            <div class="album-card">
-                <div class="album-cover">
-                    <div class="placeholder-cover">🎹</div>
-                </div>
-                <div class="album-info">
-                    <h3>Piano Aguinaldo - Gerardo Gerulewicz</h3>
-                    <p>Colección de aguinaldos venezolanos interpretados al piano</p>
-                    <div class="album-actions">
-                        <a href="#" class="btn btn-primary">Escuchar</a>
-                        <a href="#" class="btn btn-secondary">NFT</a>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/dag-www/" class="logo">
+                <div class="logo-mark">DAG</div>
+                <div class="logo-text">Klassical</div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="/dag-www/">Inicio</a></li>
+                <li><a href="/dag-www/discografia">Discografía</a></li>
+                <li><a href="/dag-www/lanzamientos">Lanzamientos</a></li>
+                <li><a href="/dag-www/tienda">Tienda</a></li>
+                <li><a href="/dag-www/sobre-nosotros">Nosotros</a></li>
+                <li><a href="/dag-www/contactos">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <header class="page-header">
+                <h1>Discografía</h1>
+                <p>Nuestro catálogo completo de grabaciones clásicas y obras magistrales</p>
+            </header>
+
+            <section class="discography-grid">
+                <div class="album-card">
+                    <div class="album-cover">
+                        <div class="placeholder-cover">🎹</div>
+                    </div>
+                    <div class="album-info">
+                        <h3>Piano Aguinaldo - Gerardo Gerulewicz</h3>
+                        <p>Colección de aguinaldos venezolanos interpretados al piano con la maestría y sensibilidad características del maestro Gerulewicz.</p>
+                        <div class="album-actions">
+                            <a href="#" class="btn btn-primary">Escuchar</a>
+                            <a href="/dag-www/tienda" class="btn btn-secondary">Ver NFT</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="album-card">
-                <div class="album-cover">
-                    <div class="placeholder-cover">🎶</div>
-                </div>
-                <div class="album-info">
-                    <h3>Momentos Musicales Vol. 1</h3>
-                    <p>Primera entrega de momentos musicales clásicos</p>
-                    <div class="album-actions">
-                        <a href="#" class="btn btn-primary">Escuchar</a>
-                        <a href="#" class="btn btn-secondary">NFT</a>
+                <div class="album-card">
+                    <div class="album-cover">
+                        <div class="placeholder-cover">🎶</div>
+                    </div>
+                    <div class="album-info">
+                        <h3>Momentos Musicales Vol. 1</h3>
+                        <p>Primera entrega de momentos musicales clásicos que capturan la esencia de la tradición venezolana.</p>
+                        <div class="album-actions">
+                            <a href="#" class="btn btn-primary">Escuchar</a>
+                            <a href="/dag-www/tienda" class="btn btn-secondary">Ver NFT</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="album-card">
-                <div class="album-cover">
-                    <div class="placeholder-cover">🎵</div>
-                </div>
-                <div class="album-info">
-                    <h3>Schubert - Goulnara Galimchina</h3>
-                    <p>Interpretaciones de obras de Franz Schubert</p>
-                    <div class="album-actions">
-                        <a href="#" class="btn btn-primary">Escuchar</a>
-                        <a href="#" class="btn btn-secondary">NFT</a>
+                <div class="album-card">
+                    <div class="album-cover">
+                        <div class="placeholder-cover">🎵</div>
+                    </div>
+                    <div class="album-info">
+                        <h3>Schubert - Goulnara Galimchina</h3>
+                        <p>Interpretaciones magistrales de obras selectas de Franz Schubert por la reconocida pianista Goulnara Galimchina.</p>
+                        <div class="album-actions">
+                            <a href="#" class="btn btn-primary">Escuchar</a>
+                            <a href="/dag-www/tienda" class="btn btn-secondary">Ver NFT</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="album-card">
-                <div class="album-cover">
-                    <div class="placeholder-cover">🎼</div>
-                </div>
-                <div class="album-info">
-                    <h3>Rachmaninoff Variations - Teodor Dore</h3>
-                    <p>Variaciones sobre temas de Rachmaninoff</p>
-                    <div class="album-actions">
-                        <a href="#" class="btn btn-primary">Escuchar</a>
-                        <a href="#" class="btn btn-secondary">NFT</a>
+                <div class="album-card">
+                    <div class="album-cover">
+                        <div class="placeholder-cover">🎼</div>
+                    </div>
+                    <div class="album-info">
+                        <h3>Rachmaninoff Variations - Teodor Dore</h3>
+                        <p>Variaciones virtuosas sobre temas de Rachmaninoff, interpretadas con técnica impecable y expresión profunda.</p>
+                        <div class="album-actions">
+                            <a href="#" class="btn btn-primary">Escuchar</a>
+                            <a href="/dag-www/tienda" class="btn btn-secondary">Ver NFT</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
-</main>
-
-<style>
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem;
-    }
-
-    .page-header {
-        text-align: center;
-        margin-bottom: 3rem;
-    }
-
-    .page-header h1 {
-        font-size: 3rem;
-        color: #1e3c72;
-        margin-bottom: 1rem;
-    }
-
-    .page-header p {
-        font-size: 1.2rem;
-        color: #666;
-    }
-
-    .discography-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    .album-card {
-        background: white;
-        border-radius: 15px;
-        overflow: hidden;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        transition: transform 0.3s;
-    }
-
-    .album-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .album-cover {
-        height: 250px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .placeholder-cover {
-        font-size: 4rem;
-        color: white;
-    }
-
-    .album-info {
-        padding: 1.5rem;
-    }
-
-    .album-info h3 {
-        color: #1e3c72;
-        margin-bottom: 0.5rem;
-        font-size: 1.3rem;
-    }
-
-    .album-info p {
-        color: #666;
-        margin-bottom: 1rem;
-        line-height: 1.5;
-    }
-
-    .album-actions {
-        display: flex;
-        gap: 0.5rem;
-    }
-
-    .btn {
-        padding: 8px 16px;
-        text-decoration: none;
-        border-radius: 20px;
-        font-size: 0.9rem;
-        font-weight: 600;
-        transition: all 0.3s;
-        text-align: center;
-        flex: 1;
-    }
-
-    .btn-primary {
-        background: #ff6b35;
-        color: white;
-    }
-
-    .btn-secondary {
-        background: transparent;
-        color: #1e3c72;
-        border: 2px solid #1e3c72;
-    }
-
-    .btn:hover {
-        transform: translateY(-2px);
-    }
-</style>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
