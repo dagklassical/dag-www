@@ -306,9 +306,16 @@ const { title, description } = Astro.props;
       
       /* Main Content */
       main {
-        margin-top: 120px; /* Increased from 80px to prevent header overlap */
-        min-height: calc(100vh - 120px - 200px);
-        padding-top: 2rem; /* Additional padding for content breathing room */
+        margin-top: 140px; /* Increased to prevent header overlap completely */
+        min-height: calc(100vh - 140px - 200px);
+        padding-top: 3rem; /* More breathing room */
+      }
+      
+      /* Specific fix for page headers that might have additional spacing issues */
+      .page-header,
+      [class*="page-header"] {
+        padding-top: 2rem !important;
+        margin-top: 1rem !important;
       }
       
       /* Footer */
