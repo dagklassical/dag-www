@@ -1,0 +1,26 @@
+image: node:lts
+
+variables:
+  NODE_ENV: production
+
+pages:
+  stage: deploy
+  cache:
+    paths:
+      - node_modules/
+  before_script:
+    - echo "🎵 Instalando dependencias..."
+    - npm ci --only=production
+  script:
+    - echo "🎵 Construyendo sitio Astro..."
+    - npm run build
+    - echo "🎵 Verificando archivos generados..."
+    - ls -la dist/
+    - echo "🎵 Copiando archivos a public/..."
+    - cp -r dist/* public/
+    - echo "🎵 Build completado exitosamente!"
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
