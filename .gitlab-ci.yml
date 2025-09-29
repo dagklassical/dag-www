@@ -10,7 +10,7 @@ pages:
       - node_modules/
   before_script:
     - echo "🎵 Instalando dependencias..."
-    - npm ci --only=production
+    - npm install --production
   script:
     - echo "🎵 Construyendo sitio Astro..."
     - npm run build
