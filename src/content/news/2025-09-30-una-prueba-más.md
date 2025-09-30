@@ -1,5 +1,5 @@
 ---
-title: una prueba más
+title: Una prueba más
 date: 2025-09-30T01:42:00.000-04:00
 ---
 Realizando otra prueba de contenido en noticias
