@@ -157,10 +157,10 @@ const { title, description } = Astro.props;
       .navbar {
         background: var(--color-surface);
         box-shadow: var(--shadow);
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        position: relative; /* Changed from fixed to relative */
+        top: auto; /* Remove fixed positioning */
+        left: auto;
+        right: auto;
         z-index: 1000;
         padding: 1rem 0;
       }
@@ -172,6 +172,7 @@ const { title, description } = Astro.props;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        position: relative; /* Added for mobile menu positioning */
       }
       
       .nav-logo a {
@@ -274,9 +275,9 @@ const { title, description } = Astro.props;
         }
         
         .nav-menu {
-          position: fixed;
+          position: absolute; /* Changed from fixed to absolute */
           left: -100%;
-          top: 70px;
+          top: 100%; /* Position below the navbar */
           flex-direction: column;
           background: var(--color-surface);
           width: 100%;
@@ -306,9 +307,9 @@ const { title, description } = Astro.props;
       
       /* Main Content */
       main {
-        margin-top: 180px; /* Increased even more to prevent header overlap completely */
-        min-height: calc(100vh - 180px - 200px);
-        padding-top: 3rem; /* More breathing room */
+        margin-top: 0; /* Removed margin since header is no longer fixed */
+        min-height: calc(100vh - 200px);
+        padding-top: 2rem; /* Normal spacing */
       }
       
       /* Specific fix for page headers that might have additional spacing issues */
