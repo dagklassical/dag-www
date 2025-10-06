@@ -6,7 +6,8 @@
 
 Este sitio está configurado para desplegarse automáticamente en GitLab Pages utilizando Astro.
 
-### Archivos Clave Corregidos:
+### Archivos Clave Corregidos
+
 - `.gitlab-ci.yml` - Pipeline de CI/CD corregido
 - `astro.config.mjs` - Configuración optimizada para GitLab Pages
 - `package.json` - Dependencias actualizadas
@@ -20,7 +21,7 @@ Este sitio está configurado para desplegarse automáticamente en GitLab Pages u
 
 ## 🏠 Estructura del Sitio
 
-```
+```ascii
 src/
 ├── pages/
 │   ├── index.astro           # Página principal
@@ -60,16 +61,19 @@ npm run preview
 ## 🎵 Características del Sitio
 
 ### Música y Arte
+
 - Catálogo de grabaciones clásicas venezuelas
 - Perfiles de artistas y compositores
 - Historia de la música clásica venezolana
 
 ### Tecnología Blockchain
+
 - **NFTs en Algorand**: Venta de música como tokens no fungibles
 - **Contratos Inteligentes**: Gestión automática de regalías
 - **MusicCards**: Formato innovador de colección musical
 
 ### Funcionalidades
+
 - Diseño responsive y moderno
 - Optimizado para SEO
 - Integración con CMS para gestión de contenido
@@ -77,29 +81,33 @@ npm run preview
 
 ## 🔧 Solución de Problemas
 
-### Problema Original:
+### Problema Original
+
 El pipeline fallaba porque:
+
 - Astro configurado para generar en `public/` pero el pipeline esperaba `dist/`
 - Conflicto entre directorios de salida
 
-### Solución Implementada:
+### Solución Implementada
+
 - Astro genera en `dist/` (por defecto)
 - Pipeline copia de `dist/*` a `public/` para GitLab Pages
 - Configuración de `base` correcta para subdominio
 
 ## 🌐 URLs del Sitio
 
-- **Producción**: https://aprado4.gitlab.io/dag-www
-- **Desarrollo**: http://localhost:4321
+- **Producción**: <https://aprado4.gitlab.io/dag-www>
+- **Desarrollo**: <http://localhost:4321>
 
 ## 📞 Contacto
 
 Para consultas sobre el desarrollo del sitio o colaboraciones:
-- Email: info@dagklassical.com
-- GitLab: https://gitlab.com/aprado4/dag-www
+
+- Email: <info@dagklassical.com>
+- GitLab: <https://gitlab.com/aprado4/dag-www>
 
 ---
 
-**Autor**: MiniMax Agent
+**Autor**: Adrián Prado / MiniMax Agent
 **Fecha**: Septiembre 2025
 **Versión**: 1.0.0
