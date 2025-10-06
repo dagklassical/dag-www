@@ -96,8 +96,8 @@ El pipeline fallaba porque:
 
 ## 🌐 URLs del Sitio
 
-- **Producción**: <https://dagclassical.gitlab.io/dag-www>
-- **Desarrollo**: <http://localhost:4321>
+- **Producción**: <https://dagklassical.gitlab.io/dag-www>
+- **Desarrollo**: `http://localhost:4321`
 
 ## 📞 Contacto
 
