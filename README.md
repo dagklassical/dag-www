@@ -108,6 +108,6 @@ Para consultas sobre el desarrollo del sitio o colaboraciones:
 
 ---
 
-**Autor**: Adrián Prado / MiniMax Agent
-**Fecha**: Septiembre 2025
-**Versión**: 1.0.0
+- **Autor**: Adrián Prado / MiniMax Agent
+- **Fecha**: Septiembre 2025
+- **Versión**: 1.0.0
