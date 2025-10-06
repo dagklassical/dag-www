@@ -96,15 +96,15 @@ El pipeline fallaba porque:
 
 ## 🌐 URLs del Sitio
 
-- **Producción**: <https://aprado4.gitlab.io/dag-www>
+- **Producción**: <https://dagclassical.gitlab.io/dag-www>
 - **Desarrollo**: <http://localhost:4321>
 
 ## 📞 Contacto
 
 Para consultas sobre el desarrollo del sitio o colaboraciones:
 
-- Email: <info@dagklassical.com>
-- GitLab: <https://gitlab.com/aprado4/dag-www>
+- Email: <adrian.prado@gmail.com>
+- GitLab: <https://gitlab.com/dagklassical/dag-www>
 
 ---
 
