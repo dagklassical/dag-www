@@ -1,10 +1,5 @@
 backend:
-  name: gitlab
-  repo: dagklassical/dag-www
-  auth_type: pkce
-  app_id: 388bfeef3cb994fbd25ffd4e47d18b18050048eb1980a3b46886abf11e3bf598
-  base_url: https://gitlab.com
-  branch: main
+  name: test-repo
 
 media_folder: "public/images"
 public_folder: "/dag-www/images"
