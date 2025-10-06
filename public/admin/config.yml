@@ -1,7 +1,7 @@
 backend:
   name: gitlab
   repo: dagklassical/dag-www
-  auth_type: pkce
+  auth_type: implicit
   app_id: 3eedf5a01f4ca8ba330afc13fdfbe916491ec49134d8bc5cb7f743e06023ac95
   base_url: https://gitlab.com
   branch: main
