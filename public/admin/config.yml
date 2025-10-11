@@ -2,6 +2,8 @@ backend:
   name: github
   repo: dagklassical/dag-www
   branch: main
+  
+site_url: https://dagklassical.github.io/dag-www
 
 media_folder: "public/images"
 public_folder: "/dag-www/images"
