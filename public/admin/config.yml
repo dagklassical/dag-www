@@ -3,6 +3,7 @@ backend:
   repo: dagklassical/dag-www
   branch: main
   auth_type: pkce
+  client_id: Ov23liazRPMwuTu1aF2y
 
 site_url: https://dagklassical.github.io/dag-www
 display_url: https://dagklassical.github.io/dag-www
