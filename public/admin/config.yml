@@ -27,3 +27,4 @@ collections:
       - {label: "Artista", name: "artist", widget: "string"}
       - {label: "Fecha", name: "date", widget: "datetime"}
       - {label: "Contenido", name: "body", widget: "markdown"}
+      
