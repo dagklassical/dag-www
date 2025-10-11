@@ -104,7 +104,7 @@ El pipeline fallaba porque:
 Para consultas sobre el desarrollo del sitio o colaboraciones:
 
 - Email: <adrian.prado@gmail.com>
-- GitLab: <https://gitlab.com/dagklassical/dag-www>
+- GitLab: <https://github.com/dagklassical/dag-www>
 
 ---
 
