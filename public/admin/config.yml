@@ -1,5 +1,5 @@
 backend:
-  name: gitlab
+  name: github
   repo: dagklassical/dag-www
   auth_type: pkce
   app_id: 3eedf5a01f4ca8ba330afc13fdfbe916491ec49134d8bc5cb7f743e06023ac95
