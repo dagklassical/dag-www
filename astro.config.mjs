@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  // Configuración para GitLab Pages
-  site: 'https://dagklassical.gitlab.io',
+  // Configuración para GitHub Pages
+  site: 'https://dagklassical.github.io',
   base: '/dag-www',
   
   // Configuración de build

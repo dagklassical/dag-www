@@ -13,6 +13,7 @@ const { title, description } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/dag-www/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/dag-www/favicon.svg" />
     <title>{title}</title>
     
@@ -21,7 +22,13 @@ const { title, description } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
+    <!-- Estilos Centralizados -->
+    <link rel="stylesheet" href="/dag-www/src/styles/globals.css">
+    <link rel="stylesheet" href="/dag-www/src/styles/components.css">
+    <link rel="stylesheet" href="/dag-www/src/styles/pages.css">
+    
     <style is:global>
+      /* Variables CSS personalizadas para DAG Klassical */
       :root {
         --color-primary: #8B0000; /* Burgundy */
         --color-secondary: #B8860B; /* Gold */
@@ -38,12 +45,7 @@ const { title, description } = Astro.props;
         --max-width: 1200px;
       }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
+      /* Override globales específicos */
       html {
         font-family: var(--font-body);
         background: var(--color-bg);
@@ -54,43 +56,6 @@ const { title, description } = Astro.props;
       body {
         line-height: 1.6;
         font-size: 16px;
-      }
-
-      /* Responsive Typography */
-      @media (max-width: 768px) {
-        body {
-          font-size: 14px;
-        }
-        
-        h1 {
-          font-size: 2rem !important;
-        }
-        
-        h2 {
-          font-size: 1.5rem !important;
-        }
-        
-        h3 {
-          font-size: 1.25rem !important;
-        }
-        
-        .hero h1 {
-          font-size: 2.5rem !important;
-        }
-      }
-
-      @media (max-width: 480px) {
-        body {
-          font-size: 13px;
-        }
-        
-        h1 {
-          font-size: 1.75rem !important;
-        }
-        
-        .hero h1 {
-          font-size: 2rem !important;
-        }
       }
     </style>
   </head>
@@ -154,15 +119,17 @@ const { title, description } = Astro.props;
     </footer>
     
     <style>
+      /* ===========================================
+         ESTILOS ESPECÍFICOS DEL LAYOUT
+         (Navbar, Footer, Navegación móvil)
+      =========================================== */
+      
       /* Navigation Styles */
       .navbar {
         background: var(--color-surface);
         box-shadow: var(--shadow);
-        position: relative; /* Changed from fixed to relative */
-        top: auto; /* Remove fixed positioning */
-        left: auto;
-        right: auto;
-        z-index: 1000;
+        position: relative;
+        z-index: 100;
         padding: 1rem 0;
       }
       
@@ -173,7 +140,7 @@ const { title, description } = Astro.props;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        position: relative; /* Added for mobile menu positioning */
+        position: relative;
       }
       
       .nav-logo a {
@@ -269,73 +236,10 @@ const { title, description } = Astro.props;
         width: 100%;
       }
       
-      /* Mobile Navigation */
-      @media (max-width: 768px) {
-        .hamburger {
-          display: flex;
-        }
-        
-        .nav-menu {
-          position: absolute; /* Changed from fixed to absolute */
-          left: -100%;
-          top: 100%; /* Position below the navbar */
-          flex-direction: column;
-          background: var(--color-surface);
-          width: 100%;
-          text-align: center;
-          transition: 0.3s;
-          box-shadow: var(--shadow-lg);
-          padding: 2rem 0;
-          gap: 1rem;
-        }
-        
-        .nav-menu.active {
-          left: 0;
-        }
-        
-        .nav-container {
-          padding: 0 1rem;
-        }
-        
-        .logo-dag {
-          font-size: 1.5rem;
-        }
-        
-        .logo-klassical {
-          font-size: 0.7rem;
-        }
-      }
-      
       /* Main Content */
       main {
-        margin-top: 0; /* Removed margin since header is no longer fixed */
         min-height: calc(100vh - 200px);
-        padding-top: 2rem; /* Normal spacing */
-      }
-      
-      /* Specific fix for page headers that might have additional spacing issues */
-      .page-header,
-      [class*="page-header"],
-      .hero,
-      [class*="hero"] {
-        padding-top: 2rem !important;
-        margin-top: 1rem !important;
-        position: relative !important; /* Ensure no fixed positioning */
-        z-index: auto !important; /* Reset z-index */
-      }
-      
-      /* Reset any problematic positioning for all major content blocks */
-      section,
-      article,
-      .content,
-      [class*="content"] {
-        position: relative !important;
-        z-index: auto !important;
-      }
-      
-      /* Ensure proper stacking order */
-      .navbar {
-        z-index: 100; /* Lower z-index since it's not fixed anymore */
+        padding-top: 2rem;
       }
       
       /* Footer */
@@ -389,7 +293,42 @@ const { title, description } = Astro.props;
         color: #ccc;
       }
       
+      /* Mobile Navigation */
       @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+        
+        .nav-menu {
+          position: absolute;
+          left: -100%;
+          top: 100%;
+          flex-direction: column;
+          background: var(--color-surface);
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          box-shadow: var(--shadow-lg);
+          padding: 2rem 0;
+          gap: 1rem;
+        }
+        
+        .nav-menu.active {
+          left: 0;
+        }
+        
+        .nav-container {
+          padding: 0 1rem;
+        }
+        
+        .logo-dag {
+          font-size: 1.5rem;
+        }
+        
+        .logo-klassical {
+          font-size: 0.7rem;
+        }
+        
         .footer-container {
           padding: 2rem 1rem 1rem;
         }
