@@ -8,7 +8,6 @@ Este sitio está configurado para desplegarse automáticamente en GitLab Pages u
 
 ### Archivos Clave Corregidos
 
-- `.gitlab-ci.yml` - Pipeline de CI/CD corregido
 - `astro.config.mjs` - Configuración optimizada para GitLab Pages
 - `package.json` - Dependencias actualizadas
 
@@ -56,7 +55,7 @@ npm run preview
 1. **Push a la rama `main`** - El pipeline se ejecuta automáticamente
 2. **Build de Astro** - Se genera el sitio en la carpeta `dist/`
 3. **Copia a `public/`** - Los archivos se mueven para GitLab Pages
-4. **Despliegue** - El sitio se publica en `https://dagklassical.gitlab.io/dag-www`
+4. **Despliegue** - El sitio se publica en `https://dagklassical.github.io/dag-www`
 
 ## 🎵 Características del Sitio
 
@@ -96,7 +95,7 @@ El pipeline fallaba porque:
 
 ## 🌐 URLs del Sitio
 
-- **Producción**: <https://dagklassical.gitlab.io/dag-www>
+- **Producción**: <https://dagklassical.github.io/dag-www>
 - **Desarrollo**: `http://localhost:4321`
 
 ## 📞 Contacto

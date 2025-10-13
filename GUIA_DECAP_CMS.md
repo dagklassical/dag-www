@@ -26,7 +26,7 @@ He creado una configuración completa de **Decap CMS** específicamente diseñad
 1. Ve a tu perfil en GitLab → **Preferences** → **Applications**
 2. Crea una nueva aplicación con:
    - **Name**: `DAG Klassical CMS`
-   - **Redirect URI**: <`https://aprado4.gitlab.io/dag-www/admin/`>
+   - **Redirect URI**: <`https://dagklassical.github.io/dag-www/admin/`>
    - **Confidential**: ❌ **DESMARCAR** (importante)
    - **Scopes**: ✅ Marcar solo `api`
 
@@ -42,7 +42,7 @@ He creado una configuración completa de **Decap CMS** específicamente diseñad
 
 ## 🚀 Cómo usar el CMS
 
-1. **Acceder**: <`https://aprado4.gitlab.io/dag-www/admin/`>
+1. **Acceder**: <`https://dagklassical.github.io/dag-www/admin/`>
 2. **Autenticarse** con tu cuenta GitLab
 3. **Crear/editar contenido** usando la interfaz visual
 4. **Publicar** - los cambios se guardan automáticamente en Git

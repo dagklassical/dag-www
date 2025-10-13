@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://aprado4.gitlab.io/dag-www/sitemap.xml
+Sitemap: https://dagklassical.github.io/dag-www/sitemap.xml
 
 # Directorios bloqueados
 Disallow: /admin/
