@@ -1,112 +1,172 @@
-# DAG Klassical - Sitio Web Oficial
+# DAG Klassical - Disquera Blockchain
 
-🎵 Casa disquera venezolana pionera en música clásica y tecnología blockchain.
-
-## 🚀 Despliegue en GitLab Pages
-
-Este sitio está configurado para desplegarse automáticamente en GitLab Pages utilizando Astro.
-
-### Archivos Clave Corregidos
-
-- `astro.config.mjs` - Configuración optimizada para GitLab Pages
-- `package.json` - Dependencias actualizadas
-
-## 🛠️ Tecnologías
-
-- **Framework**: Astro 4.0
-- **CMS**: Decap CMS (NetlifyCMS)
-- **Deployment**: GitLab Pages
-- **Blockchain**: Algorand (para NFTs)
-
-## 🏠 Estructura del Sitio
-
-```ascii
-src/
-├── pages/
-│   ├── index.astro           # Página principal
-│   ├── discografia.astro     # Catálogo musical
-│   ├── lanzamientos.astro    # Próximos lanzamientos
-│   ├── tienda.astro          # Tienda NFT Algorand
-│   ├── sobre-nosotros.astro  # Historia de la empresa
-│   └── contactos.astro       # Información de contacto
-└── public/
-    └── admin/
-        └── config.yml        # Configuración Decap CMS
-```
-
-## 💻 Desarrollo Local
-
-```bash
-# Instalar dependencias
-npm install
-
-# Servidor de desarrollo
-npm run dev
-
-# Build para producción
-npm run build
-
-# Preview del build
-npm run preview
-```
-
-## 🔄 Proceso de Despliegue
-
-1. **Push a la rama `main`** - El pipeline se ejecuta automáticamente
-2. **Build de Astro** - Se genera el sitio en la carpeta `dist/`
-3. **Copia a `public/`** - Los archivos se mueven para GitLab Pages
-4. **Despliegue** - El sitio se publica en `https://dagklassical.github.io/dag-www`
-
-## 🎵 Características del Sitio
-
-### Música y Arte
-
-- Catálogo de grabaciones clásicas venezuelas
-- Perfiles de artistas y compositores
-- Historia de la música clásica venezolana
-
-### Tecnología Blockchain
-
-- **NFTs en Algorand**: Venta de música como tokens no fungibles
-- **Contratos Inteligentes**: Gestión automática de regalías
-- **MusicCards**: Formato innovador de colección musical
-
-### Funcionalidades
-
-- Diseño responsive y moderno
-- Optimizado para SEO
-- Integración con CMS para gestión de contenido
-- Preparado para integración con wallets de Algorand
-
-## 🔧 Solución de Problemas
-
-### Problema Original
-
-El pipeline fallaba porque:
-
-- Astro configurado para generar en `public/` pero el pipeline esperaba `dist/`
-- Conflicto entre directorios de salida
-
-### Solución Implementada
-
-- Astro genera en `dist/` (por defecto)
-- Pipeline copia de `dist/*` a `public/` para GitLab Pages
-- Configuración de `base` correcta para subdominio
-
-## 🌐 URLs del Sitio
-
-- **Producción**: <https://dagklassical.github.io/dag-www>
-- **Desarrollo**: `http://localhost:4321`
-
-## 📞 Contacto
-
-Para consultas sobre el desarrollo del sitio o colaboraciones:
-
-- Email: <adrian.prado@gmail.com>
-- GitLab: <https://github.com/dagklassical/dag-www>
+> **Una disquera independiente potenciada por tecnología blockchain en Polygon**
 
 ---
 
-- **Autor**: Adrián Prado / MiniMax Agent
-- **Fecha**: Septiembre 2025
-- **Versión**: 1.0.0
+## 🎵 Descripción del Proyecto
+
+DAG Klassical es una plataforma integral que combina:
+
+- **Sitio web tradicional** para la disquera
+- **Marketplace de NFTs musicales** en blockchain Polygon
+- **Gestión de contenido** descentralizada via GitHub
+
+## 🏗️ Arquitectura del Sistema
+
+```ascii
+Frontend (Astro) ←→ Polygon Blockchain ←→ Smart Contracts
+     ↑                    ↑                    ↑
+GitHub Pages         RPC Provider      MusicCardNFT.sol
+                                      Marketplace.sol
+```
+
+### 🔗 Repositorios del ecosistema
+
+- **[dag-www](https://github.com/dagklassical/dag-www)** - Sitio web principal
+- **[dag-klassical-blockchain](https://github.com/dagklassical/dag-klassical-blockchain)** - Smart contracts
+- **[dag-klassical-api](https://github.com/dagklassical/dag-klassical-api)** - Backend API (opcional)
+
+## 📚 Documentación del Proyecto
+
+### 📖 Guías por audiencia
+
+| Guía | Audiencia | Propósito | Estado |
+|------|-----------|-----------|--------|
+| [**Gestión de Contenido**](GUIA_GESTION_CONTENIDO.md) | Content Managers, Editores | Administrar contenido del sitio | ✅ Completa |
+| [**Integración Blockchain**](GUIA_BLOCKCHAIN_SETUP.md) | Desarrolladores | Configurar conexión con Polygon | 🚧 En desarrollo |
+| [**Marketplace NFT**](GUIA_MARKETPLACE_NFT.md) | Business, Desarrolladores | Implementar tienda de NFTs | ⏳ Pendiente |
+| [**Deploy y Producción**](GUIA_DEPLOYMENT.md) | DevOps, Administradores | Publicar y mantener el sitio | ⏳ Pendiente |
+
+### 🎯 Guías por fase del proyecto
+
+#### **Fase 1-2: Sitio Web Base** ✅
+
+- [Gestión de Contenido](GUIA_GESTION_CONTENIDO.md)
+- Arquitectura Astro + GitHub Pages
+- Sistema de gestión sin CMS externo
+
+#### **Fase 3: Integración Blockchain** 🚧
+
+- [Integración Blockchain](GUIA_BLOCKCHAIN_SETUP.md)
+- [Marketplace NFT](GUIA_MARKETPLACE_NFT.md)
+- Conexión con contratos en Polygon
+
+#### **Fase 4: Producción** ⏳
+
+- [Deploy y Producción](GUIA_DEPLOYMENT.md)
+- Optimizaciones finales
+- Monitoreo y mantenimiento
+
+## 🚀 Stack Tecnológico
+
+### **Frontend**
+
+- **Astro** - Framework principal del sitio
+- **JavaScript/TypeScript** - Lógica del cliente
+- **Ethers.js** - Interacción con blockchain
+- **Tailwind CSS** - Estilos (opcional)
+
+### **Blockchain**
+
+- **Polygon Network** - Blockchain principal
+- **Solidity** - Smart contracts
+- **Hardhat** - Framework de desarrollo
+- **MetaMask** - Wallet de usuario
+
+### **Infraestructura**
+
+- **GitHub Pages** - Hosting gratuito
+- **GitHub Actions** - CI/CD automático
+- **Polygon RPC** - Conexión blockchain
+
+## 📋 Quick Start
+
+### **Para editores de contenido:**
+
+1. Lee la [Guía de Gestión de Contenido](GUIA_GESTION_CONTENIDO.md)
+2. Accede al repositorio en GitHub
+3. Edita archivos `.md` directamente en la web
+
+### **Para desarrolladores:**
+
+1. Clona el repositorio
+2. Instala dependencias: `npm install`
+3. Desarrollo local: `npm run dev`
+4. Sigue la [Guía de Integración Blockchain](GUIA_BLOCKCHAIN_SETUP.md)
+
+## 🌐 Enlaces Importantes
+
+### **Sitios de producción:**
+
+- **Sitio principal:** <https://dagklassical.github.io/dag-www>
+- **Marketplace NFT:** <https://dagklassical.github.io/dag-www/marketplace>
+
+### **Blockchain:**
+
+- **Red:** Polygon Mainnet
+- **Contratos:** [Ver en blockchain explorer](https://polygonscan.com/)
+
+### **Desarrollo:**
+
+- **Repositorio principal:** <https://github.com/dagklassical/dag-www>
+- **Issues y roadmap:** <https://github.com/dagklassical/dag-www/issues>
+
+## 🛠️ Comandos Útiles
+
+```bash
+# Desarrollo local
+npm run dev          # Servidor de desarrollo
+npm run build        # Build de producción
+npm run preview      # Preview del build
+
+# Git workflow
+git checkout -b feat/nueva-funcionalidad
+git commit -m "feat: descripción del cambio"
+git push origin feat/nueva-funcionalidad
+
+# Blockchain (desde dag-klassical-blockchain)
+npx hardhat compile  # Compilar contratos
+npx hardhat test     # Ejecutar tests
+npx hardhat deploy   # Deploy a testnet
+```
+
+## 📞 Soporte y Contacto
+
+- **Issues técnicos:** [GitHub Issues](https://github.com/dagklassical/dag-www/issues)
+- **Documentación:** Este mismo repositorio
+- **Equipo de desarrollo:** DAG Klassical
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo [MIT License](LICENSE).
+
+---
+
+## 🎯 Roadmap
+
+### **✅ Completado**
+
+- [x] Configuración inicial del repositorio
+- [x] Deploy automático en GitHub Pages
+- [x] Sistema de gestión de contenido
+- [x] Estructura base del sitio
+
+### **🚧 En desarrollo (Fase 3)**
+
+- [ ] Integración con Polygon blockchain
+- [ ] Conexión a smart contracts
+- [ ] Marketplace de NFTs musicales
+- [ ] Integración con wallets
+
+### **⏳ Pendiente (Fase 4)**
+
+- [ ] Optimizaciones de performance
+- [ ] SEO avanzado
+- [ ] Analytics y métricas
+- [ ] Testing de carga
+
+---
+
+**Última actualización:** 14 de octubre, 2025  
+**Versión de la documentación:** 1.0
