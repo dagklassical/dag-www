@@ -2,10 +2,11 @@ backend:
   name: github
   repo: dagklassical/dag-www
   branch: main
+  auth_type: pkce
+  client_id: Ov23liuqrLJ3wpuVYZj9
 
 site_url: https://dagklassical.github.io/dag-www
 display_url: https://dagklassical.github.io/dag-www
-logo_url: https://dagklassical.github.io/dag-www/images/logo.png
 
 media_folder: "public/images"
 public_folder: "/dag-www/images"
