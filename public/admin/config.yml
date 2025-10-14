@@ -4,6 +4,8 @@ backend:
   branch: main
   auth_type: pkce
   client_id: Ov23liuqrLJ3wpuVYZj9
+  auth_endpoint: https://github.com/login/oauth/authorize
+  auth_token_endpoint: https://github.com/login/oauth/access_token
 
 site_url: https://dagklassical.github.io/dag-www
 display_url: https://dagklassical.github.io/dag-www
@@ -19,16 +21,5 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {label: "Título", name: "title", widget: "string"}
-      - {label: "Fecha", name: "date", widget: "datetime"}
-      - {label: "Contenido", name: "body", widget: "markdown"}
-
-  - name: "discografia"
-    label: "Discografía"
-    folder: "src/content/albums"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Artista", name: "artist", widget: "string"}
       - {label: "Fecha", name: "date", widget: "datetime"}
       - {label: "Contenido", name: "body", widget: "markdown"}
