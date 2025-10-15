@@ -1,0 +1,246 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Discografía - DAG Klassical">
+  <div class="page-container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">Discografía</h1>
+        <p class="hero-subtitle">Explora nuestro catálogo musical completo</p>
+      </div>
+    </section>
+
+    <!-- Catálogo de Álbumes -->
+    <section class="catalog">
+      <div class="container">
+        <div class="albums-grid">
+          <!-- Álbum 1 -->
+          <div class="album-card">
+            <div class="album-cover">
+              <div class="placeholder-cover">🎵</div>
+            </div>
+            <div class="album-info">
+              <h3 class="album-title">Génesis Blockchain</h3>
+              <p class="artist-name">DAG Klassical</p>
+              <p class="release-year">2024</p>
+              <div class="album-tags">
+                <span class="tag">NFT</span>
+                <span class="tag">Electrónica</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Álbum 2 -->
+          <div class="album-card">
+            <div class="album-cover">
+              <div class="placeholder-cover">🎶</div>
+            </div>
+            <div class="album-info">
+              <h3 class="album-title">Sonidos Descentralizados</h3>
+              <p class="artist-name">Colectivo DAG</p>
+              <p class="release-year">2024</p>
+              <div class="album-tags">
+                <span class="tag">Experimental</span>
+                <span class="tag">Ambient</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Álbum 3 -->
+          <div class="album-card">
+            <div class="album-cover">
+              <div class="placeholder-cover">🎼</div>
+            </div>
+            <div class="album-info">
+              <h3 class="album-title">Polygon Sessions</h3>
+              <p class="artist-name">Varios Artistas</p>
+              <p class="release-year">2023</p>
+              <div class="album-tags">
+                <span class="tag">Compilado</span>
+                <span class="tag">Live</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Álbum 4 -->
+          <div class="album-card">
+            <div class="album-cover">
+              <div class="placeholder-cover">🎹</div>
+            </div>
+            <div class="album-info">
+              <h3 class="album-title">Frequencies</h3>
+              <p class="artist-name">Neo Classical</p>
+              <p class="release-year">2023</p>
+              <div class="album-tags">
+                <span class="tag">Clásica</span>
+                <span class="tag">Digital</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtros y Búsqueda -->
+    <section class="filters">
+      <div class="container">
+        <h2>Filtrar por</h2>
+        <div class="filter-options">
+          <button class="filter-btn active">Todos</button>
+          <button class="filter-btn">Electrónica</button>
+          <button class="filter-btn">Clásica</button>
+          <button class="filter-btn">Experimental</button>
+          <button class="filter-btn">NFT</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .page-container {
+    min-height: 100vh;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, rgba(123, 63, 228, 0.2), rgba(231, 60, 126, 0.2));
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: #b0b0b0;
+  }
+
+  .catalog {
+    padding: 4rem 0;
+  }
+
+  .albums-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .album-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .album-card:hover {
+    transform: translateY(-5px);
+    border-color: #7B3FE4;
+    box-shadow: 0 10px 30px rgba(123, 63, 228, 0.2);
+  }
+
+  .album-cover {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder-cover {
+    font-size: 4rem;
+    color: white;
+  }
+
+  .album-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+  }
+
+  .artist-name {
+    color: #7B3FE4;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .release-year {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .album-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: rgba(123, 63, 228, 0.2);
+    color: #7B3FE4;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+
+  .filters {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 3rem 0;
+  }
+
+  .filters h2 {
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+  }
+
+  .filter-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    border-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .albums-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
