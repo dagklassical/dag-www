@@ -1,0 +1,361 @@
+---
+// Página Preventa - DAG Klassical
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Preventa NFT - DAG Klassical">
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Preventa Exclusiva</h1>
+        <p>Accede a los primeros NFTs musicales de DAG Klassical antes que nadie</p>
+        <div class="countdown-timer">
+          <span class="coming-soon-badge">Próximamente</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🎵</div>
+          <h3>Acceso Anticipado</h3>
+          <p>Sé el primero en adquirir nuestros NFTs musicales exclusivos antes del lanzamiento público.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">💎</div>
+          <h3>Precios Especiales</h3>
+          <p>Disfruta de precios preferenciales y descuentos exclusivos para compradores anticipados.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🎭</div>
+          <h3>NFTs Únicos</h3>
+          <p>Colecciona piezas musicales únicas con utilidades especiales y derechos de autor.</p>
+        </div>
+        
+        <div class="benefit-card">
+          <div class="benefit-icon">🌟</div>
+          <h3>Beneficios VIP</h3>
+          <p>Acceso a eventos exclusivos, conciertos privados y experiencias únicas con los artistas.</p>
+        </div>
+      </div>
+      
+      <div class="cta-section">
+        <div class="cta-card">
+          <h2>🚀 ¡Únete a la Lista de Espera!</h2>
+          <p>Regístrate para ser notificado cuando lancemos nuestra preventa exclusiva de NFTs musicales.</p>
+          
+          <form class="waitlist-form">
+            <div class="form-group">
+              <input type="email" placeholder="tu@email.com" required />
+              <button type="submit" class="cta-button">
+                Unirme a la Lista
+              </button>
+            </div>
+          </form>
+          
+          <div class="blockchain-info">
+            <p>✅ Powered by Polygon Network</p>
+            <p>🔒 Transacciones seguras y eficientes</p>
+            <p>🌱 Respetuoso con el medio ambiente</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="faq-section">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>¿Qué es un NFT musical?</h4>
+            <p>Es un token no fungible que representa la propiedad digital de una pieza musical única, con derechos y utilidades especiales.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>¿Cómo funciona la preventa?</h4>
+            <p>Los miembros de la lista de espera tendrán acceso prioritario a comprar NFTs antes del lanzamiento público.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>¿Qué wallet necesito?</h4>
+            <p>Recomendamos MetaMask o cualquier wallet compatible con Polygon Network para realizar las transacciones.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>¿Cuándo será el lanzamiento?</h4>
+            <p>Anunciaremos la fecha oficial próximamente. Los miembros de la lista serán los primeros en saberlo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #7B3FE4 50%, #E73C7E 100%);
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="600" cy="700" r="120" fill="url(%23a)"/></svg>');
+    opacity: 0.3;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .hero-content p {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+  }
+  
+  .coming-soon-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .content-section {
+    padding: 4rem 0;
+  }
+  
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .benefit-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .benefit-card:hover {
+    transform: translateY(-5px);
+    border-color: #7B3FE4;
+    box-shadow: 0 10px 30px rgba(123, 63, 228, 0.2);
+  }
+  
+  .benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .benefit-card h3 {
+    color: #7B3FE4;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  
+  .benefit-card p {
+    color: #a0a0a0;
+    line-height: 1.6;
+  }
+  
+  .cta-section {
+    margin: 4rem 0;
+  }
+  
+  .cta-card {
+    background: linear-gradient(135deg, rgba(123, 63, 228, 0.1) 0%, rgba(231, 60, 126, 0.1) 100%);
+    border: 1px solid rgba(123, 63, 228, 0.3);
+    border-radius: 1.5rem;
+    padding: 3rem;
+    text-align: center;
+  }
+  
+  .cta-card h2 {
+    color: #7B3FE4;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  
+  .cta-card > p {
+    color: #a0a0a0;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .waitlist-form {
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  
+  .form-group input {
+    flex: 1;
+    min-width: 250px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .cta-button {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(123, 63, 228, 0.3);
+  }
+  
+  .blockchain-info {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .blockchain-info p {
+    color: #7B3FE4;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+  
+  .faq-section {
+    margin-top: 4rem;
+  }
+  
+  .faq-section h2 {
+    text-align: center;
+    color: #7B3FE4;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .faq-item h4 {
+    color: #E73C7E;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .faq-item p {
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+    
+    .form-group {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    
+    .form-group input {
+      min-width: auto;
+    }
+    
+    .blockchain-info {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .container {
+      padding: 0 1rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('.waitlist-form');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const button = form.querySelector('.cta-button');
+        const originalText = button.textContent;
+        
+        // Simular envío
+        button.textContent = 'Registrando...';
+        button.disabled = true;
+        
+        setTimeout(() => {
+          button.textContent = '¡Registrado! ✅';
+          
+          setTimeout(() => {
+            button.textContent = originalText;
+            button.disabled = false;
+            form.reset();
+          }, 2000);
+        }, 1500);
+      });
+    }
+  });
+</script>
