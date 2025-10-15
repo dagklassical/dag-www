@@ -9,7 +9,9 @@ const getPath = (path: string) => {
 
 // Helper function for assets
 const getAssetPath = (asset: string) => {
-  return `${baseUrl}${asset}`;
+  const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+  const cleanAsset = asset.startsWith('/') ? asset.slice(1) : asset;
+  return `${cleanBase}${cleanAsset}`;
 };
 ---
 

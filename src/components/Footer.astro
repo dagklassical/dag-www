@@ -1,6 +1,12 @@
 ---
 // Componente Footer - Información de contacto y enlaces de DAG Klassical
 const currentYear = new Date().getFullYear();
+const baseUrl = import.meta.env.BASE_URL;
+
+// Helper function to create correct paths
+const getPath = (path: string) => {
+  return path === '/' ? baseUrl : `${baseUrl}${path}`;
+};
 ---
 
 <footer class="footer">
@@ -41,10 +47,10 @@ const currentYear = new Date().getFullYear();
       <div class="footer-section">
         <h3>Música</h3>
         <ul class="footer-links">
-          <li><a href="/discografia">Discografía</a></li>
-          <li><a href="/lanzamientos">Próximos Lanzamientos</a></li>
-          <li><a href="/enciclopedia">Enciclopedia Musical</a></li>
-          <li><a href="/music-news">Noticias</a></li>
+          <li><a href={getPath("/discografia")}>Discografía</a></li>
+          <li><a href={getPath("/lanzamientos")}>Próximos Lanzamientos</a></li>
+          <li><a href={getPath("/enciclopedia")}>Enciclopedia Musical</a></li>
+          <li><a href={getPath("/music-news")}>Noticias</a></li>
         </ul>
       </div>
       
@@ -52,9 +58,9 @@ const currentYear = new Date().getFullYear();
       <div class="footer-section">
         <h3>Blockchain</h3>
         <ul class="footer-links">
-          <li><a href="/tienda">Tienda NFT</a></li>
-          <li><a href="/preventa">Preventa</a></li>
-          <li><a href="/tickets">Tickets</a></li>
+          <li><a href={getPath("/tienda")}>Tienda NFT</a></li>
+          <li><a href={getPath("/preventa")}>Preventa</a></li>
+          <li><a href={getPath("/tickets")}>Tickets</a></li>
           <li><a href="#">Polygon Network</a></li>
         </ul>
       </div>
@@ -63,8 +69,8 @@ const currentYear = new Date().getFullYear();
       <div class="footer-section">
         <h3>Contacto</h3>
         <ul class="footer-links">
-          <li><a href="/sobre-nosotros">Sobre Nosotros</a></li>
-          <li><a href="/contactos">Contacto</a></li>
+          <li><a href={getPath("/sobre-nosotros")}>Sobre Nosotros</a></li>
+          <li><a href={getPath("/contactos")}>Contacto</a></li>
           <li><a href="#">Prensa</a></li>
           <li><a href="#">Términos y Condiciones</a></li>
         </ul>
