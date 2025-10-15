@@ -6,6 +6,11 @@ const baseUrl = import.meta.env.BASE_URL;
 const getPath = (path: string) => {
   return path === '/' ? baseUrl : `${baseUrl}${path}`;
 };
+
+// Helper function for assets
+const getAssetPath = (asset: string) => {
+  return `${baseUrl}${asset}`;
+};
 ---
 
 <header class="header">
@@ -13,7 +18,7 @@ const getPath = (path: string) => {
     <!-- Logo -->
     <div class="logo">
       <a href={getPath('/')}>
-        <img src={`${baseUrl}logo-dag.svg`} alt="DAG Klassical" class="logo-img" />
+        <img src={getAssetPath("logo-dag.svg")} alt="DAG Klassical" class="logo-img" />
         <span class="logo-text">DAG Klassical</span>
       </a>
     </div>
@@ -31,8 +36,8 @@ const getPath = (path: string) => {
         <li><a href={getPath('/contactos')} class="nav-link">Contacto</a></li>
       </ul>
       
-      <!-- Wallet button dentro del nav para móvil -->
-      <div class="wallet-section">
+      <!-- Wallet button para móvil (solo visible en menú activo) -->
+      <div class="wallet-section mobile-wallet">
         <button class="wallet-btn" id="connectWallet">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21 7H3C2.447 7 2 7.447 2 8V16C2 17.103 2.897 18 4 18H20C21.103 18 22 17.103 22 16V8C22 7.447 21.553 7 21 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
@@ -42,6 +47,17 @@ const getPath = (path: string) => {
         </button>
       </div>
     </nav>
+    
+    <!-- Wallet button para desktop -->
+    <div class="wallet-section desktop-wallet">
+      <button class="wallet-btn" id="connectWalletDesktop">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 7H3C2.447 7 2 7.447 2 8V16C2 17.103 2.897 18 4 18H20C21.103 18 22 17.103 22 16V8C22 7.447 21.553 7 21 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M18 12H18.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="wallet-text">Conectar Wallet</span>
+      </button>
+    </div>
     
     <!-- Menú móvil -->
     <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -138,10 +154,6 @@ const getPath = (path: string) => {
   }
   
   /* Wallet Button */
-  .wallet-section {
-    display: none; /* Hidden in mobile by default */
-  }
-  
   .wallet-btn {
     display: flex;
     align-items: center;
@@ -161,11 +173,13 @@ const getPath = (path: string) => {
     box-shadow: 0 8px 25px rgba(123, 63, 228, 0.3);
   }
 
-  /* Desktop: Show wallet button */
-  @media (min-width: 769px) {
-    .wallet-section {
-      display: block !important;
-    }
+  /* Desktop: Show only desktop wallet button */
+  .desktop-wallet {
+    display: block;
+  }
+
+  .mobile-wallet {
+    display: none;
   }
   
   /* Mobile Menu */
@@ -233,9 +247,14 @@ const getPath = (path: string) => {
       display: flex;
     }
     
-    /* Show wallet button in mobile menu when active */
-    .nav.active .wallet-section {
-      display: block !important;
+    /* Hide desktop wallet button in mobile */
+    .desktop-wallet {
+      display: none;
+    }
+    
+    /* Show mobile wallet button only in active menu */
+    .nav.active .mobile-wallet {
+      display: block;
       margin-top: 2rem;
       text-align: center;
     }
@@ -243,11 +262,13 @@ const getPath = (path: string) => {
 </style>
 
 <script>
-  // Script para el menú móvil
+  // Script para el menú móvil y wallet
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const nav = document.querySelector('.nav');
     const navLinks = document.querySelectorAll('.nav-link');
+    const walletBtnMobile = document.getElementById('connectWallet');
+    const walletBtnDesktop = document.getElementById('connectWalletDesktop');
     
     // Toggle menu on button click
     if (mobileMenuBtn && nav) {
@@ -277,5 +298,18 @@ const getPath = (path: string) => {
         mobileMenuBtn.classList.remove('active');
       }
     });
+    
+    // Wallet button functionality (placeholder)
+    const handleWalletConnect = () => {
+      alert('Conectar Wallet - Funcionalidad próximamente');
+    };
+    
+    if (walletBtnMobile) {
+      walletBtnMobile.addEventListener('click', handleWalletConnect);
+    }
+    
+    if (walletBtnDesktop) {
+      walletBtnDesktop.addEventListener('click', handleWalletConnect);
+    }
   });
 </script>
