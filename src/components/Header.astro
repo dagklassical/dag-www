@@ -30,18 +30,18 @@ const getPath = (path: string) => {
         <li><a href={getPath('/sobre-nosotros')} class="nav-link">Nosotros</a></li>
         <li><a href={getPath('/contactos')} class="nav-link">Contacto</a></li>
       </ul>
+      
+      <!-- Wallet button dentro del nav para móvil -->
+      <div class="wallet-section">
+        <button class="wallet-btn" id="connectWallet">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 7H3C2.447 7 2 7.447 2 8V16C2 17.103 2.897 18 4 18H20C21.103 18 22 17.103 22 16V8C22 7.447 21.553 7 21 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
+            <path d="M18 12H18.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <span class="wallet-text">Conectar Wallet</span>
+        </button>
+      </div>
     </nav>
-    
-    <!-- Botón de Wallet (Blockchain) -->
-    <div class="wallet-section">
-      <button class="wallet-btn" id="connectWallet">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M21 7H3C2.447 7 2 7.447 2 8V16C2 17.103 2.897 18 4 18H20C21.103 18 22 17.103 22 16V8C22 7.447 21.553 7 21 7Z" stroke="currentColor" stroke-width="2" fill="none"/>
-          <path d="M18 12H18.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <span class="wallet-text">Conectar Wallet</span>
-      </button>
-    </div>
     
     <!-- Menú móvil -->
     <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -138,6 +138,10 @@ const getPath = (path: string) => {
   }
   
   /* Wallet Button */
+  .wallet-section {
+    display: none; /* Hidden in mobile by default */
+  }
+  
   .wallet-btn {
     display: flex;
     align-items: center;
@@ -155,6 +159,13 @@ const getPath = (path: string) => {
   .wallet-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(123, 63, 228, 0.3);
+  }
+
+  /* Desktop: Show wallet button */
+  @media (min-width: 769px) {
+    .wallet-section {
+      display: block !important;
+    }
   }
   
   /* Mobile Menu */
@@ -175,18 +186,58 @@ const getPath = (path: string) => {
     transition: all 0.3s ease;
   }
   
+  /* Mobile Menu Active States */
+  .nav.active {
+    display: block !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    z-index: 999;
+  }
+
+  .nav.active .nav-menu {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  /* Hamburger Animation */
+  .mobile-menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-menu-btn.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
-    .nav {
-      display: none;
+    .container {
+      padding: 1rem;
     }
     
-    .wallet-section {
+    .nav {
       display: none;
     }
     
     .mobile-menu-btn {
       display: flex;
+    }
+    
+    /* Show wallet button in mobile menu when active */
+    .nav.active .wallet-section {
+      display: block !important;
+      margin-top: 2rem;
+      text-align: center;
     }
   }
 </style>
@@ -196,12 +247,35 @@ const getPath = (path: string) => {
   document.addEventListener('DOMContentLoaded', () => {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const nav = document.querySelector('.nav');
+    const navLinks = document.querySelectorAll('.nav-link');
     
+    // Toggle menu on button click
     if (mobileMenuBtn && nav) {
       mobileMenuBtn.addEventListener('click', () => {
         nav.classList.toggle('active');
         mobileMenuBtn.classList.toggle('active');
       });
     }
+    
+    // Close menu when clicking on a nav link (mobile)
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          nav.classList.remove('active');
+          mobileMenuBtn.classList.remove('active');
+        }
+      });
+    });
+    
+    // Close menu when clicking outside (mobile)
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 && 
+          nav.classList.contains('active') &&
+          !nav.contains(e.target) && 
+          !mobileMenuBtn.contains(e.target)) {
+        nav.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+      }
+    });
   });
 </script>
