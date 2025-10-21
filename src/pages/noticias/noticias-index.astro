@@ -1,0 +1,472 @@
+---
+// Página Principal Noticias - Blog y actualizaciones
+import Layout from '../../layouts/Layout.astro';
+
+// 📝 CONTENIDO PARA MIGRAR:
+// TODO: Agregar posts/noticias recientes
+// TODO: Agregar categorías de noticias
+// TODO: Implementar sistema de blog dinámico
+---
+
+<Layout title="Noticias - DAG Klassical">
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <!-- 📝 TÍTULO PRINCIPAL -->
+        <h1>📰 Noticias</h1>
+        <!-- 📝 SUBTÍTULO: Reemplazar con descripción corta -->
+        <p>Mantente al día con las últimas novedades de DAG Klassical y el mundo blockchain musical</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section">
+    <div class="container">
+      
+      <!-- 🎯 SECCIÓN: CATEGORÍAS -->
+      <div class="categories-nav">
+        <h2>Explorar por Categoría</h2>
+        <div class="categories-list">
+          <button class="category-btn active">Todas</button>
+          <button class="category-btn">Lanzamientos</button>
+          <button class="category-btn">Blockchain</button>
+          <button class="category-btn">Artistas</button>
+          <button class="category-btn">Eventos</button>
+          <button class="category-btn">Tecnología</button>
+        </div>
+      </div>
+
+      <!-- 🎯 SECCIÓN: NOTICIA DESTACADA -->
+      <div class="featured-post">
+        <div class="featured-content">
+          <!-- 📝 IMAGEN: Imagen destacada de la noticia -->
+          <img src="/dag-www/logo-dag.svg" alt="Noticia destacada" class="featured-image" />
+          
+          <div class="featured-text">
+            <span class="post-category">[MIGRAR: Categoría]</span>
+            <h3>[MIGRAR AQUÍ: Título de la noticia destacada]</h3>
+            <p class="post-date">[MIGRAR: Fecha de publicación]</p>
+            <p class="post-excerpt">
+              [MIGRAR AQUÍ: Extracto o resumen de la noticia destacada - primeros párrafos]
+            </p>
+            <a href="#" class="read-more">Leer más →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🎯 SECCIÓN: POSTS RECIENTES -->
+      <div class="recent-posts">
+        <h2>Últimas Noticias</h2>
+        <div class="posts-grid">
+          
+          <!-- 📝 POST 1 -->
+          <article class="post-card">
+            <img src="/dag-www/logo-dag.svg" alt="Post" class="post-image" />
+            <div class="post-content">
+              <span class="post-category">[Categoría]</span>
+              <h3>[MIGRAR: Título del post]</h3>
+              <p class="post-date">[Fecha]</p>
+              <p class="post-excerpt">[MIGRAR: Resumen breve del post]</p>
+              <a href="#" class="post-link">Leer más →</a>
+            </div>
+          </article>
+          
+          <!-- 📝 POST 2 -->
+          <article class="post-card">
+            <img src="/dag-www/logo-dag.svg" alt="Post" class="post-image" />
+            <div class="post-content">
+              <span class="post-category">[Categoría]</span>
+              <h3>[MIGRAR: Título del post]</h3>
+              <p class="post-date">[Fecha]</p>
+              <p class="post-excerpt">[MIGRAR: Resumen breve del post]</p>
+              <a href="#" class="post-link">Leer más →</a>
+            </div>$ git status
+En la rama feature/astro-basic-structure
+Cambios no rastreados para el commit:
+  (usa "git add/rm <archivo>..." para actualizar a lo que se le va a hacer commit)
+  (usa "git restore <archivo>..." para descartar los cambios en el directorio de trabajo)
+        borrado:        src/pages/.gitkeep
+        modificado:     src/pages/blockchain/tickets.astro
+        modificado:     src/pages/blockchain/tienda-nft.astro
+        modificado:     src/pages/musica/discografia.astro
+        modificado:     src/pages/musica/lanzamientos.astro
+
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que se será confirmado)
+        src/pages/blockchain/blockchain-index.astro
+        src/pages/musica/musica-index.astro
+        src/pages/nosotros/
+        src/pages/noticias/
+
+sin cambios agregados al commit (usa "git add" y/o "git commit -a")
+          </article>
+          
+          <!-- 📝 POST 3 -->
+          <article class="post-card">
+            <img src="/dag-www/logo-dag.svg" alt="Post" class="post-image" />
+            <div class="post-content">
+              <span class="post-category">[Categoría]</span>
+              <h3>[MIGRAR: Título del post]</h3>
+              <p class="post-date">[Fecha]</p>
+              <p class="post-excerpt">[MIGRAR: Resumen breve del post]</p>
+              <a href="#" class="post-link">Leer más →</a>
+            </div>
+          </article>
+          
+          <!-- 📝 AGREGAR MÁS POSTS -->
+          
+        </div>
+        
+        <!-- Paginación -->
+        <div class="pagination">
+          <button class="pagination-btn" disabled>← Anterior</button>
+          <span class="page-info">Página 1 de [#]</span>
+          <button class="pagination-btn">Siguiente →</button>
+        </div>
+      </div>
+
+      <!-- 🎯 SECCIÓN: NEWSLETTER -->
+      <div class="newsletter-section">
+        <h2>📬 Suscríbete a nuestro Newsletter</h2>
+        <p>Recibe las últimas noticias y lanzamientos directamente en tu correo</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="tu@email.com" class="newsletter-input" />
+          <button type="submit" class="newsletter-btn">Suscribirse</button>
+        </form>
+      </div>
+      
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, #7B3FE4 0%, #E73C7E 100%);
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .content-section {
+    padding: 4rem 0;
+  }
+  
+  /* Categorías */
+  .categories-nav {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .categories-nav h2 {
+    color: #7B3FE4;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .categories-list {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .category-btn {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 2rem;
+    color: #a0a0a0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+  
+  .category-btn:hover,
+  .category-btn.active {
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    color: white;
+    border-color: transparent;
+  }
+  
+  /* Post Destacado */
+  .featured-post {
+    margin-bottom: 4rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  
+  .featured-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .featured-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .featured-text {
+    padding: 2rem;
+  }
+  
+  .post-category {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(123, 63, 228, 0.2);
+    color: #7B3FE4;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .featured-text h3 {
+    color: #7B3FE4;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  
+  .post-date {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .post-excerpt {
+    color: #a0a0a0;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .read-more {
+    display: inline-block;
+    color: #7B3FE4;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+  }
+  
+  .read-more:hover {
+    transform: translateX(5px);
+  }
+  
+  /* Posts Grid */
+  .recent-posts {
+    margin-bottom: 4rem;
+  }
+  
+  .recent-posts h2 {
+    color: #7B3FE4;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .post-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .post-card:hover {
+    transform: translateY(-5px);
+    border-color: #7B3FE4;
+  }
+  
+  .post-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .post-content {
+    padding: 1.5rem;
+  }
+  
+  .post-content h3 {
+    color: #7B3FE4;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  
+  .post-link {
+    color: #7B3FE4;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+    display: inline-block;
+  }
+  
+  .post-link:hover {
+    transform: translateX(5px);
+  }
+  
+  /* Paginación */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  
+  .pagination-btn {
+    padding: 0.75rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    color: #a0a0a0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .pagination-btn:not(:disabled):hover {
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    color: white;
+    border-color: transparent;
+  }
+  
+  .pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .page-info {
+    color: #a0a0a0;
+  }
+  
+  /* Newsletter */
+  .newsletter-section {
+    background: linear-gradient(135deg, rgba(123, 63, 228, 0.1), rgba(231, 60, 126, 0.1));
+    border: 1px solid rgba(123, 63, 228, 0.3);
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+  }
+  
+  .newsletter-section h2 {
+    color: #7B3FE4;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .newsletter-section p {
+    color: #a0a0a0;
+    margin-bottom: 2rem;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .newsletter-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 1rem;
+  }
+  
+  .newsletter-input::placeholder {
+    color: #a0a0a0;
+  }
+  
+  .newsletter-btn {
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .newsletter-btn:hover {
+    transform: translateY(-2px);
+  }
+  
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+    
+    .featured-content {
+      grid-template-columns: 1fr;
+    }
+    
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .newsletter-form {
+      flex-direction: column;
+    }
+    
+    .categories-list {
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<script>
+  // Script para filtrado de categorías (placeholder)
+  document.addEventListener('DOMContentLoaded', () => {
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    
+    categoryBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoryBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // TODO: Implementar filtrado real de posts por categoría
+        console.log('Filtrar por:', btn.textContent);
+      });
+    });
+    
+    // Newsletter form (placeholder)
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('¡Gracias por suscribirte! (Funcionalidad próximamente)');
+      });
+    }
+  });
+</script>
