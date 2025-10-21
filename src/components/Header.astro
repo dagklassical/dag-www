@@ -29,13 +29,47 @@ const getAssetPath = (asset: string) => {
     <nav class="nav">
       <ul class="nav-menu">
         <li><a href={getPath('/')} class="nav-link">Inicio</a></li>
-        <li><a href={getPath('/discografia')} class="nav-link">Discografía</a></li>
-        <li><a href={getPath('/lanzamientos')} class="nav-link">Lanzamientos</a></li>
-        <li><a href={getPath('/tienda')} class="nav-link">Tienda NFT</a></li>
-        <li><a href={getPath('/tickets')} class="nav-link">Tickets</a></li>
-        <li><a href={getPath('/music-news')} class="nav-link">Noticias</a></li>
-        <li><a href={getPath('/sobre-nosotros')} class="nav-link">Nosotros</a></li>
-        <li><a href={getPath('/contactos')} class="nav-link">Contacto</a></li>
+        
+        <!-- 🎵 MÚSICA DROPDOWN -->
+        <li class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-toggle">
+            Música <span class="dropdown-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href={getPath('/musica/discografia')} class="dropdown-link">Discografía</a></li>
+            <li><a href={getPath('/musica/lanzamientos')} class="dropdown-link">Lanzamientos</a></li>
+            <li><a href={getPath('/musica/preventa')} class="dropdown-link">Preventa</a></li>
+            <li><a href={getPath('/musica/enciclopedia')} class="dropdown-link">Enciclopedia</a></li>
+          </ul>
+        </li>
+        
+        <!-- ⛓️ BLOCKCHAIN DROPDOWN -->
+        <li class="nav-dropdown">
+          <a href="#" class="nav-link dropdown-toggle">
+            Blockchain <span class="dropdown-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href={getPath('/blockchain/tienda-nft')} class="dropdown-link">Tienda NFT</a></li>
+            <li><a href={getPath('/blockchain/tickets')} class="dropdown-link">Tickets</a></li>
+            <li><a href={getPath('/blockchain/polygon-networks')} class="dropdown-link">Polygon Networks</a></li>
+          </ul>
+        </li>
+        
+        <li><a href={getPath('/noticias')} class="nav-link">Noticias</a></li>
+        
+        <!-- 👥 NOSOTROS DROPDOWN -->
+        <li class="nav-dropdown">
+          <a href={getPath('/nosotros')} class="nav-link dropdown-toggle">
+            Nosotros <span class="dropdown-arrow">▼</span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href={getPath('/nosotros/dag-klassical')} class="dropdown-link">DAG Klassical</a></li>
+            <li><a href={getPath('/nosotros/danilo-alvarez')} class="dropdown-link">Danilo Álvarez</a></li>
+            <li><a href={getPath('/nosotros/terminos')} class="dropdown-link">Términos y Condiciones</a></li>
+          </ul>
+        </li>
+        
+        <li><a href={getPath('/contacto')} class="nav-link">Contacto</a></li>
       </ul>
       
       <!-- Wallet button para móvil (solo visible en menú activo) -->
@@ -155,6 +189,72 @@ const getAssetPath = (asset: string) => {
     width: 100%;
   }
   
+  /* 📂 DROPDOWN STYLES */
+  .nav-dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  
+  .dropdown-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .nav-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+  
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .dropdown-menu li {
+    margin: 0;
+  }
+  
+  .dropdown-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 0;
+  }
+  
+  .dropdown-link:hover {
+    background: rgba(123, 63, 228, 0.1);
+    color: #7B3FE4;
+  }
+  
+  .dropdown-link::after {
+    display: none;
+  }
+  
   /* Wallet Button */
   .wallet-btn {
     display: flex;
@@ -220,6 +320,31 @@ const getAssetPath = (asset: string) => {
     flex-direction: column;
     gap: 1.5rem;
     text-align: center;
+  }
+  
+  /* Mobile Dropdown Styles */
+  @media (max-width: 768px) {
+    .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      background: rgba(123, 63, 228, 0.1);
+      border: none;
+      margin: 0.5rem 0 0 0;
+      border-radius: 0.5rem;
+      display: none;
+    }
+    
+    .nav-dropdown:hover .dropdown-menu,
+    .nav-dropdown.active .dropdown-menu {
+      display: block;
+    }
+    
+    .dropdown-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
   }
 
   /* Hamburger Animation */
