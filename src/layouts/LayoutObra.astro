@@ -1,0 +1,387 @@
+---
+// Layout para páginas de obras/álbumes
+import Layout from './Layout.astro';
+
+interface Track {
+  number?: number;
+  title: string;
+  duration?: string;
+}
+
+interface Props {
+  title: string;
+  albumTitle: string;
+  artistName: string;
+  artistUrl?: string;
+  coverImage: string;
+  releaseDate?: string;
+  description: string;
+  tracks?: Track[];
+  spotifyUrl?: string;
+  appleMusicUrl?: string;
+  nftUrl?: string;
+  previewUrl?: string;
+}
+
+const { 
+  title, 
+  albumTitle, 
+  artistName, 
+  artistUrl,
+  coverImage, 
+  releaseDate, 
+  description, 
+  tracks,
+  spotifyUrl,
+  appleMusicUrl,
+  nftUrl,
+  previewUrl
+} = Astro.props;
+
+const baseUrl = import.meta.env.BASE_URL;
+
+const getAssetPath = (asset: string) => {
+  const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+  const cleanAsset = asset.startsWith('/') ? asset.slice(1) : asset;
+  return `${cleanBase}${cleanAsset}`;
+};
+---
+
+<Layout title={title}>
+  <div class="album-page">
+    <!-- Hero Section -->
+    <section class="album-hero">
+      <div class="hero-content">
+        <div class="album-cover">
+          <img src={getAssetPath(coverImage)} alt={albumTitle} />
+          
+          {releaseDate && (
+            <div class="release-badge">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>{releaseDate}</span>
+            </div>
+          )}
+        </div>
+        
+        <div class="album-info">
+          <h1 class="album-title">{albumTitle}</h1>
+          
+          {artistUrl ? (
+            <a href={artistUrl} class="artist-link">
+              <h2 class="artist-name">{artistName}</h2>
+            </a>
+          ) : (
+            <h2 class="artist-name">{artistName}</h2>
+          )}
+          
+          <div class="album-actions">
+            {spotifyUrl && (
+              <a href={spotifyUrl} target="_blank" rel="noopener" class="action-btn spotify-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                </svg>
+                Spotify
+              </a>
+            )}
+            
+            {appleMusicUrl && (
+              <a href={appleMusicUrl} target="_blank" rel="noopener" class="action-btn apple-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.997 6.124c0-.738-.065-1.47-.24-2.19-.317-1.31-1.062-2.31-2.18-3.043C21.003.517 20.373.285 19.7.164c-.517-.093-1.038-.135-1.564-.15-.04-.003-.083.005-.124.005H5.988c-.152 0-.303.014-.455.028C4.786.07 4.043.15 3.34.428 2.004.958 1.04 1.88.475 3.208c-.192.448-.292.925-.363 1.408C.06 5.166 0 5.723 0 6.28v11.44c0 .718.065 1.43.24 2.142.317 1.31 1.062 2.31 2.18 3.043.574.376 1.204.608 1.877.729.517.093 1.038.135 1.564.15.04.003.083-.005.124-.005h12.09c.152 0 .303-.014.455-.028.747-.024 1.49-.104 2.193-.382 1.336-.53 2.3-1.452 2.865-2.78.192-.448.292-.925.363-1.408.052-.55.112-1.107.112-1.664V6.124zM5.988 22.005c-.152 0-.303-.014-.455-.028-.64-.02-1.274-.098-1.88-.316-.867-.313-1.508-.876-1.895-1.697-.233-.494-.333-1.03-.376-1.574-.043-.543-.06-1.088-.06-1.633V6.28c0-.152.014-.303.028-.455.02-.64.098-1.274.316-1.88.313-.867.876-1.508 1.697-1.895.494-.233 1.03-.333 1.574-.376.543-.043 1.088-.06 1.633-.06h12.09c.152 0 .303.014.455.028.64.02 1.274.098 1.88.316.867.313 1.508.876 1.895 1.697.233.494.333 1.03.376 1.574.043.543.06 1.088.06 1.633v11.44c0 .152-.014.303-.028.455-.02.64-.098 1.274-.316 1.88-.313.867-.876 1.508-1.697 1.895-.494.233-1.03.333-1.574.376-.543.043-1.088.06-1.633.06H5.988z"/>
+                  <path d="M11.998 6.124c0-.718.065-1.43.24-2.142.317-1.31 1.062-2.31 2.18-3.043.574-.376 1.204-.608 1.877-.729.517-.093 1.038-.135 1.564-.15.04-.003.083.005.124.005-.152 0-.303.014-.455.028-.747.024-1.49.104-2.193.382-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408-.052.55-.112 1.107-.112 1.664v11.44c0 .718-.065 1.43-.24 2.142-.317 1.31-1.062 2.31-2.18 3.043-.574.376-1.204.608-1.877.729-.517.093-1.038.135-1.564.15-.04.003-.083-.005-.124-.005.152 0 .303-.014.455-.028.747-.024 1.49-.104 2.193-.382 1.336-.53 2.3-1.452 2.865-2.78.192-.448.292-.925.363-1.408.052-.55.112-1.107.112-1.664V6.124z"/>
+                </svg>
+                Apple Music
+              </a>
+            )}
+            
+            {nftUrl && (
+              <a href={nftUrl} target="_blank" rel="noopener" class="action-btn nft-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                Comprar NFT
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="album-description">
+      <div class="container">
+        <div class="description-content" set:html={description} />
+      </div>
+    </section>
+
+    <!-- Tracklist Section -->
+    {tracks && tracks.length > 0 && (
+      <section class="album-tracklist">
+        <div class="container">
+          <h2>Lista de Pistas</h2>
+          <ol class="track-list">
+            {tracks.map((track, index) => (
+              <li class="track-item">
+                <span class="track-number">{track.number || index + 1}</span>
+                <span class="track-title">{track.title}</span>
+                {track.duration && <span class="track-duration">{track.duration}</span>}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )}
+
+    <!-- Additional Content Slot -->
+    <slot />
+  </div>
+</Layout>
+
+<style>
+  .album-page {
+    min-height: 100vh;
+  }
+
+  /* Hero Section */
+  .album-hero {
+    background: linear-gradient(135deg, rgba(123, 63, 228, 0.1), rgba(231, 60, 126, 0.1));
+    padding: 4rem 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+  }
+
+  .album-cover {
+    flex: 0 0 400px;
+    position: relative;
+  }
+
+  .album-cover img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 1rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  .release-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .album-info {
+    flex: 1;
+    padding-top: 1rem;
+  }
+
+  .album-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    color: #ffffff;
+  }
+
+  .artist-link {
+    text-decoration: none;
+  }
+
+  .artist-name {
+    font-size: 1.75rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: opacity 0.3s ease;
+  }
+
+  .artist-link:hover .artist-name {
+    opacity: 0.8;
+  }
+
+  .album-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: white;
+  }
+
+  .spotify-btn {
+    background: #1DB954;
+  }
+
+  .spotify-btn:hover {
+    background: #1ed760;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(29, 185, 84, 0.3);
+  }
+
+  .apple-btn {
+    background: #FC3C44;
+  }
+
+  .apple-btn:hover {
+    background: #ff4d54;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(252, 60, 68, 0.3);
+  }
+
+  .nft-btn {
+    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+  }
+
+  .nft-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(123, 63, 228, 0.3);
+  }
+
+  /* Description Section */
+  .album-description {
+    padding: 3rem 2rem;
+  }
+
+  .album-description .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .description-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #e0e0e0;
+  }
+
+  .description-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  /* Tracklist Section */
+  .album-tracklist {
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .album-tracklist .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .album-tracklist h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #7B3FE4;
+  }
+
+  .track-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .track-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease;
+  }
+
+  .track-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .track-number {
+    flex: 0 0 3rem;
+    color: #999;
+    font-weight: 500;
+  }
+
+  .track-title {
+    flex: 1;
+    font-size: 1.125rem;
+  }
+
+  .track-duration {
+    flex: 0 0 4rem;
+    text-align: right;
+    color: #999;
+  }
+
+  /* Responsive */
+  @media (max-width: 968px) {
+    .hero-content {
+      flex-direction: column;
+    }
+
+    .album-cover {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .album-info {
+      text-align: center;
+    }
+
+    .album-title {
+      font-size: 2.5rem;
+    }
+
+    .artist-name {
+      font-size: 1.5rem;
+    }
+
+    .album-actions {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .album-title {
+      font-size: 2rem;
+    }
+
+    .action-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>

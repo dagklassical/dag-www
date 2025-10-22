@@ -1,0 +1,58 @@
+---
+import LayoutObra from '../../../layouts/LayoutObra.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const getPath = (path: string) => path === '/' ? baseUrl : `${baseUrl}${path}`;
+
+const description = `
+  <p>"Capítulos" es un viaje sonoro a través de los éxitos más celebrados de Virginia, reuniendo en un solo volumen, aquellas piezas que se han convertido en emblemas de su sonido único. Cada tema, seleccionado meticulosamente de sus álbumes anteriores, ha sido remasterizado para ofrecer una experiencia auditiva renovada y de la más alta fidelidad, permitiendo tanto a nuevos oyentes como a seguidores de larga data redescubrir la profundidad y el color de su música.</p>
+  
+  <p>El álbum es un testimonio del dominio técnico de Virginia al piano y su habilidad innata para fusionar ritmos. Desde la sofisticación armónica del jazz moderno hasta la cadencia irresistible de la tradición latinoamericana, "Capítulos" navega por un espectro emocional y rítmico vasto. Los oyentes podrán deleitarse con la sensualidad del jazz tradicional y el LatinJazz, unificado por el sello inconfundible de su interpretación: elegante, poderosa y profundamente sentida.</p>
+  
+  <p>Más que una simple recopilación, "Capítulos" es una declaración artística. Representa una pausa, un respiro para contemplar el camino recorrido y saborear los logros que han definido su sonido. Es una invitación a vivir el presente a través de la música que da vida para su audiencia global.</p>
+  
+  <p>Este álbum es el regalo perfecto para los amantes del buen jazz y los ritmos latinos, y la introducción ideal para quienes busquen adentrarse en el mundo de Virginia Ramírez. "Capítulos" se posiciona no solo como un greatest hits, sino como una obra coherente y autónoma que confirma el lugar de Virginia Ramírez como una voz esencial y perdurable en la música instrumental.</p>
+`;
+
+const tracks = [
+  { title: 'Blues Con Sangueo' }
+  // Agregar más tracks cuando estén disponibles
+];
+---
+
+<LayoutObra
+  title="Capítulos - Virginia Ramírez | DAG Klassical"
+  albumTitle="Capítulos"
+  artistName="Virginia Ramírez"
+  artistUrl={getPath('/musica/artistas/virginia-ramirez')}
+  coverImage="obras/capitulos-virginia-ramirez.png"
+  releaseDate="Disponible desde el 14 de noviembre"
+  description={description}
+  tracks={tracks}
+  nftUrl={getPath('/blockchain/tienda-nft')}
+>
+  <!-- Sección adicional sobre el artista -->
+  <section style="padding: 3rem 2rem; background: rgba(255, 255, 255, 0.02);">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #7B3FE4;">Sobre la Artista</h2>
+      <p style="font-size: 1.125rem; line-height: 1.8; color: #e0e0e0; margin-bottom: 1.5rem;">
+        Virginia Ramírez una Artista Creativa, Valiente y atrevida su lenguaje está basado en el cambio y la experimentación, en sus propias ideas que vuelan más allá de los convencionalismos. Se mueve intensamente en los distintos caminos del arte, el canto, el piano y las artes circenses.
+      </p>
+      <p style="font-size: 1.125rem; line-height: 1.8; color: #e0e0e0; margin-bottom: 2rem;">
+        Se adentra en el lenguaje de la improvisación y el ritmo, en la esencia de la cultura venezolana y en el corazón mismo de la música para expresarse siempre con un sello propio y original.
+      </p>
+      <a 
+        href={getPath('/musica/artistas/virginia-ramirez')} 
+        style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #7B3FE4, #E73C7E); color: white; text-decoration: none; border-radius: 2rem; font-weight: 600; transition: transform 0.3s ease;"
+      >
+        Ver Perfil Completo
+      </a>
+    </div>
+  </section>
+</LayoutObra>
+
+<style>
+  a:hover {
+    transform: translateY(-3px) !important;
+  }
+</style>

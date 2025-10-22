@@ -1,0 +1,64 @@
+---
+import LayoutArtista from '../../../../layouts/LayoutArtista.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const getPath = (path: string) => path === '/' ? baseUrl : `${baseUrl}${path}`;
+
+const biography = `
+  <p>Virginia Ramírez es una artista creativa, valiente y atrevida cuyo lenguaje está basado en el cambio y la experimentación, en sus propias ideas que vuelan más allá de los convencionalismos. Se mueve intensamente en los distintos caminos del arte, el canto, el piano y las artes circenses.</p>
+  
+  <p>Se adentra en el lenguaje de la improvisación y el ritmo, en la esencia de la cultura venezolana y en el corazón mismo de la música para expresarse siempre con un sello propio y original.</p>
+  
+  <p>Virginia representa de manera brillante y audaz a las nuevas generaciones de artistas venezolanos. Su formación particularmente amplia fusiona el inmenso prisma académico del conservatorio con la libertad, historia y corazón del jazz y la música popular.</p>
+  
+  <p>Como resultado tenemos a una artista joven, vibrante y creadora cuyo único fin es plasmar sus ideas renovadoras en sonidos y música trascendental, que va más allá de todas las fronteras transmitiendo un mensaje de paz y luz a todo el universo.</p>
+`;
+
+const albums = [
+  {
+    title: 'Capítulos',
+    image: 'obras/capitulos-virginia-ramirez.png',
+    url: getPath('/musica/preventa/capitulos-virginia-ramirez'),
+    year: '2024'
+  }
+];
+
+const socialLinks = {
+  // Agregar cuando estén disponibles
+  // spotify: 'https://open.spotify.com/artist/...',
+  // instagram: 'https://instagram.com/virginiaramirez',
+  // youtube: 'https://youtube.com/@virginiaramirez'
+};
+---
+
+<LayoutArtista
+  title="Virginia Ramírez - Artista | DAG Klassical"
+  artistName="Virginia Ramírez"
+  artistImage="artistas/virginia-ramirez/profile.jpg"
+  biography={biography}
+  albums={albums}
+  socialLinks={socialLinks}
+>
+  <!-- Sección adicional si se necesita -->
+  <section class="artist-highlights" style="padding: 3rem 2rem; text-align: center;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #7B3FE4;">Último Lanzamiento</h2>
+      <p style="font-size: 1.125rem; color: #e0e0e0; margin-bottom: 2rem;">
+        Descubre "Capítulos", un viaje sonoro a través de los éxitos más celebrados de Virginia, 
+        disponible a partir del 14 de noviembre.
+      </p>
+      <a 
+        href={getPath('/musica/preventa/capitulos-virginia-ramirez')} 
+        style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #7B3FE4, #E73C7E); color: white; text-decoration: none; border-radius: 2rem; font-weight: 600; transition: transform 0.3s ease;"
+      >
+        Ver Álbum
+      </a>
+    </div>
+  </section>
+</LayoutArtista>
+
+<style>
+  .artist-highlights a:hover {
+    transform: translateY(-3px);
+  }
+</style>
