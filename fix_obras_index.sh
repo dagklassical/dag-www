@@ -1,3 +1,18 @@
+#!/bin/bash
+
+# Script para corregir la página de discografía
+# Ejecutar en el directorio raíz de tu proyecto
+
+echo "🔧 Corrigiendo página de discografía..."
+
+# Crear backup del archivo original
+if [ -f "src/pages/obras/index.astro" ]; then
+    cp src/pages/obras/index.astro src/pages/obras/index.astro.backup.$(date +%Y%m%d_%H%M%S)
+    echo "✅ Backup creado"
+fi
+
+# Crear la página corregida con HTML válido
+cat > src/pages/obras/index.astro << 'EOF'
 ---
 title: "Discografía"
 description: "Explora nuestra colección completa de álbumes de música clásica"
@@ -474,3 +489,12 @@ description: "Explora nuestra colección completa de álbumes de música clásic
     }
   }
 </style>
+EOF
+
+echo "✅ Página de discografía corregida con HTML válido!"
+echo "🚀 Ahora ejecuta:"
+echo "1. npm run dev"
+echo "2. Ve a 'Música' > 'Discografía'"
+echo ""
+echo "📝 El archivo de backup se guardó como:"
+echo "src/pages/obras/index.astro.backup.[timestamp]"
