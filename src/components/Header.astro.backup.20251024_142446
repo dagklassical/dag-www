@@ -37,7 +37,7 @@ const getAssetPath = (asset: string) => {
           </a>
           <ul class="dropdown-menu">
             <li><a href={getPath('/musica/artistas')} class="dropdown-link">Artistas</a></li>
-            <li><a href={getPath('/obras')} class="dropdown-link">Discografía</a></li>
+            <li><a href={getPath('/musica/discografia')} class="dropdown-link">Discografía</a></li>
             <li><a href={getPath('/musica/lanzamientos')} class="dropdown-link">Lanzamientos</a></li>
             <li><a href={getPath('/musica/preventa')} class="dropdown-link">Preventa</a></li>
             <li><a href={getPath('/musica/enciclopedia')} class="dropdown-link">Enciclopedia</a></li>
