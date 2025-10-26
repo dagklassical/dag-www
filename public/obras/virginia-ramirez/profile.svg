@@ -1,0 +1,38 @@
+<!-- Perfil de Virginia Ramírez -->
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#1a1a1a"/>
+  <!-- Border gradient -->
+  <rect x="10" y="10" width="380" height="380" rx="20" fill="none" stroke="url(#gradient)" stroke-width="4"/>
+  
+  <!-- Avatar circle -->
+  <circle cx="200" cy="150" r="80" fill="url(#avatarGradient)"/>
+  
+  <!-- Hair (simple artistic representation) -->
+  <path d="M140 120 Q200 80 260 120 Q250 140 200 140 Q150 140 140 120" fill="#8B4513" opacity="0.8"/>
+  
+  <!-- Face features -->
+  <circle cx="170" cy="140" r="8" fill="#8B4513"/>
+  <circle cx="230" cy="140" r="8" fill="#8B4513"/>
+  <path d="M180 160 Q200 170 220 160" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Music notes -->
+  <text x="120" y="280" font-family="Arial" font-size="24" fill="#7B3FE4">♪</text>
+  <text x="280" y="300" font-family="Arial" font-size="20" fill="#E73C7E">♫</text>
+  
+  <!-- Name -->
+  <text x="200" y="340" font-family="Arial" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">Virginia Ramírez</text>
+  <text x="200" y="365" font-family="Arial" font-size="14" fill="#7B3FE4" text-anchor="middle">Pianista • Artista NFT</text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7B3FE4"/>
+      <stop offset="100%" style="stop-color:#E73C7E"/>
+    </linearGradient>
+    <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD1A0"/>
+      <stop offset="100%" style="stop-color:#FFB347"/>
+    </linearGradient>
+  </defs>
+</svg>

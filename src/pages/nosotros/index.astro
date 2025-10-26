@@ -1,369 +1,158 @@
 ---
-// Página Principal Nosotros - Overview de DAG Klassical
-import Layout from '../../layouts/Layout.astro';
+// Landing Page - Nosotros
+// Archivo: src/pages/nosotros/index.astro
+// Propósito: Página principal de la sección Nosotros
 
-// 📝 CONTENIDO PARA MIGRAR:
-// TODO: Agregar descripción general de DAG Klassical
-// TODO: Agregar misión y visión
-// TODO: Agregar logros principales
-// TODO: Agregar foto del equipo/Danilo
+import Layout from '../../layouts/Layout-SEO-001.astro';
+
+const pageData = {
+  title: "Nosotros",
+  description: "Conoce DAG Klassical, la plataforma revolucionaria que combina música clásica con tecnología blockchain para crear experiencias digitales únicas.",
+  keywords: "DAG Klassical, música clásica, blockchain, nosotros, equipo, historia",
+  type: "website"
+};
 ---
 
-<Layout title="Nosotros - DAG Klassical">
+<Layout {...pageData}>
   <section class="hero-section">
     <div class="container">
-      <div class="hero-content">
-        <!-- 📝 TÍTULO PRINCIPAL -->
-        <h1>Nosotros</h1>
-        <!-- 📝 SUBTÍTULO: Reemplazar con descripción corta -->
-        <p>Conoce la historia y visión detrás de la primera disquera blockchain de Latinoamérica</p>
-      </div>
+      <h1>Nosotros</h1>
+      <p class="hero-description">
+        Somos pioneros en la revolución digital de la música clásica. 
+        Combinamos tradición milenaria con tecnología blockchain de vanguardia.
+      </p>
     </div>
   </section>
 
   <section class="content-section">
     <div class="container">
-      
-      <!-- 🎯 SECCIÓN: QUIÉNES SOMOS -->
-      <div class="about-section">
-        <div class="content-grid">
-          <div class="text-content">
-            <h2>¿Quiénes Somos?</h2>
-            <!-- 📝 CONTENIDO: Descripción general de DAG Klassical -->
-            <p class="lead">
-              [MIGRAR AQUÍ: Descripción principal de DAG Klassical - quiénes son, qué hacen, cuál es su propuesta única]
-            </p>
-            
-            <p>
-              [MIGRAR AQUÍ: Historia más detallada - cómo comenzaron, evolución, hitos importantes]
-            </p>
-            
-            <div class="cta-links">
-              <a href="/nosotros/dag-klassical" class="cta-link">Conoce nuestra Historia</a>
-              <a href="/nosotros/danilo-alvarez" class="cta-link secondary">Perfil del Fundador</a>
-            </div>
-          </div>
-          
-          <div class="image-content">
-            <!-- 📝 IMAGEN: Reemplazar src con foto del equipo/estudio -->
-            <img src="/dag-www/logo-dag.svg" alt="DAG Klassical Equipo" class="about-image" />
-            <!-- 📝 NOTA: Cambiar por foto real del equipo o Danilo -->
-          </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>DAG Klassical</h3>
+          <p>Nuestra visión es democratizar el acceso a la música clásica de alta calidad a través de la tecnología blockchain.</p>
+          <a href="/dag-www/nosotros/dag-klassical/" class="card-link">Nuestra Historia →</a>
+        </div>
+        
+        <div class="about-card">
+          <h3>Danilo Álvarez</h3>
+          <p>Fundador y visionario detrás de DAG Klassical, pionera en la integración de arte digital y tecnología.</p>
+          <a href="/dag-www/nosotros/danilo-alvarez/" class="card-link">Conocer Danilo →</a>
+        </div>
+        
+        <div class="about-card">
+          <h3>Nuestro Equipo</h3>
+          <p>Un equipo multidisciplinario de músicos, desarrolladores y expertos en blockchain trabajando juntos.</p>
+          <a href="/dag-www/nosotros/equipo/" class="card-link">Ver Equipo →</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- 🎯 SECCIÓN: MISIÓN Y VISIÓN -->
-      <div class="mission-section">
-        <div class="mission-cards">
-          <div class="mission-card">
-            <h3>🎵 Nuestra Misión</h3>
-            <!-- 📝 CONTENIDO: Migrar misión de DAG Klassical -->
-            <p>
-              [MIGRAR AQUÍ: Declaración de misión - qué buscan lograr, cómo están revolucionando la industria musical]
-            </p>
-          </div>
-          
-          <div class="mission-card">
-            <h3>🚀 Nuestra Visión</h3>
-            <!-- 📝 CONTENIDO: Migrar visión de DAG Klassical -->
-            <p>
-              [MIGRAR AQUÍ: Visión a futuro - hacia dónde van, qué impacto quieren tener en Latinoamérica]
-            </p>
-          </div>
+  <section class="values-section">
+    <div class="container">
+      <h2 class="section-title">Nuestros Valores</h2>
+      <div class="values-grid">
+        <div class="value-item">
+          <h4>Innovación</h4>
+          <p>Combinamos tradición clásica con tecnología de vanguardia</p>
+        </div>
+        <div class="value-item">
+          <h4>Calidad</h4>
+          <p>Estándares musicales y técnicos más altos en cada producción</p>
+        </div>
+        <div class="value-item">
+          <h4>Accesibilidad</h4>
+          <p>Hacemos la música clásica accesible para todos</p>
+        </div>
+        <div class="value-item">
+          <h4>Transparencia</h4>
+          <p>Blockchain garantiza autenticidad y transparencia total</p>
         </div>
       </div>
-
-      <!-- 🎯 SECCIÓN: LOGROS Y NÚMEROS -->
-      <div class="achievements-section">
-        <h2>Nuestros Logros</h2>
-        <div class="stats-grid">
-          <!-- 📝 NÚMEROS: Reemplazar con estadísticas reales -->
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. Artistas]</div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. NFTs Creados]</div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. Países]</div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. Colaboraciones]</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 🎯 SECCIÓN: EQUIPO -->
-      <div class="team-section">
-        <h2>Nuestro Equipo</h2>
-        <div class="team-grid">
-          <div class="team-member">
-            <!-- 📝 FOTO: Reemplazar con foto de Danilo -->
-            <img src="/dag-www/logo-dag.svg" alt="Danilo Álvarez" class="member-photo" />
-            <h3>Danilo Álvarez</h3>
-            <p class="member-role">Fundador & Director</p>
-            <!-- 📝 DESCRIPCIÓN: Bio corta de Danilo -->
-            <p class="member-bio">
-              [MIGRAR AQUÍ: Biografía corta de Danilo - experiencia, logros, visión]
-            </p>
-            <a href="/nosotros/danilo-alvarez" class="member-link">Ver Perfil Completo</a>
-          </div>
-          
-          <!-- 📝 AGREGAR MÁS MIEMBROS SI LOS HAY -->
-          <!-- 
-          <div class="team-member">
-            <img src="[FOTO]" alt="[NOMBRE]" class="member-photo" />
-            <h3>[NOMBRE]</h3>
-            <p class="member-role">[CARGO]</p>
-            <p class="member-bio">[BIO CORTA]</p>
-          </div>
-          -->
-        </div>
-      </div>
-      
     </div>
   </section>
 </Layout>
 
-<!-- 🎨 ESTILOS BASE (sin diseño elaborado) -->
 <style>
   .hero-section {
-    background: linear-gradient(135deg, #7B3FE4 0%, #E73C7E 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    color: white;
     padding: 4rem 0;
     text-align: center;
   }
   
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
+  .hero-description {
+    font-size: 1.25rem;
+    max-width: 600px;
+    margin: 2rem auto;
+    opacity: 0.9;
   }
   
   .content-section {
     padding: 4rem 0;
   }
   
-  .about-section {
-    margin-bottom: 4rem;
-  }
-  
-  .content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-  
-  .text-content h2 {
-    color: #7B3FE4;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .lead {
-    font-size: 1.3rem;
-    line-height: 1.6;
-    color: #a0a0a0;
-    margin-bottom: 1.5rem;
-  }
-  
-  .text-content p {
-    color: #a0a0a0;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  
-  .cta-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  
-  .cta-link {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
-    color: white;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: transform 0.3s ease;
-  }
-  
-  .cta-link.secondary {
-    background: transparent;
-    border: 2px solid #7B3FE4;
-    color: #7B3FE4;
-  }
-  
-  .cta-link:hover {
-    transform: translateY(-2px);
-  }
-  
-  .about-image {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 1rem;
-  }
-  
-  .mission-section {
-    margin: 4rem 0;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 1rem;
-    padding: 3rem;
-  }
-  
-  .mission-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-  
-  .mission-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    padding: 2rem;
-  }
-  
-  .mission-card h3 {
-    color: #7B3FE4;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-  
-  .mission-card p {
-    color: #a0a0a0;
-    line-height: 1.6;
-  }
-  
-  .achievements-section {
-    margin: 4rem 0;
-    text-align: center;
-  }
-  
-  .achievements-section h2 {
-    color: #7B3FE4;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-  
-  .stat-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    padding: 2rem;
-  }
-  
-  .stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #7B3FE4;
-    margin-bottom: 0.5rem;
-  }
-  
-  .stat-label {
-    color: #a0a0a0;
-    font-size: 1.1rem;
-  }
-  
-  .team-section {
-    margin: 4rem 0;
-  }
-  
-  .team-section h2 {
-    color: #7B3FE4;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .team-grid {
+  .about-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    margin-top: 2rem;
   }
   
-  .team-member {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
+  .about-card {
     padding: 2rem;
-    text-align: center;
+    background: var(--color-bg);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-border);
   }
   
-  .member-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-    object-fit: cover;
+  .about-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
   }
   
-  .team-member h3 {
-    color: #7B3FE4;
-    margin-bottom: 0.5rem;
-  }
-  
-  .member-role {
-    color: #E73C7E;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  
-  .member-bio {
-    color: #a0a0a0;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  
-  .member-link {
-    color: #7B3FE4;
+  .card-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--color-primary);
     text-decoration: none;
     font-weight: 600;
+    transition: color 0.3s ease;
   }
   
-  .member-link:hover {
-    text-decoration: underline;
+  .card-link:hover {
+    color: var(--color-secondary);
   }
   
-  @media (max-width: 768px) {
-    .content-grid,
-    .mission-cards {
-      grid-template-columns: 1fr;
-    }
-    
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-    
-    .cta-links {
-      flex-direction: column;
-    }
+  .values-section {
+    padding: 4rem 0;
+    background: var(--color-surface);
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--color-text);
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .value-item {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .value-item h4 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
   }
 </style>

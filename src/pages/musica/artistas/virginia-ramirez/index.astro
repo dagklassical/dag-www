@@ -1,64 +1,78 @@
 ---
-import LayoutArtista from '../../../../layouts/LayoutArtista.astro';
+// Virginia Ramírez - Versión Simplificada NFT
+import LayoutArtistaNFTSimple from '../../../../layouts/LayoutArtistaNFT-Simple.astro';
 
-const baseUrl = import.meta.env.BASE_URL;
-const getPath = (path: string) => path === '/' ? baseUrl : `${baseUrl}${path}`;
+// === DIGITAL ID VERIFICADO ===
+const digitalId = {
+  status: 'verified' as const,
+  id: 'DK-VR-2024-001',
+  chain: 'DAG Network',
+  tokenId: 'VR-DIGITAL-ID-001',
+  mintedDate: '2024-11-01',
+  blockchainUrl: 'https://dag.explorer.com/tx/dag-vr-digital-id-001',
+  metadata: {
+    nationality: 'Venezolana',
+    genre: 'Jazz, Música Popular, Circo',
+    instruments: ['Piano', 'Voz', 'Artes Circenses'],
+    education: 'Conservatorio + Jazz + Música Popular',
+    verifiedBy: 'DAG Klassical Foundation'
+  }
+};
 
+// === BIOGRAFÍA ===
 const biography = `
-  <p>Virginia Ramírez es una artista creativa, valiente y atrevida cuyo lenguaje está basado en el cambio y la experimentación, en sus propias ideas que vuelan más allá de los convencionalismos. Se mueve intensamente en los distintos caminos del arte, el canto, el piano y las artes circenses.</p>
+  <p>Virginia Ramírez es una artista creativa, valiente y atrevida cuyo lenguaje está basado en el cambio y la experimentación. Se mueve intensamente en los distintos caminos del arte, el canto, el piano y las artes circenses.</p>
   
-  <p>Se adentra en el lenguaje de la improvisación y el ritmo, en la esencia de la cultura venezolana y en el corazón mismo de la música para expresarse siempre con un sello propio y original.</p>
+  <div class="biography-highlight">
+    <h4>🎭 Formación Artística Única</h4>
+    <p>Su formación particular fusiona el inmenso prisma académico del conservatorio con la libertad, historia y corazón del jazz y la música popular venezolana.</p>
+  </div>
   
-  <p>Virginia representa de manera brillante y audaz a las nuevas generaciones de artistas venezolanos. Su formación particularmente amplia fusiona el inmenso prisma académico del conservatorio con la libertad, historia y corazón del jazz y la música popular.</p>
-  
-  <p>Como resultado tenemos a una artista joven, vibrante y creadora cuyo único fin es plasmar sus ideas renovadoras en sonidos y música trascendental, que va más allá de todas las fronteras transmitiendo un mensaje de paz y luz a todo el universo.</p>
+  <p>Una artista joven, vibrante y creadora cuyo único fin es plasmar sus ideas renovadoras en sonidos y música trascendental.</p>
 `;
 
-const albums = [
+// === COLECCIONES ===
+const collections = [
   {
+    id: 'capitulos-vr-001',
     title: 'Capítulos',
-    image: 'obras/capitulos-virginia-ramirez.png',
-    url: getPath('/musica/preventa/capitulos-virginia-ramirez'),
-    year: '2024'
+    type: 'Álbum Digital NFT',
+    description: 'Un viaje sonoro a través de los éxitos más celebrados de Virginia',
+    image: '/dag-www/obras/virginia-ramirez/capitulos-album-cover.svg',
+    price: '0.15 ETH',
+    available: true,
+    totalEditions: 100,
+    remainingEditions: 87,
+    releaseDate: '2024-11-14',
+    tracks: 12,
+    duration: '45:23',
+    genres: ['Jazz', 'Música Popular Venezolana'],
+    tags: ['nuevo', 'preventa', 'venezuela'],
+    nftFeatures: [
+      'Álbum completo en alta calidad',
+      'Pistas instrumentales exclusivas',
+      'Video privado del making-of',
+      'Meet & greet virtual con Virginia',
+      'Acceso prioritario a futuros lanzamientos'
+    ]
   }
 ];
 
+// === SOCIAL LINKS ===
 const socialLinks = {
-  // Agregar cuando estén disponibles
-  // spotify: 'https://open.spotify.com/artist/...',
-  // instagram: 'https://instagram.com/virginiaramirez',
-  // youtube: 'https://youtube.com/@virginiaramirez'
+  spotify: 'https://open.spotify.com/artist/virginia-ramirez',
+  instagram: 'https://instagram.com/virginiaramirez_music',
+  youtube: 'https://youtube.com/@virginiaramirez',
+  twitter: 'https://twitter.com/virginiaramirez'
 };
 ---
 
-<LayoutArtista
-  title="Virginia Ramírez - Artista | DAG Klassical"
+<LayoutArtistaNFTSimple
+  title="Virginia Ramírez - Digital ID Verificado | DAG Klassical"
   artistName="Virginia Ramírez"
-  artistImage="artistas/virginia-ramirez/profile.jpg"
+  artistImage="/dag-www/obras/virginia-ramirez/profile.svg"
+  digitalId={digitalId}
   biography={biography}
-  albums={albums}
+  collections={collections}
   socialLinks={socialLinks}
->
-  <!-- Sección adicional si se necesita -->
-  <section class="artist-highlights" style="padding: 3rem 2rem; text-align: center;">
-    <div class="container" style="max-width: 900px; margin: 0 auto;">
-      <h2 style="font-size: 2rem; margin-bottom: 1.5rem; color: #7B3FE4;">Último Lanzamiento</h2>
-      <p style="font-size: 1.125rem; color: #e0e0e0; margin-bottom: 2rem;">
-        Descubre "Capítulos", un viaje sonoro a través de los éxitos más celebrados de Virginia, 
-        disponible a partir del 14 de noviembre.
-      </p>
-      <a 
-        href={getPath('/musica/preventa/capitulos-virginia-ramirez')} 
-        style="display: inline-block; padding: 1rem 2rem; background: linear-gradient(135deg, #7B3FE4, #E73C7E); color: white; text-decoration: none; border-radius: 2rem; font-weight: 600; transition: transform 0.3s ease;"
-      >
-        Ver Álbum
-      </a>
-    </div>
-  </section>
-</LayoutArtista>
-
-<style>
-  .artist-highlights a:hover {
-    transform: translateY(-3px);
-  }
-</style>
+/>

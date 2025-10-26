@@ -1,0 +1,276 @@
+<---
+// Header Component - DAG Klassical
+// Archivo: src/components/Header.astro
+// Propósito: Header único y consistente para todo el sitio
+// Soluciona problemas de dropdowns mal alineados y espaciado inconsistente
+---
+
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <!-- Logo y Brand -->
+      <a href="/" class="nav-brand">
+        <img src="/logo-dag.svg" alt="DAG Klassical" class="nav-logo" />
+        <span class="text-gradient">DAG Klassical</span>
+      </a>
+      
+      <!-- Menú Principal -->
+      <ul class="nav-menu" id="nav-menu">
+        <li class="nav-item">
+          <a href="/" class="nav-link" data-active={Astro.url.pathname === '/' ? 'true' : 'false'}>
+            Inicio
+          </a>
+        </li>
+        
+        <!-- Menú Música con Dropdown -->
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            Música
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="/musica/artistas/" class="dropdown-item">Artistas</a>
+            <a href="/musica/discografia/" class="dropdown-item">Discografía</a>
+            <a href="/musica/lanzamientos/" class="dropdown-item">Lanzamientos</a>
+            <a href="/musica/preventa/" class="dropdown-item">Preventa</a>
+          </div>
+        </li>
+        
+        <!-- Menú Blockchain -->
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            Blockchain
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="/blockchain/digital-id/" class="dropdown-item">Digital ID</a>
+            <a href="/blockchain/mercado/" class="dropdown-item">Mercado NFT</a>
+            <a href="/blockchain/inversores/" class="dropdown-item">Inversores</a>
+          </div>
+        </li>
+        
+        <!-- Menú Nosotros -->
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+            Nosotros
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <polyline points="6,9 12,15 18,9"></polyline>
+            </svg>
+          </button>
+          <div class="dropdown-menu">
+            <a href="/nosotros/dag-klassical/" class="dropdown-item">DAG Klassical</a>
+            <a href="/nosotros/danilo-alvarez/" class="dropdown-item">Danilo Álvarez</a>
+            <a href="/nosotros/equipo/" class="dropdown-item">Equipo</a>
+            <a href="/sobre-nosotros/" class="dropdown-item">Sobre Nosotros</a>
+          </div>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/music-news/" class="nav-link" data-active={Astro.url.pathname.startsWith('/music-news') ? 'true' : 'false'}>
+            Noticias
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a href="/contacto/" class="nav-link" data-active={Astro.url.pathname === '/contacto' ? 'true' : 'false'}>
+            Contacto
+          </a>
+        </li>
+      </ul>
+      
+      <!-- Botón Conectar Wallet -->
+      <button class="btn btn-accent wallet-btn" id="connect-wallet">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+          <line x1="7" y1="8" x2="17" y2="8"></line>
+          <line x1="7" y1="12" x2="17" y2="12"></line>
+        </svg>
+        Conectar Wallet
+      </button>
+      
+      <!-- Toggle Mobile Menu -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Script para funcionalidad del header
+  document.addEventListener('DOMContentLoaded', function() {
+    // Toggle mobile menu
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('nav-mobile-open');
+        navToggle.classList.toggle('nav-toggle-open');
+      });
+    }
+    
+    // Dropdown functionality
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const dropdown = this.closest('.dropdown');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        // Close other dropdowns
+        dropdownToggles.forEach(otherToggle => {
+          if (otherToggle !== this) {
+            const otherDropdown = otherToggle.closest('.dropdown');
+            const otherMenu = otherDropdown.querySelector('.dropdown-menu');
+            otherMenu.style.opacity = '0';
+            otherMenu.style.visibility = 'hidden';
+            otherMenu.style.transform = 'translateY(-10px)';
+            otherToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+        
+        // Toggle current dropdown
+        const isOpen = menu.style.opacity === '1';
+        if (isOpen) {
+          menu.style.opacity = '0';
+          menu.style.visibility = 'hidden';
+          menu.style.transform = 'translateY(-10px)';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          menu.style.opacity = '1';
+          menu.style.visibility = 'visible';
+          menu.style.transform = 'translateY(0)';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.dropdown')) {
+        dropdownToggles.forEach(toggle => {
+          const dropdown = toggle.closest('.dropdown');
+          const menu = dropdown.querySelector('.dropdown-menu');
+          menu.style.opacity = '0';
+          menu.style.visibility = 'hidden';
+          menu.style.transform = 'translateY(-10px)';
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      }
+    });
+    
+    // Wallet connection
+    const walletBtn = document.getElementById('connect-wallet');
+    if (walletBtn) {
+      walletBtn.addEventListener('click', function() {
+        // Placeholder for wallet connection logic
+        console.log('Conectar Wallet clicked');
+        alert('Función de conectar wallet próximamente');
+      });
+    }
+    
+    // Set active nav link based on current path
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath || (href !== '/' && currentPath.startsWith(href))) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+<style>
+  /* Estilos específicos del Header */
+  .nav-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius-sm);
+  }
+  
+  .wallet-btn {
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    white-space: nowrap;
+  }
+  
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: var(--spacing-sm);
+  }
+  
+  /* Mobile Navigation */
+  @media (max-width: 768px) {
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border: var(--border-width) solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-lg);
+      flex-direction: column;
+      gap: var(--spacing-md);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: var(--transition-base);
+      z-index: 1000;
+    }
+    
+    .nav-menu.nav-mobile-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      display: flex;
+    }
+    
+    .nav-toggle {
+      display: block;
+    }
+    
+    .nav-toggle.nav-toggle-open svg {
+      transform: rotate(45deg);
+    }
+    
+    .wallet-btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .dropdown-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: none;
+      background: var(--bg-overlay);
+      margin-top: var(--spacing-sm);
+      padding: var(--spacing-sm) 0;
+    }
+    
+    .dropdown-toggle svg {
+      transform: rotate(0deg);
+      transition: var(--transition-base);
+    }
+  }
+</style>

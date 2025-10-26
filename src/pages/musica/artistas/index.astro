@@ -1,247 +1,234 @@
 ---
+// Página principal de Artistas - DAG Klassical
+// Lista todos los artistas con NFT disponibles
+
 import Layout from '../../../layouts/Layout.astro';
 
 const baseUrl = import.meta.env.BASE_URL;
 const getPath = (path: string) => path === '/' ? baseUrl : `${baseUrl}${path}`;
-const getAssetPath = (asset: string) => {
-  const cleanBase = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
-  const cleanAsset = asset.startsWith('/') ? asset.slice(1) : asset;
-  return `${cleanBase}${cleanAsset}`;
-};
 
-const artistas = [
+// === LISTA DE ARTISTAS DISPONIBLES ===
+const artists = [
   {
-    nombre: 'Virginia Ramírez',
-    imagen: 'artistas/virginia-ramirez/profile.jpg',
-    genero: 'Jazz / LatinJazz',
-    descripcion: 'Pianista venezolana que fusiona el jazz moderno con la tradición latinoamericana.',
-    url: getPath('/musica/artistas/virginia-ramirez')
+    slug: 'virginia-ramirez',
+    name: 'Virginia Ramírez',
+    image: getPath('/obras/virginia-ramirez/profile.svg'),
+    genre: 'Jazz, Música Popular, Circo',
+    digitalId: 'verified',
+    description: 'Primera artista con Digital ID verificado. Pianista, cantante y artista circense.',
+    collections: 1,
+    featured: true
   }
-  // Agregar más artistas aquí
+  // Aquí se agregarán más artistas en el futuro
 ];
+
+const pageTitle = 'Artistas | DAG Klassical';
+const pageDescription = 'Descubre a los artistas venezolanos con Digital ID verificado y colecciones NFT únicas.';
 ---
 
-<Layout title="Artistas - DAG Klassical">
-  <div class="artistas-page">
-    <!-- Hero Section -->
-    <section class="page-hero">
-      <div class="container">
-        <h1 class="page-title">Nuestros Artistas</h1>
-        <p class="page-subtitle">
-          Conoce a los talentosos músicos que forman parte de la familia DAG Klassical,
-          revolucionando la industria musical con blockchain y NFTs.
-        </p>
-      </div>
-    </section>
+<Layout title={pageTitle}>
+  <div class="artists-page">
+    <div class="container">
+      <header class="page-header">
+        <h1 class="page-title">Artistas DAG Klassical</h1>
+        <p class="page-description">{pageDescription}</p>
+      </header>
 
-    <!-- Artistas Grid -->
-    <section class="artistas-grid">
-      <div class="container">
-        {artistas.map(artista => (
-          <a href={artista.url} class="artista-card">
-            <div class="artista-image">
-              <img src={getAssetPath(artista.imagen)} alt={artista.nombre} />
-              <div class="artista-overlay">
-                <span class="view-profile">Ver Perfil</span>
+      <div class="artists-grid">
+        {artists.map((artist) => (
+          <div class={`artist-card ${artist.featured ? 'featured' : ''}`}>
+            <div class="artist-image">
+              <img src={artist.image} alt={artist.name} />
+              {artist.digitalId === 'verified' && (
+                <div class="digital-id-badge">
+                  <span class="badge-icon">✓</span>
+                  <span class="badge-text">Digital ID</span>
+                </div>
+              )}
+            </div>
+            
+            <div class="artist-info">
+              <h2 class="artist-name">{artist.name}</h2>
+              <p class="artist-genre">{artist.genre}</p>
+              <p class="artist-description">{artist.description}</p>
+              
+              <div class="artist-stats">
+                <span class="collections-count">
+                  {artist.collections} {artist.collections === 1 ? 'Colección' : 'Colecciones'}
+                </span>
               </div>
+              
+              <a href={getPath(`/musica/artistas/${artist.slug}/`)} class="view-profile-btn">
+                Ver Perfil Completo
+              </a>
             </div>
-            <div class="artista-info">
-              <h2 class="artista-nombre">{artista.nombre}</h2>
-              <p class="artista-genero">{artista.genero}</p>
-              <p class="artista-descripcion">{artista.descripcion}</p>
-            </div>
-          </a>
-        ))}
-
-        <!-- Placeholder para futuros artistas -->
-        <div class="coming-soon-card">
-          <div class="coming-soon-content">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 5v14M5 12h14"/>
-            </svg>
-            <h3>Más Artistas Próximamente</h3>
-            <p>Estamos trabajando para traerte más talento excepcional</p>
           </div>
-        </div>
+        ))}
       </div>
-    </section>
+    </div>
   </div>
 </Layout>
 
 <style>
-  .artistas-page {
-    min-height: 100vh;
-  }
+.artists-page {
+  min-height: 100vh;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+}
 
-  /* Hero Section */
-  .page-hero {
-    background: linear-gradient(135deg, rgba(123, 63, 228, 0.1), rgba(231, 60, 126, 0.1));
-    padding: 4rem 2rem;
-    text-align: center;
-  }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
 
-  .page-hero .container {
-    max-width: 900px;
-    margin: 0 auto;
-  }
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
 
+.page-title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.page-description {
+  font-size: 1.25rem;
+  color: #cccccc;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.artists-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.artist-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.artist-card:hover {
+  transform: translateY(-5px);
+  border-color: #7B3FE4;
+  box-shadow: 0 10px 30px rgba(123, 63, 228, 0.2);
+}
+
+.artist-card.featured {
+  border: 2px solid #7B3FE4;
+  background: rgba(123, 63, 228, 0.1);
+}
+
+.artist-image {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.artist-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+.digital-id-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: #28a745;
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.badge-icon {
+  font-size: 1rem;
+}
+
+.artist-info {
+  text-align: center;
+}
+
+.artist-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.artist-genre {
+  color: #7B3FE4;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.artist-description {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+}
+
+.artist-stats {
+  margin-bottom: 1.5rem;
+}
+
+.collections-count {
+  background: rgba(123, 63, 228, 0.2);
+  color: #7B3FE4;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.view-profile-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #7B3FE4, #E73C7E);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.view-profile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(123, 63, 228, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .page-title {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2rem;
   }
-
-  .page-subtitle {
-    font-size: 1.25rem;
-    line-height: 1.8;
-    color: #e0e0e0;
+  
+  .artists-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-
-  /* Artistas Grid */
-  .artistas-grid {
-    padding: 4rem 2rem;
-  }
-
-  .artistas-grid .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .artista-card {
-    text-decoration: none;
-    color: inherit;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 1rem;
-    overflow: hidden;
-    transition: all 0.3s ease;
-  }
-
-  .artista-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 60px rgba(123, 63, 228, 0.3);
-  }
-
-  .artista-image {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-  }
-
-  .artista-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .artista-card:hover .artista-image img {
-    transform: scale(1.1);
-  }
-
-  .artista-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(123, 63, 228, 0.9), rgba(231, 60, 126, 0.9));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .artista-card:hover .artista-overlay {
-    opacity: 1;
-  }
-
-  .view-profile {
-    color: white;
-    font-size: 1.25rem;
-    font-weight: 600;
-    padding: 1rem 2rem;
-    border: 2px solid white;
-    border-radius: 2rem;
-  }
-
-  .artista-info {
+  
+  .artist-card {
     padding: 1.5rem;
   }
-
-  .artista-nombre {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .artista-genero {
-    color: #7B3FE4;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-  }
-
-  .artista-descripcion {
-    color: #b0b0b0;
-    line-height: 1.6;
-  }
-
-  /* Coming Soon Card */
-  .coming-soon-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 2px dashed rgba(255, 255, 255, 0.2);
-    border-radius: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 400px;
-  }
-
-  .coming-soon-content {
-    text-align: center;
-    padding: 2rem;
-    color: #999;
-  }
-
-  .coming-soon-content svg {
-    margin-bottom: 1rem;
-    opacity: 0.5;
-  }
-
-  .coming-soon-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: #ccc;
-  }
-
-  .coming-soon-content p {
-    font-size: 1rem;
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .page-title {
-      font-size: 2.5rem;
-    }
-
-    .page-subtitle {
-      font-size: 1.125rem;
-    }
-
-    .artistas-grid .container {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-  }
+}
 </style>

@@ -1,291 +1,78 @@
 ---
-// Página Principal Música - Hub de contenido musical
-import Layout from '../../layouts/Layout.astro';
+// Virginia Ramírez - Versión Simplificada NFT
+import LayoutArtistaNFTSimple from '../../layouts/LayoutArtistaNFT-Simple.astro';
 
-// 📝 CONTENIDO PARA MIGRAR:
-// TODO: Agregar descripción general de la sección música
-// TODO: Agregar featured albums/releases
-// TODO: Agregar estadísticas musicales
+// === DIGITAL ID VERIFICADO ===
+const digitalId = {
+  status: 'verified' as const,
+  id: 'DK-VR-2024-001',
+  chain: 'DAG Network',
+  tokenId: 'VR-DIGITAL-ID-001',
+  mintedDate: '2024-11-01',
+  blockchainUrl: 'https://dag.explorer.com/tx/dag-vr-digital-id-001',
+  metadata: {
+    nationality: 'Venezolana',
+    genre: 'Jazz, Música Popular, Circo',
+    instruments: ['Piano', 'Voz', 'Artes Circenses'],
+    education: 'Conservatorio + Jazz + Música Popular',
+    verifiedBy: 'DAG Klassical Foundation'
+  }
+};
+
+// === BIOGRAFÍA ===
+const biography = `
+  <p>Virginia Ramírez es una artista creativa, valiente y atrevida cuyo lenguaje está basado en el cambio y la experimentación. Se mueve intensamente en los distintos caminos del arte, el canto, el piano y las artes circenses.</p>
+  
+  <div class="biography-highlight">
+    <h4>🎭 Formación Artística Única</h4>
+    <p>Su formación particular fusiona el inmenso prisma académico del conservatorio con la libertad, historia y corazón del jazz y la música popular venezolana.</p>
+  </div>
+  
+  <p>Una artista joven, vibrante y creadora cuyo único fin es plasmar sus ideas renovadoras en sonidos y música trascendental.</p>
+`;
+
+// === COLECCIONES ===
+const collections = [
+  {
+    id: 'capitulos-vr-001',
+    title: 'Capítulos',
+    type: 'Álbum Digital NFT',
+    description: 'Un viaje sonoro a través de los éxitos más celebrados de Virginia',
+    image: '/dag-www/obras/virginia-ramirez/capitulos-album-cover.svg',
+    price: '0.15 ETH',
+    available: true,
+    totalEditions: 100,
+    remainingEditions: 87,
+    releaseDate: '2024-11-14',
+    tracks: 12,
+    duration: '45:23',
+    genres: ['Jazz', 'Música Popular Venezolana'],
+    tags: ['nuevo', 'preventa', 'venezuela'],
+    nftFeatures: [
+      'Álbum completo en alta calidad',
+      'Pistas instrumentales exclusivas',
+      'Video privado del making-of',
+      'Meet & greet virtual con Virginia',
+      'Acceso prioritario a futuros lanzamientos'
+    ]
+  }
+];
+
+// === SOCIAL LINKS ===
+const socialLinks = {
+  spotify: 'https://open.spotify.com/artist/virginia-ramirez',
+  instagram: 'https://instagram.com/virginiaramirez_music',
+  youtube: 'https://youtube.com/@virginiaramirez',
+  twitter: 'https://twitter.com/virginiaramirez'
+};
 ---
 
-<Layout title="Música - DAG Klassical">
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-content">
-        <!-- 📝 TÍTULO PRINCIPAL -->
-        <h1>🎵 Música</h1>
-        <!-- 📝 SUBTÍTULO: Reemplazar con descripción corta -->
-        <p>Explora nuestra discografía, próximos lanzamientos y el universo musical de DAG Klassical</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="content-section">
-    <div class="container">
-      
-      <!-- 🎯 SECCIÓN: NAVEGACIÓN RÁPIDA -->
-      <div class="quick-nav">
-        <h2>Explora Nuestra Música</h2>
-        <div class="nav-cards">
-          <a href="/dag-www/musica/discografia" class="nav-card">
-            <div class="card-icon">💿</div>
-            <h3>Discografía</h3>
-            <p>Catálogo completo de álbumes y composiciones</p>
-          </a>
-          
-          <a href="/dag-www/musica/lanzamientos" class="nav-card">
-            <div class="card-icon">🚀</div>
-            <h3>Próximos Lanzamientos</h3>
-            <p>Descubre qué viene próximamente</p>
-          </a>
-          
-          <a href="/dag-www/musica/preventa" class="nav-card">
-            <div class="card-icon">💎</div>
-            <h3>Preventa NFT</h3>
-            <p>Acceso anticipado a NFTs musicales exclusivos</p>
-          </a>
-          
-          <a href="/dag-www/musica/enciclopedia" class="nav-card">
-            <div class="card-icon">📚</div>
-            <h3>Enciclopedia Musical</h3>
-            <p>Historia y contexto de nuestras obras</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 🎯 SECCIÓN: DESTACADOS -->
-      <div class="featured-section">
-        <h2>Álbumes Destacados</h2>
-        <!-- 📝 CONTENIDO: Featured albums -->
-        <div class="featured-grid">
-          <div class="featured-item">
-            <!-- 📝 IMAGEN: Portada del álbum -->
-            <img src="/dag-www/logo-dag.svg" alt="Álbum destacado" class="featured-image" />
-            <h3>[MIGRAR: Título del álbum]</h3>
-            <p class="artist">[MIGRAR: Artista]</p>
-            <p class="description">[MIGRAR: Descripción corta del álbum]</p>
-            <a href="#" class="featured-cta">Escuchar Ahora</a>
-          </div>
-          
-          <!-- 📝 AGREGAR MÁS ÁLBUMES DESTACADOS -->
-        </div>
-      </div>
-
-      <!-- 🎯 SECCIÓN: ESTADÍSTICAS -->
-      <div class="stats-section">
-        <h2>Nuestra Música en Números</h2>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. Composiciones]</div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. Artistas]</div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. Horas de música]</div>
-          </div>
-          
-          <div class="stat-card">
-            <div class="stat-number">[#]</div>
-            <div class="stat-label">[MIGRAR: Ej. Géneros]</div>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-</Layout>
-
-<style>
-  .hero-section {
-    background: linear-gradient(135deg, #7B3FE4 0%, #E73C7E 100%);
-    padding: 4rem 0;
-    text-align: center;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-  }
-  
-  .content-section {
-    padding: 4rem 0;
-  }
-  
-  .quick-nav {
-    margin-bottom: 4rem;
-  }
-  
-  .quick-nav h2 {
-    color: #7B3FE4;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .nav-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-  
-  .nav-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    padding: 2rem;
-    text-align: center;
-    text-decoration: none;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-card:hover {
-    transform: translateY(-5px);
-    border-color: #7B3FE4;
-    background: rgba(123, 63, 228, 0.1);
-  }
-  
-  .card-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-  
-  .nav-card h3 {
-    color: #7B3FE4;
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-  }
-  
-  .nav-card p {
-    color: #a0a0a0;
-    line-height: 1.6;
-  }
-  
-  .featured-section {
-    margin: 4rem 0;
-  }
-  
-  .featured-section h2 {
-    color: #7B3FE4;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-  
-  .featured-item {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    padding: 1.5rem;
-    text-align: center;
-  }
-  
-  .featured-image {
-    width: 100%;
-    max-width: 250px;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .featured-item h3 {
-    color: #7B3FE4;
-    margin-bottom: 0.5rem;
-  }
-  
-  .artist {
-    color: #E73C7E;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  
-  .description {
-    color: #a0a0a0;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-  }
-  
-  .featured-cta {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background: linear-gradient(135deg, #7B3FE4, #E73C7E);
-    color: white;
-    text-decoration: none;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    transition: transform 0.3s ease;
-  }
-  
-  .featured-cta:hover {
-    transform: translateY(-2px);
-  }
-  
-  .stats-section {
-    margin: 4rem 0;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 1rem;
-    padding: 3rem;
-  }
-  
-  .stats-section h2 {
-    color: #7B3FE4;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-  }
-  
-  .stat-card {
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  .stat-number {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #7B3FE4;
-    margin-bottom: 0.5rem;
-  }
-  
-  .stat-label {
-    color: #a0a0a0;
-    font-size: 1.1rem;
-  }
-  
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-    
-    .nav-cards {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
+<LayoutArtistaNFTSimple
+  title="Virginia Ramírez - Digital ID Verificado | DAG Klassical"
+  artistName="Virginia Ramírez"
+  artistImage="/dag-www/obras/virginia-ramirez/profile.svg"
+  digitalId={digitalId}
+  biography={biography}
+  collections={collections}
+  socialLinks={socialLinks}
+/>
