@@ -26,5 +26,5 @@ Thumbs.db
 # Logs
 *.log
 
-# Documentation dev
-obsidian-dagk-config/
+# References: backups, documentation, dev, etc
+references/
