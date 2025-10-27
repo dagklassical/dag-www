@@ -1,6 +1,9 @@
 ---
 // Página Enciclopedia Musical - DAG Klassical
 import Layout from '../../layouts/Layout.astro';
+
+// CSS Centralizado
+import '../../styles/pages/music.css';
 ---
 
 <Layout title="Enciclopedia Musical - DAG Klassical">
@@ -45,93 +48,3 @@ import Layout from '../../layouts/Layout.astro';
   </section>
 </Layout>
 
-<style>
-  .hero-section {
-    background: linear-gradient(135deg, #7B3FE4 0%, #E73C7E 100%);
-    padding: 4rem 0;
-    text-align: center;
-  }
-  
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  
-  .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    color: white;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-  }
-  
-  .content-section {
-    padding: 4rem 0;
-  }
-  
-  .content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 3rem;
-  }
-  
-  .content-card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 1rem;
-    padding: 2rem;
-    transition: transform 0.3s ease;
-  }
-  
-  .content-card:hover {
-    transform: translateY(-5px);
-    border-color: #7B3FE4;
-  }
-  
-  .content-card h2 {
-    color: #7B3FE4;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-  }
-  
-  .content-card p {
-    color: #a0a0a0;
-    line-height: 1.6;
-  }
-  
-  .coming-soon {
-    text-align: center;
-    background: rgba(123, 63, 228, 0.1);
-    border: 1px solid rgba(123, 63, 228, 0.3);
-    border-radius: 1rem;
-    padding: 2rem;
-  }
-  
-  .coming-soon h3 {
-    color: #7B3FE4;
-    margin-bottom: 1rem;
-  }
-  
-  .coming-soon p {
-    color: #a0a0a0;
-  }
-  
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2rem;
-    }
-    
-    .content-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .container {
-      padding: 0 1rem;
-    }
-  }
-</style>

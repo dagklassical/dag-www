@@ -1,25 +1,34 @@
 ---
-// Virginia Ramírez - Versión Simplificada NFT
-import LayoutArtistaNFTSimple from '../../../../layouts/LayoutArtistaNFT-Simple.astro';
+// Virginia Ramírez - Perfil Completo con SEO Avanzado
+// Archivo: src/pages/musica/artistas/virginia-ramirez/index.astro
+// Propósito: Perfil completo con metadata SEO y structured data automático
+
+// Importar Layout SEO mejorado
+import Layout from '../../../../layouts/Layout.astro';
+
+// CSS Centralizado (sin estilos inline)
+import '../../../../styles/artist.css';
 
 // === DIGITAL ID VERIFICADO ===
 const digitalId = {
   status: 'verified' as const,
   id: 'DK-VR-2024-001',
-  chain: 'DAG Network',
+  chain: 'Polygon Network',
   tokenId: 'VR-DIGITAL-ID-001',
   mintedDate: '2024-11-01',
-  blockchainUrl: 'https://dag.explorer.com/tx/dag-vr-digital-id-001',
+  blockchainUrl: 'https://polygonscan.com/address/0x1234...abcd',
   metadata: {
     nationality: 'Venezolana',
-    genre: 'Jazz, Música Popular, Circo',
+    genre: 'Jazz, Música Popular Venezolana, Circo',
     instruments: ['Piano', 'Voz', 'Artes Circenses'],
-    education: 'Conservatorio + Jazz + Música Popular',
-    verifiedBy: 'DAG Klassical Foundation'
+    education: 'Conservatorio Nacional + Jazz + Música Popular',
+    verifiedBy: 'DAG Klassical Foundation',
+    yearsActive: '2018-presente',
+    recordLabel: 'DAG Klassical'
   }
 };
 
-// === BIOGRAFÍA ===
+// === BIOGRAFÍA COMPLETA ===
 const biography = `
   <p>Virginia Ramírez es una artista creativa, valiente y atrevida cuyo lenguaje está basado en el cambio y la experimentación. Se mueve intensamente en los distintos caminos del arte, el canto, el piano y las artes circenses.</p>
   
@@ -28,51 +37,389 @@ const biography = `
     <p>Su formación particular fusiona el inmenso prisma académico del conservatorio con la libertad, historia y corazón del jazz y la música popular venezolana.</p>
   </div>
   
+  <div class="biography-section">
+    <h4>🎵 Estilo Musical</h4>
+    <p>Virginia desarrolla un estilo único que combina elementos clásicos con la improvisación jazzística y los ritmos populares venezolanos. Su música trasciende géneros tradicionales, creando un lenguaje sonoro distintivo.</p>
+  </div>
+  
+  <div class="biography-section">
+    <h4>🎪 Artes Circenses</h4>
+    <p>Además de su carrera musical, Virginia integra elementos de artes circenses en sus presentaciones, creando espectáculos multidisciplinarios que conectan música, movimiento y arte visual.</p>
+  </div>
+  
   <p>Una artista joven, vibrante y creadora cuyo único fin es plasmar sus ideas renovadoras en sonidos y música trascendental.</p>
 `;
 
-// === COLECCIONES ===
+// === ALBUM "CAPÍTULOS" (PRÓXIMO LANZAMIENTO) ===
+const albumData = {
+  id: 'capitulos-vr-001',
+  title: 'Capítulos',
+  type: 'Álbum Digital NFT',
+  releaseDate: '2025-11-14',
+  description: 'Un viaje sonoro a través de los capítulos más significativos de la carrera artística de Virginia Ramírez',
+  image: '/capitulos-album-cover.svg',
+  price: '0.15 ETH',
+  currency: 'ETH',
+  available: true,
+  totalEditions: 100,
+  remainingEditions: 100, // Próximo lanzamiento
+  tracks: 12,
+  duration: '45:23',
+  genres: ['Jazz Venezolano', 'Música Popular', 'Jazz Contemporáneo'],
+  tags: ['nuevo', 'preventa', 'venezuela', 'digital-first', 'blockchain'],
+  
+  // Tracklist
+  tracksList: [
+    { number: 1, title: 'Apertura', duration: '3:45' },
+    { number: 2, title: 'Caracas en Jazz', duration: '4:12' },
+    { number: 3, title: 'Acrobacias Musicales', duration: '3:58' },
+    { number: 4, title: 'Capítulos de Vida', duration: '4:23' },
+    { number: 5, title: 'Piano y Voz', duration: '3:34' },
+    { number: 6, title: 'Ritmos Circulares', duration: '4:01' },
+    { number: 7, title: 'Melancolía Tropical', duration: '3:47' },
+    { number: 8, title: 'Improvisaciones', duration: '4:15' },
+    { number: 9, title: 'Sonidos del Alma', duration: '3:52' },
+    { number: 10, title: 'Encuentro', duration: '4:08' },
+    { number: 11, title: 'Finalesperanza', duration: '3:39' },
+    { number: 12, title: 'Epílogo', duration: '2:49' }
+  ],
+  
+  // Features del NFT
+  nftFeatures: [
+    'Álbum completo en alta calidad (FLAC 24-bit)',
+    'Pistas instrumentales exclusivas',
+    'Video privado del making-of',
+    'Meet & greet virtual con Virginia',
+    'Acceso prioritario a futuros lanzamientos',
+    'Certificado de autenticidad en blockchain',
+    'Stickers digitales exclusivos',
+    'Conexión directa con Discord privado'
+  ],
+  
+  // Colaboraciones
+  collaborations: [
+    { name: 'Gerardo Gerulewicz', role: 'Piano en pistas 3 y 7' },
+    { name: 'Orquesta Académica de Caracas', role: 'Cuerdas en pista 8' }
+  ]
+};
+
+// === COLECCIONES NFT ===
 const collections = [
   {
-    id: 'capitulos-vr-001',
-    title: 'Capítulos',
-    type: 'Álbum Digital NFT',
-    description: 'Un viaje sonoro a través de los éxitos más celebrados de Virginia',
-    image: '/dag-www/obras/virginia-ramirez/capitulos-album-cover.svg',
-    price: '0.15 ETH',
-    available: true,
-    totalEditions: 100,
-    remainingEditions: 87,
-    releaseDate: '2024-11-14',
-    tracks: 12,
-    duration: '45:23',
-    genres: ['Jazz', 'Música Popular Venezolana'],
-    tags: ['nuevo', 'preventa', 'venezuela'],
-    nftFeatures: [
-      'Álbum completo en alta calidad',
-      'Pistas instrumentales exclusivas',
-      'Video privado del making-of',
-      'Meet & greet virtual con Virginia',
-      'Acceso prioritario a futuros lanzamientos'
-    ]
+    id: albumData.id,
+    title: albumData.title,
+    type: albumData.type,
+    description: albumData.description,
+    image: '/capitulos-album-cover.svg',
+    price: albumData.price,
+    available: albumData.available,
+    totalEditions: albumData.totalEditions,
+    remainingEditions: albumData.remainingEditions,
+    releaseDate: albumData.releaseDate,
+    tracks: albumData.tracks,
+    duration: albumData.duration,
+    genres: albumData.genres,
+    tags: albumData.tags,
+    nftFeatures: albumData.nftFeatures
   }
 ];
+
+// === ESTADÍSTICAS NFT ===
+const nftStats = {
+  totalCollections: 1,
+  totalEditions: 100,
+  soldEditions: 0,
+  totalRevenue: '0 ETH',
+  nextRelease: '2025-11-14',
+  verifiedSince: '2024-11-01'
+};
 
 // === SOCIAL LINKS ===
 const socialLinks = {
   spotify: 'https://open.spotify.com/artist/virginia-ramirez',
   instagram: 'https://instagram.com/virginiaramirez_music',
   youtube: 'https://youtube.com/@virginiaramirez',
-  twitter: 'https://twitter.com/virginiaramirez'
+  twitter: 'https://twitter.com/virginiaramirez',
+  tiktok: 'https://tiktok.com/@virginiaramirez',
+  soundcloud: 'https://soundcloud.com/virginia-ramirez'
 };
+
+// === METADATA PARA SEO ===
+const pageTitle = `Virginia Ramírez - ${albumData.title} | Digital ID Verificado | DAG Klassical`;
+const pageDescription = `Descubre a Virginia Ramírez, artista venezolana con Digital ID verificado en DAG Klassical. Próximo lanzamiento: "${albumData.title}" el 14 de noviembre de 2025. Jazz, música popular y artes circenses.`;
+const pageImage = '/capitulos-album-cover.svg';
+const canonicalUrl = `${import.meta.env.BASE_URL || 'https://dagklassical.com'}/musica/artistas/virginia-ramirez`;
 ---
 
-<LayoutArtistaNFTSimple
-  title="Virginia Ramírez - Digital ID Verificado | DAG Klassical"
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  image={pageImage}
+  type="profile"
   artistName="Virginia Ramírez"
-  artistImage="/dag-www/obras/virginia-ramirez/profile.svg"
-  digitalId={digitalId}
-  biography={biography}
-  collections={collections}
-  socialLinks={socialLinks}
-/>
+  url={canonicalUrl}
+  structuredData={{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Virginia Ramírez",
+    "description": pageDescription,
+    "image": pageImage,
+    "url": canonicalUrl,
+    "jobTitle": "Músico, Compositora, Artista de Artes Circenses",
+    "nationality": "Venezolana",
+    "genre": "Jazz, Música Popular Venezolana",
+    "instrument": ["Piano", "Voz"],
+    "sameAs": Object.values(socialLinks),
+    "worksFor": {
+      "@type": "Organization",
+      "name": "DAG Klassical"
+    },
+    "hasPart": [
+      {
+        "@type": "MusicAlbum",
+        "name": "Capítulos",
+        "datePublished": "2025-11-14",
+        "url": `${canonicalUrl}/album/capitulos`,
+        "genre": "Jazz Venezolano"
+      }
+    ]
+  }}
+>
+  <div class="artist-page">
+    
+    <!-- Hero Section -->
+    <section class="artist-hero">
+      <div class="container">
+        <div class="artist-hero-content">
+          <div class="artist-image-container">
+            <img 
+              src="/profile-virginia-ramirez.svg" 
+              alt="Virginia Ramírez" 
+              class="artist-image" 
+            />
+            <div class={`digital-id-badge ${digitalId.status}`}>
+              {digitalId.status === 'verified' ? '✓' : '⏳'} 
+              Digital ID Verificado
+            </div>
+            <div class="artist-badges">
+              <span class="artist-badge artist-badge-primary">NFT Artist</span>
+              <span class="artist-badge artist-badge-secondary">Blockchain Verified</span>
+              <span class="artist-badge artist-badge-accent">Próximo Lanzamiento</span>
+            </div>
+          </div>
+          
+          <div class="artist-info">
+            <h1 class="artist-name text-gradient">Virginia Ramírez</h1>
+            
+            <!-- Digital ID Info -->
+            <div class="artist-meta-section">
+              <div class="artist-meta-item">
+                <span class="artist-meta-label">ID:</span>
+                <span class="artist-meta-value">{digitalId.id}</span>
+              </div>
+              <div class="artist-meta-item">
+                <span class="artist-meta-label">Blockchain:</span>
+                <span class="artist-meta-value">{digitalId.chain}</span>
+              </div>
+              <div class="artist-meta-item">
+                <span class="artist-meta-label">Verificado desde:</span>
+                <span class="artist-meta-value">{digitalId.metadata.verifiedBy}</span>
+              </div>
+              <div class="artist-meta-item">
+                <span class="artist-meta-label">Fecha de Mint:</span>
+                <span class="artist-meta-value">{digitalId.mintedDate}</span>
+              </div>
+            </div>
+            
+            <!-- Género y Instrumentos -->
+            <div class="artist-meta-section">
+              <div class="artist-meta-item">
+                <span class="artist-meta-label">Género:</span>
+                <span class="artist-meta-value">{digitalId.metadata.genre}</span>
+              </div>
+              <div class="artist-meta-item">
+                <span class="artist-meta-label">Instrumentos:</span>
+                <span class="artist-meta-value">{digitalId.metadata.instruments.join(', ')}</span>
+              </div>
+              <div class="artist-meta-item">
+                <span class="artist-meta-label">Activa desde:</span>
+                <span class="artist-meta-value">{digitalId.metadata.yearsActive}</span>
+              </div>
+            </div>
+            
+            <!-- Estadísticas NFT -->
+            <div class="artist-stats">
+              <div class="artist-stat-item">
+                <span class="artist-stat-value">{nftStats.totalCollections}</span>
+                <span class="artist-stat-label">Colecciones</span>
+              </div>
+              <div class="artist-stat-item">
+                <span class="artist-stat-value">{nftStats.totalEditions}</span>
+                <span class="artist-stat-label">Total Ediciones</span>
+              </div>
+              <div class="artist-stat-item">
+                <span class="artist-stat-value">{nftStats.totalRevenue}</span>
+                <span class="artist-stat-label">Revenue Total</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Biography Section -->
+    <section class="artist-biography">
+      <div class="container">
+        <h2>Biografía</h2>
+        <div class="biography-content" set:html={biography}></div>
+      </div>
+    </section>
+
+    <!-- Próximo Lanzamiento -->
+    <section class="artist-section">
+      <div class="container">
+        <div class="album-card featured">
+          <div class="album-header">
+            <h2>Próximo Lanzamiento</h2>
+            <span class="album-status-badge">Lanza el 14 de noviembre de 2025</span>
+          </div>
+          
+          <div class="album-content">
+            <div class="album-image-container">
+              <img src={albumData.image} alt={albumData.title} class="album-image" />
+              <div class="album-image-badge upcoming">Próximo Lanzamiento</div>
+            </div>
+            
+            <div class="album-info">
+              <h3 class="album-title">{albumData.title}</h3>
+              <p class="album-description">{albumData.description}</p>
+              
+              <div class="album-details">
+                <div class="album-detail-item">
+                  <span class="artist-meta-label">Género:</span>
+                  <span class="artist-meta-value">{albumData.genres.join(', ')}</span>
+                </div>
+                <div class="album-detail-item">
+                  <span class="artist-meta-label">Pistas:</span>
+                  <span class="artist-meta-value">{albumData.tracks} canciones</span>
+                </div>
+                <div class="album-detail-item">
+                  <span class="artist-meta-label">Duración:</span>
+                  <span class="artist-meta-value">{albumData.duration}</span>
+                </div>
+                <div class="album-detail-item">
+                  <span class="artist-meta-label">Precio NFT:</span>
+                  <span class="album-price">{albumData.price}</span>
+                </div>
+              </div>
+              
+              <div class="album-actions">
+                <button class="btn btn-primary" disabled>
+                  Próximo Lanzamiento
+                </button>
+                <button class="btn btn-secondary">
+                  Notificarme
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Tracklist -->
+          <div class="tracklist">
+            <h4>Tracklist</h4>
+            <div class="tracks-grid">
+              {albumData.tracksList.map((track) => (
+                <div class="track-item">
+                  <span class="track-number">{track.number}</span>
+                  <span class="track-title">{track.title}</span>
+                  <span class="track-duration">{track.duration}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <!-- Features del NFT -->
+          <div class="nft-features">
+            <h4>Features Exclusivas del NFT</h4>
+            <ul class="nft-features-list">
+              {albumData.nftFeatures.map((feature) => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+          
+          <!-- Colaboraciones -->
+          {albumData.collaborations.length > 0 && (
+            <div class="collaborations">
+              <h4>Colaboraciones</h4>
+              <div class="collab-list">
+                {albumData.collaborations.map((collab) => (
+                  <div class="collab-item">
+                    <span class="collab-name">{collab.name}</span>
+                    <span class="collab-role">{collab.role}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <!-- Collections NFT -->
+    <section class="artist-section">
+      <div class="container">
+        <h2>Colecciones NFT</h2>
+        <div class="collections-grid">
+          {collections.map((collection) => (
+            <div class="collection-card" id={collection.id}>
+              <div class="collection-image-container">
+                <img src={collection.image} alt={collection.title} class="collection-image" />
+                <div class="collection-status">
+                  <span class={`album-image-badge ${collection.available ? 'available' : 'sold-out'}`}>
+                    {collection.available ? 'Disponible' : 'Agotado'}
+                  </span>
+                </div>
+              </div>
+              
+              <div class="collection-info">
+                <h3 class="collection-title">{collection.title}</h3>
+                <p class="collection-type">{collection.type}</p>
+                <p class="collection-description">{collection.description}</p>
+                
+                <div class="collection-price-info">
+                  <span class="album-price">{collection.price}</span>
+                  <span class="collection-editions">
+                    {collection.remainingEditions}/{collection.totalEditions} ediciones
+                  </span>
+                </div>
+                
+                <div class="collection-actions">
+                  <button class="btn btn-primary">
+                    {collection.available ? 'Comprar NFT' : 'Ver Detalles'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Links -->
+    <section class="artist-social">
+      <div class="container">
+        <h2>Sígueme en Redes</h2>
+        <div class="social-links-grid">
+          {Object.entries(socialLinks).map(([platform, url]) => (
+            <a href={url} class="social-link" target="_blank" rel="noopener">
+              <span class="social-platform">{platform}</span>
+              <span class="social-url">{url}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
