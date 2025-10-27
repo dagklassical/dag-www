@@ -3,8 +3,8 @@
 // Archivo: src/components/Header.astro
 // Propósito: Header único con CSS centralizado y JavaScript embebido
 
-// CSS Centralizado Importado
-import '../styles/components/header.css';
+// CSS Centralizado Importado - VERSIÓN CORREGIDA
+import '../styles/components/header-fixed.css';
 ---
 
 <header class="header">
@@ -18,9 +18,9 @@ import '../styles/components/header.css';
       
       <!-- Menú Principal (Desktop) -->
       <ul class="nav-menu" id="nav-menu">
-        <!-- Inicio -->
+        <!-- Inicio (Solo ícono con tooltip) -->
         <li class="nav-item">
-          <a href="/dag-www/" class="nav-link" data-active={Astro.url.pathname === '/dag-www/' ? 'true' : 'false'}>
+          <a href="/dag-www/" class="nav-link icon-only" data-active={Astro.url.pathname === '/dag-www/' ? 'true' : 'false'} title="Inicio">
             <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
               <polyline points="9,22 9,12 15,12 15,22"/>
@@ -29,9 +29,9 @@ import '../styles/components/header.css';
           </a>
         </li>
         
-        <!-- Contacto -->
+        <!-- Contacto (Solo ícono con tooltip) -->
         <li class="nav-item">
-          <a href="/dag-www/contacto/" class="nav-link" data-active={Astro.url.pathname === '/dag-www/contacto' ? 'true' : 'false'}>
+          <a href="/dag-www/contacto/" class="nav-link icon-only" data-active={Astro.url.pathname === '/dag-www/contacto' ? 'true' : 'false'} title="Contacto">
             <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
               <polyline points="22,6 12,13 2,6"/>
@@ -41,13 +41,13 @@ import '../styles/components/header.css';
         </li>
         
         <!-- Música con Landing + Dropdown -->
-        <li class="nav-item dropdown">
-          <a href="/dag-www/musica/" class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/musica') ? 'true' : 'false'}>
+        <li class="nav-item dropdown" data-section="Música">
+          <span class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/musica') ? 'true' : 'false'}>
             <span class="nav-text">Música</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
-          </a>
+          </span>
           <div class="dropdown-menu">
             <a href="/dag-www/musica/" class="dropdown-item landing-link">🎵 Ver Todo</a>
             <a href="/dag-www/musica/artistas/" class="dropdown-item">Artistas</a>
@@ -58,13 +58,13 @@ import '../styles/components/header.css';
         </li>
         
         <!-- Blockchain con Landing + Dropdown -->
-        <li class="nav-item dropdown">
-          <a href="/dag-www/blockchain/" class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/blockchain') ? 'true' : 'false'}>
+        <li class="nav-item dropdown" data-section="Blockchain">
+          <span class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/blockchain') ? 'true' : 'false'}>
             <span class="nav-text">Blockchain</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
-          </a>
+          </span>
           <div class="dropdown-menu">
             <a href="/dag-www/blockchain/" class="dropdown-item landing-link">🔗 Ver Todo</a>
             <a href="/dag-www/blockchain/digital-id/" class="dropdown-item">Digital ID</a>
@@ -82,13 +82,13 @@ import '../styles/components/header.css';
         </li>
         
         <!-- Nosotros con Landing + Dropdown -->
-        <li class="nav-item dropdown">
-          <a href="/dag-www/nosotros/" class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/nosotros') ? 'true' : 'false'}>
+        <li class="nav-item dropdown" data-section="Nosotros">
+          <span class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/nosotros') ? 'true' : 'false'}>
             <span class="nav-text">Nosotros</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <polyline points="6,9 12,15 18,9"></polyline>
             </svg>
-          </a>
+          </span>
           <div class="dropdown-menu">
             <a href="/dag-www/nosotros/" class="dropdown-item landing-link">👥 Ver Todo</a>
             <a href="/dag-www/nosotros/dag-klassical/" class="dropdown-item">DAG Klassical</a>
@@ -105,7 +105,7 @@ import '../styles/components/header.css';
         <button class="search-toggle" id="search-toggle" aria-expanded="false" aria-label="Abrir búsqueda">
           <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="11" cy="11" r="8"/>
-            <path d="21 21l-4.35-4.35"/>
+            <path d="M21 21l-4.35-4.35"/>
           </svg>
           <svg class="search-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display: none;">
             <line x1="18" y1="6" x2="6" y2="18"/>
@@ -127,46 +127,82 @@ import '../styles/components/header.css';
         </button>
       </div>
       
-      <!-- Botón de Wallet (Solo Desktop) -->
+      <!-- Botones de Acción Desktop (Wallet + Búsqueda) -->
       <div class="nav-actions">
         <a href="#" class="btn-wallet">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4a2 2 0 0 0-4 0v-5a2 2 0 0 0-4 0v-5a2 2 0 0 0-4 0v-5a2 2 0 0 1 0-4"/>
+            <rect x="1" y="3" width="20" height="16" rx="2"/>
+            <path d="M1 7h20"/>
+            <path d="M16 12h4"/>
           </svg>
           <span class="wallet-text">Wallet</span>
         </a>
+        
+        <!-- Botón de Búsqueda (Ícono + Tooltip) -->
+        <button class="btn-search" id="search-toggle-desktop" title="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+        </button>
       </div>
 
-      <!-- Campo de Búsqueda -->
-      <div class="search-container" id="search-container">
+      <!-- Campo de Búsqueda Desktop (Modal/Popup) -->
+      <div class="search-container" id="search-container-desktop" style="display: none;">
         <div class="search-input-wrapper">
           <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <circle cx="11" cy="11" r="8"/>
-            <path d="21 21l-4.35-4.35"/>
+            <path d="M21 21l-4.35-4.35"/>
           </svg>
           <input 
             type="text" 
             class="search-input" 
             placeholder="Buscar artistas, música, contenido..."
-            id="search-input"
+            id="search-input-desktop"
           />
         </div>
         <div class="search-results" id="search-results">
           <!-- Resultados de búsqueda se mostrarán aquí -->
         </div>
       </div>
+      
+      <!-- Campo de Búsqueda Mobile (Dropdown) -->
+      <div class="search-container mobile-search-container" id="search-container-mobile" style="display: none;">
+        <div class="search-input-wrapper">
+          <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input 
+            type="text" 
+            class="search-input" 
+            placeholder="Buscar artistas, música, contenido..."
+            id="search-input-mobile"
+          />
+        </div>
+        <div class="search-results" id="search-results-mobile">
+          <!-- Resultados de búsqueda se mostrarán aquí -->
+        </div>
+      </div>
+      
+      <!-- Backdrop para modal de búsqueda desktop -->
+      <div id="search-backdrop" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000;"></div>
     </nav>
   </div>
 </header>
 
 
 <script>
-  // JavaScript para menú hamburguesa y búsqueda
+  // JavaScript para menú hamburguesa y búsqueda - VERSIÓN CORREGIDA
   const navToggle = document.getElementById('nav-toggle');
   const navMenu = document.getElementById('nav-menu');
   const searchToggle = document.getElementById('search-toggle');
   const searchContainer = document.getElementById('search-container');
-  const searchInput = document.getElementById('search-input');
+  const searchContainerDesktop = document.getElementById('search-container-desktop');
+  const searchContainerMobile = document.getElementById('search-container-mobile');
+  const searchInputDesktop = document.getElementById('search-input-desktop');
+  const searchInputMobile = document.getElementById('search-input-mobile');
+  const searchInput = searchInputDesktop; // Para compatibilidad con funciones existentes
   
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
@@ -200,13 +236,19 @@ import '../styles/components/header.css';
   }
 
   // Funcionalidad de búsqueda
-  if (searchToggle && searchContainer) {
+  if (searchToggle && (searchContainer || searchContainerMobile)) {
     searchToggle.addEventListener('click', () => {
       const isExpanded = searchToggle.getAttribute('aria-expanded') === 'true';
       
       searchToggle.setAttribute('aria-expanded', !isExpanded);
-      searchContainer.classList.toggle('active');
       searchToggle.classList.toggle('active');
+      
+      // Usar contenedor móvil para pantallas pequeñas
+      const currentContainer = window.innerWidth <= 1024 ? searchContainerMobile : searchContainerDesktop;
+      
+      if (currentContainer) {
+        currentContainer.classList.toggle('active');
+      }
       
       // Cerrar menú si está abierto
       if (navMenu && navMenu.classList.contains('active')) {
@@ -221,16 +263,105 @@ import '../styles/components/header.css';
       }
     });
   }
+  
+  // Manejar visibilidad de contenedores según breakpoint
+  function updateSearchVisibility() {
+    const isDesktop = window.innerWidth > 1024;
+    
+    // En desktop, el contenedor de búsqueda se controla por el botón de búsqueda
+    if (searchContainerDesktop) {
+      searchContainerDesktop.style.display = isDesktop ? 'none' : 'flex';
+    }
+    if (searchContainerMobile) {
+      searchContainerMobile.style.display = !isDesktop ? 'block' : 'none';
+    }
+  }
+  
+  // Actualizar visibilidad al cargar y al redimensionar
+  updateSearchVisibility();
+  window.addEventListener('resize', updateSearchVisibility);
+  
+  // Manejar clic en botón de búsqueda desktop
+  const searchToggleDesktop = document.getElementById('search-toggle-desktop');
+  if (searchToggleDesktop) {
+    searchToggleDesktop.addEventListener('click', () => {
+      if (searchContainerDesktop) {
+        const isCurrentlyVisible = searchContainerDesktop.style.display !== 'none';
+        const backdrop = document.getElementById('search-backdrop');
+        
+        if (isCurrentlyVisible) {
+          // Ocultar modal y backdrop
+          searchContainerDesktop.style.display = 'none';
+          if (backdrop) backdrop.style.display = 'none';
+        } else {
+          // Mostrar modal y backdrop
+          searchContainerDesktop.style.display = 'block';
+          if (backdrop) backdrop.style.display = 'block';
+          
+          // Focus en el input
+          const searchInput = document.getElementById('search-input-desktop');
+          if (searchInput) {
+            searchInput.focus();
+          }
+        }
+      }
+    });
+    
+    // Cerrar modal al hacer clic en backdrop
+    const backdrop = document.getElementById('search-backdrop');
+    if (backdrop) {
+      backdrop.addEventListener('click', () => {
+        searchContainerDesktop.style.display = 'none';
+        backdrop.style.display = 'none';
+      });
+    }
+    
+    // Cerrar modal al hacer clic fuera
+    document.addEventListener('click', (e) => {
+      if (searchContainerDesktop && searchContainerDesktop.style.display !== 'none') {
+        const isClickInsideSearch = searchContainerDesktop.contains(e.target);
+        const isClickOnToggle = searchToggleDesktop.contains(e.target);
+        const isClickOnBackdrop = backdrop && backdrop.contains(e.target);
+        
+        if (!isClickInsideSearch && !isClickOnToggle && !isClickOnBackdrop) {
+          searchContainerDesktop.style.display = 'none';
+          if (backdrop) backdrop.style.display = 'none';
+        }
+      }
+    });
+    
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && searchContainerDesktop && searchContainerDesktop.style.display !== 'none') {
+        searchContainerDesktop.style.display = 'none';
+        if (backdrop) backdrop.style.display = 'none';
+      }
+    });
+  }
 
-  // Funcionalidad de dropdowns en móvil (tap to toggle)
+  // Funcionalidad de dropdowns - Desktop (hover) y Mobile (click)
   const dropdowns = document.querySelectorAll('.dropdown');
   dropdowns.forEach(dropdown => {
     const toggle = dropdown.querySelector('.dropdown-toggle');
     
     if (toggle) {
+      // Desktop: hover para abrir dropdown
+      toggle.addEventListener('mouseenter', (e) => {
+        if (window.innerWidth >= 1025) {
+          dropdown.classList.add('desktop-open');
+        }
+      });
+      
+      // Cerrar dropdown al salir del mouse
+      dropdown.addEventListener('mouseleave', (e) => {
+        if (window.innerWidth >= 1025) {
+          dropdown.classList.remove('desktop-open');
+        }
+      });
+      
+      // Mobile: click para toggle (cuando el menú móvil esté abierto)
       toggle.addEventListener('click', (e) => {
-        // Solo para móvil y cuando el menú móvil esté abierto
-        if (window.innerWidth <= 768 && navMenu && navMenu.classList.contains('active')) {
+        if (window.innerWidth <= 1024 && navMenu && navMenu.classList.contains('active')) {
           e.preventDefault();
           e.stopPropagation();
           
@@ -257,35 +388,111 @@ import '../styles/components/header.css';
     }
   });
 
+  // Mostrar nombre de sección activa en header móvil
+  function updateActiveSection() {
+    if (window.innerWidth <= 1024 && navMenu && navMenu.classList.contains('active')) {
+      const path = window.location.pathname;
+      let activeSection = '';
+      
+      if (path.startsWith('/dag-www/musica')) activeSection = 'Música';
+      else if (path.startsWith('/dag-www/blockchain')) activeSection = 'Blockchain';
+      else if (path.startsWith('/dag-www/noticias')) activeSection = 'Noticias';
+      else if (path.startsWith('/dag-www/nosotros')) activeSection = 'Nosotros';
+      else if (path === '/dag-www/' || path === '/dag-www') activeSection = 'Inicio';
+      else if (path.startsWith('/dag-www/contacto')) activeSection = 'Contacto';
+      
+      // Actualizar el header con la sección activa
+      let activeHeader = navMenu.querySelector('.active-section-header');
+      if (!activeHeader && activeSection) {
+        activeHeader = document.createElement('div');
+        activeHeader.className = 'active-section-header';
+        activeHeader.textContent = activeSection;
+        navMenu.insertBefore(activeHeader, navMenu.firstChild);
+      } else if (activeHeader && activeSection) {
+        activeHeader.textContent = activeSection;
+        activeHeader.style.display = 'block';
+      } else if (activeHeader && !activeSection) {
+        activeHeader.style.display = 'none';
+      }
+    }
+  }
+  
+  // Actualizar al abrir el menú
+  if (navToggle) {
+    navToggle.addEventListener('click', updateActiveSection);
+  }
+
   // Cerrar búsqueda al hacer clic fuera
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.search-container') && !e.target.closest('.search-toggle')) {
-      searchContainer.classList.remove('active');
+    const isClickOnSearch = e.target.closest('.search-container') || e.target.closest('.search-toggle');
+    
+    if (!isClickOnSearch) {
+      // Cerrar ambos contenedores de búsqueda
+      [searchContainer, searchContainerDesktop, searchContainerMobile].forEach(container => {
+        if (container) container.classList.remove('active');
+      });
       searchToggle.classList.remove('active');
       searchToggle.setAttribute('aria-expanded', 'false');
     }
   });
 
-  // Funcionalidad de búsqueda básica (simulada)
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const query = e.target.value.trim();
-      const resultsContainer = document.getElementById('search-results');
+  // Funcionalidad de búsqueda básica (simulada) - MEJORADA
+  function performSearch(query, inputElement) {
+    console.log('🔍 Search query:', query);
+    const resultsContainer = document.getElementById('search-results');
+    const resultsContainerMobile = document.getElementById('search-results-mobile');
+    
+    if (query.length > 2) {
+      console.log('🎯 Showing search results for:', query);
+      const resultsHTML = `
+        <div class="search-result-item">
+          <strong>Resultados para:</strong> "${query}"
+        </div>
+        <div class="search-result-item">Virginia Ramírez</div>
+        <div class="search-result-item">Sinfonía Digital</div>
+        <div class="search-result-item">NFT Musical</div>
+        <div class="search-result-item">Músicos Clásicos</div>
+        <div class="search-result-item">Álbumes Digitales</div>
+      `;
       
-      if (query.length > 2) {
-        // Aquí iría la lógica real de búsqueda
-        resultsContainer.innerHTML = `
-          <div class="search-result-item">
-            <strong>Resultados para:</strong> "${query}"
-          </div>
-          <div class="search-result-item">Virginia Ramírez</div>
-          <div class="search-result-item">Sinfonía Digital</div>
-          <div class="search-result-item">NFT Musical</div>
-        `;
+      // Mostrar resultados en ambos contenedores
+      if (resultsContainer) {
+        resultsContainer.innerHTML = resultsHTML;
         resultsContainer.style.display = 'block';
-      } else {
-        resultsContainer.style.display = 'none';
       }
+      if (resultsContainerMobile) {
+        resultsContainerMobile.innerHTML = resultsHTML;
+        resultsContainerMobile.style.display = 'block';
+      }
+    } else {
+      // Ocultar resultados en ambos contenedores
+      [resultsContainer, resultsContainerMobile].forEach(container => {
+        if (container) container.style.display = 'none';
+      });
+    }
+  }
+
+  // Sincronizar ambas búsquedas
+  function syncSearchInputs(source, target) {
+    target.value = source.value;
+  }
+
+  if (searchInputDesktop && searchInputMobile) {
+    searchInputDesktop.addEventListener('input', (e) => {
+      syncSearchInputs(e.target, searchInputMobile);
+      performSearch(e.target.value.trim(), e.target);
+    });
+    
+    searchInputMobile.addEventListener('input', (e) => {
+      syncSearchInputs(e.target, searchInputDesktop);
+      performSearch(e.target.value.trim(), e.target);
+    });
+  }
+  
+  // También manejar el input único para compatibilidad
+  if (searchInput && !searchInputDesktop) {
+    searchInput.addEventListener('input', (e) => {
+      performSearch(e.target.value.trim(), e.target);
     });
   }
 
@@ -300,17 +507,31 @@ import '../styles/components/header.css';
         document.body.style.overflow = '';
       }
       
-      // Cerrar búsqueda
-      if (searchContainer && searchContainer.classList.contains('active')) {
-        searchContainer.classList.remove('active');
-        searchToggle.classList.remove('active');
-        searchToggle.setAttribute('aria-expanded', 'false');
-      }
+      // Cerrar búsqueda (ambos contenedores)
+      [searchContainer, searchContainerDesktop, searchContainerMobile].forEach(container => {
+        if (container && container.classList.contains('active')) {
+          container.classList.remove('active');
+        }
+      });
+      searchToggle.classList.remove('active');
+      searchToggle.setAttribute('aria-expanded', 'false');
       
       // Cerrar dropdowns móviles
       dropdowns.forEach(dropdown => {
         dropdown.classList.remove('mobile-open');
       });
     }
+  });
+  
+  // Debug: Log de inicialización
+  console.log('✅ Header script initialization complete');
+  console.log('🔧 Elements found:', {
+    navToggle: !!navToggle,
+    navMenu: !!navMenu,
+    searchToggle: !!searchToggle,
+    searchContainerDesktop: !!searchContainerDesktop,
+    searchContainerMobile: !!searchContainerMobile,
+    searchInputDesktop: !!searchInputDesktop,
+    searchInputMobile: !!searchInputMobile
   });
 </script>
