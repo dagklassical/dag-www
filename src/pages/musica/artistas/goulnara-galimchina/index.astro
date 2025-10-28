@@ -1,0 +1,334 @@
+---
+// Perfil de Artista - Goulnara Galimchina
+// Pianista Rusa establecida en Venezuela desde 1993
+
+import Layout from '../../../layouts/Layout.astro';
+import Footer from '../../../components/Footer.astro';
+
+// CSS Centralizado
+import '../../../styles/artist.css';
+
+const baseUrl = import.meta.env.BASE_URL;
+const getPath = (path: string) => path === '/' ? baseUrl : `${baseUrl}${path}`;
+
+// === DATA DEL ARTISTA ===
+const artistData = {
+  name: 'Goulnara Galimchina',
+  slug: 'goulnara-galimchina',
+  image: getPath('/obras/goulnara-galimchina/profile.svg'),
+  nationality: 'Rusa',
+  birthYear: 1965,
+  birthPlace: 'Ufa, Russia',
+  instruments: ['Piano', 'Organ'],
+  genres: ['Música Clásica', 'Romántico', 'Piano Solista', 'Repertorio Alemán']
+};
+
+const digitalId = {
+  status: 'verified',
+  id: 'DK-GG-2024-002',
+  chain: 'Polygon Network',
+  tokenId: 'GG-DIGITAL-ID-002',
+  metadata: {
+    nationality: 'Rusa',
+    origin: 'Ufa, Russia (1965)',
+    arrivalVenezuela: '1993',
+    education: 'Conservatorio Tchaikovsky de Moscú (Postgrado Piano + Especialista Órgano)',
+    instruments: ['Piano', 'Organ'],
+    currentRole: 'Profesora de Piano en múltiples instituciones venezolanas',
+    style: 'Interpretación introspectiva, sutileza y profundidad emocional'
+  }
+};
+
+const albumData = {
+  title: 'Schubert',
+  artist: 'Goulnara Galimchina',
+  description: 'Una interpretación magistral de dos de las obras más emblemáticas de Franz Schubert: Sonata en Si bemol mayor D.960 y "Momentos Musicales" D.780.',
+  features: [
+    'Sonata D.960 en 4 movimientos completos',
+    '6 Momentos Musicales Op.94 D.780 seleccionados',
+    'Técnica delicada y precisa con sensibilidad exquisita',
+    'Enfoque introspectivo que revela sutilezas de la partitura',
+    'Humanidad profunda y fragilidad emocional',
+    'Longe de grandilocuencia y virtuosismo vacío'
+  ],
+  spotifyUrl: 'https://open.spotify.com/album/6qTdRMTTiB06d7smSTwv1y',
+  youtubeMusic: 'https://music.youtube.com/playlist?list=OLAK5uy_kkIHfFa5V5jKF2XqqW6B5WuDXGE9VR-M8',
+  appleMusic: 'https://music.apple.com/ve/album/schubert/1653639785',
+  tracks: [
+    'Sonata D960, I Molto Moderato',
+    'Sonata D960, II Andante Sostenuto',
+    'Sonata D960, III Scherzo Allegro Vivace con Delicatezza',
+    'Sonata D960, IV Allegro Ma Non Troppo',
+    'Momentos Musicales I Op94, D780, Moderato',
+    'Momentos Musicales II Op94, D780, Andantino',
+    'Momentos Musicales IV Op94, D780, Moderato',
+    'Momentos Musicales VI Op94, D780, Allegretto'
+  ]
+};
+
+const biography = {
+  intro: 'Goulnara Galimchina es una distinguida pianista y pedagoga rusa que ha marcado la vida musical venezolana desde 1993.',
+  earlyLife: 'Nacida en 1965 en Ufa, Russia. Comenzó sus estudios de piano con su madre a los 4 años, demostrando talento excepcional desde temprana edad.',
+  education: 'Se graduó como Postgraduada en Piano (1990) del Conservatorio Tchaikovsky de Moscú con la profesora Vera Gornostáyeva. Además se especializó en Órgano (1991) con Natalia Gureeva.',
+  arrivalVenezuela: 'Llegó a Venezuela en 1993, invitada por el Maestro José Antonio Abreu, junto con su esposo, el pianista Igor Lavrov.',
+  teachingCareer: 'Ha desempeñado un papel fundamental en la formación de músicos jóvenes en Venezuela, ocupando posiciones docentes en múltiples instituciones prestigiosas.',
+  currentPositions: [
+    'Profesora de Piano en la Escuela Experimental de Música "Manuel Alberto López"',
+    'Profesora de Piano en el Conservatorio "Emil Friedman"',
+    'Asesora Pedagógica en la Escuela de Artes Integradas "Maestro Jorge Serrano" - Centro UNESCO'
+  ],
+  performanceCareer: 'Como solista y pianista acompañante, ha participado en festivales internacionales de piano y órgano en Berlín, Los Ángeles, Ufa, Arkhangelsk y Polotsk (Belarús). También sirve como jurado en competencias nacionales de piano.',
+  artisticPhilosophy: 'Su enfoque se caracteriza por ser introspectivo, con sutileza y profundidad emocional, honestidad y dedicación. Su técnica de piano es delicada y precisa, con sensibilidad exquisita, enfocándose en revelar las sutilezas de la partitura.'
+};
+
+const achievements = [
+  'Postgraduada con distinción del Conservatorio Tchaikovsky de Moscú',
+  'Especialización en Órgano (1991)',
+  'Invitada por el Maestro José Antonio Abreu a Venezuela (1993)',
+  'Más de 30 años formando pianistas en Venezuela',
+  'Participación en festivales internacionales de piano y órgano',
+  'Jurado en competencias nacionales de piano',
+  'Directora pedagógica en instituciones UNESCO'
+];
+
+const teachingInstitutions = [
+  'Escuela Experimental de Música "Manuel Alberto López"',
+  'Conservatorio "Emil Friedman"',
+  'Escuela de Artes Integradas "Maestro Jorge Serrano" - Centro UNESCO',
+  'Conservatorio de la Orquesta Simón Bolívar',
+  'Academia Latinoamericana de Canto "Carmen Teresa de Hurtado"'
+];
+
+const socialMedia = {
+  facebook: 'https://www.facebook.com/profile.php?id=100063061250762',
+  instagram: 'https://www.instagram.com/dagklassical/',
+  youtube: 'https://www.youtube.com/results?search_query=dag+klassical'
+};
+
+const pageTitle = `${artistData.name} | DAG Klassical`;
+const pageDescription = `Perfil completo de ${artistData.name}, pianista rusa establecida en Venezuela desde 1993 con Digital ID verificado.`;
+
+// Structured Data para SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": artistData.name,
+  "jobTitle": "Pianista y Pedagoga",
+  "birthDate": "1965",
+  "nationality": artistData.nationality,
+  "birthPlace": artistData.birthPlace,
+  "knowsAbout": artistData.genres,
+  "instrument": artistData.instruments,
+  "url": getPath(`/musica/artistas/${artistData.slug}/`),
+  "alumniOf": {
+    "@type": "EducationalOrganization", 
+    "name": "Conservatorio Tchaikovsky de Moscú"
+  },
+  "hasOccupation": "https://schema.org/Musician",
+  "sameAs": Object.values(socialMedia)
+};
+---
+
+<Layout title={pageTitle}>
+  <script type="application/ld+json">
+    {JSON.stringify(structuredData)}
+  </script>
+
+  <div class="artist-page">
+    {/* Breadcrumb Navigation */}
+    <nav class="breadcrumb">
+      <a href={getPath('/musica/artistas/')}>← Volver a Artistas</a>
+    </nav>
+
+    {/* Digital ID Verification Banner */}
+    {digitalId.status === 'verified' && (
+      <div class="digital-id-banner verified">
+        <div class="digital-id-content">
+          <div class="digital-id-badge-large">
+            <span class="badge-icon">✓</span>
+            <span class="badge-text">Digital ID Verificado</span>
+          </div>
+          <div class="digital-id-info">
+            <h3>Identidad Blockchain Confirmada</h3>
+            <p>ID: {digitalId.id} | Red: {digitalId.chain}</p>
+            <p class="verification-note">✓ Certificado en Polygon Network • ✓ Formación Verificada • ✓ Trayectoria Documentada</p>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Artist Hero Section */}
+    <section class="artist-hero">
+      <div class="artist-hero-content">
+        <div class="artist-image-container">
+          <img src={artistData.image} alt={artistData.name} class="artist-image" />
+          <div class="digital-id-badge verified">
+            <span class="verified-icon">✓</span>
+            <span class="verified-text">Verificada</span>
+          </div>
+        </div>
+        
+        <div class="artist-info">
+          <h1 class="artist-name">{artistData.name}</h1>
+          <p class="artist-subtitle">Pianista • Pedagoga • Formación Rusa</p>
+          <p class="artist-description">Nacida en Ufa, Russia (1965) • Venezuela desde 1993</p>
+          
+          <div class="artist-badges">
+            {artistData.instruments.map((instrument) => (
+              <span class="artist-badge artist-badge-primary">{instrument}</span>
+            ))}
+            {artistData.genres.slice(0, 3).map((genre) => (
+              <span class="artist-badge artist-badge-secondary">{genre}</span>
+            ))}
+          </div>
+          
+          <div class="artist-stats">
+            <div class="artist-stat-item">
+              <span class="artist-stat-value">✓</span>
+              <span class="artist-stat-label">Digital ID</span>
+            </div>
+            <div class="artist-stat-item">
+              <span class="artist-stat-value">1</span>
+              <span class="artist-stat-label">Álbum NFT</span>
+            </div>
+            <div class="artist-stat-item">
+              <span class="artist-stat-value">31</span>
+              <span class="artist-stat-label">Años</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Biography Section */}
+    <section class="artist-biography">
+      <h2>Biografía</h2>
+      <div class="biography-content">
+        <p class="intro">{biography.intro}</p>
+        <p><strong>Infancia y Formación:</strong> {biography.earlyLife} {biography.education}</p>
+        <p><strong>Llegada a Venezuela:</strong> {biography.arrivalVenezuela}</p>
+        <p><strong>Carrera Docente:</strong> {biography.teachingCareer}</p>
+        <p><strong>Filosofía Artística:</strong> {biography.artisticPhilosophy}</p>
+      </div>
+    </section>
+
+    {/* Teaching Positions */}
+    <section class="artist-section">
+      <h2>Instituciones donde Docencia</h2>
+      <div class="collections-grid">
+        {teachingInstitutions.map((institution) => (
+          <div class="collection-card">
+            <div class="collection-info">
+              <h4 class="collection-title">🎓 {institution}</h4>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Achievements */}
+    <section class="artist-section">
+      <h2>Logros y Reconocimientos</h2>
+      <ul class="nft-features-list">
+        {achievements.map((achievement) => (
+          <li>🏆 {achievement}</li>
+        ))}
+      </ul>
+    </section>
+
+    {/* Featured Album: Schubert */}
+    <section class="artist-section">
+      <h2>Álbum Destacado</h2>
+      <div class="album-card featured">
+        <div class="album-header">
+          <h3 class="album-title">{albumData.title}</h3>
+          <span class="album-status-badge">Disponible</span>
+        </div>
+        
+        <div class="album-content">
+          <div class="album-image-container">
+            <div class="album-image-badge available">NFT Activo</div>
+          </div>
+          <div class="album-info">
+            <p class="album-description">{albumData.description}</p>
+            
+            <div class="nft-features">
+              <h4>Características del Álbum:</h4>
+              <ul class="nft-features-list">
+                {albumData.features.map((feature) => (
+                  <li>✨ {feature}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="streaming-links">
+              <h4>Disponible en:</h4>
+              <div class="social-links-grid">
+                <a href={albumData.spotifyUrl} target="_blank" class="social-link">
+                  <span class="social-platform">Spotify</span>
+                  <span class="social-url">Escuchar ahora</span>
+                </a>
+                <a href={albumData.youtubeMusic} target="_blank" class="social-link">
+                  <span class="social-platform">YouTube Music</span>
+                  <span class="social-url">Ver playlist</span>
+                </a>
+                <a href={albumData.appleMusic} target="_blank" class="social-link">
+                  <span class="social-platform">Apple Music</span>
+                  <span class="social-url">Comprar/Stream</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="tracklist">
+              <h4>Lista de Tracks (8 piezas):</h4>
+              <div class="tracks-grid">
+                {albumData.tracks.map((track, index) => (
+                  <div class="track-item">
+                    <span class="track-number">{index + 1}</span>
+                    <span class="track-title">{track}</span>
+                    <span class="track-duration">8:20</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Contact & Social Media */}
+    <section class="artist-section">
+      <h2>Conecta con la Artista</h2>
+      <div class="artist-social">
+        <div class="social-links-grid">
+          <a href={socialMedia.facebook} target="_blank" class="social-link">
+            <span class="social-platform">Facebook</span>
+            <span class="social-url">Síguenos</span>
+          </a>
+          <a href={socialMedia.instagram} target="_blank" class="social-link">
+            <span class="social-platform">Instagram</span>
+            <span class="social-url">@dagklassical</span>
+          </a>
+          <a href={socialMedia.youtube} target="_blank" class="social-link">
+            <span class="social-platform">YouTube</span>
+            <span class="social-url">Canal DAG Klassical</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA Section */}
+    <section class="artist-section">
+      <div class="cta-content">
+        <h2>¿Interesado en Goulnara Galimchina?</h2>
+        <p>Descubre más sobre nuestro programa de Digital ID y certificación blockchain para pianistas.</p>
+        <div class="cta-buttons">
+          <a href="/dag-www/blockchain/digital-id/" class="cta-primary">Crear Digital ID</a>
+          <a href="/dag-www/musica/artistas/" class="cta-secondary">Ver Más Artistas</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer />
+</Layout>

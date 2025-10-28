@@ -1,0 +1,362 @@
+---
+// Perfil de Artista - Orquesta Académica de Moscú
+// Intérpretes especializados en Water Music de Handel y repertorio clásico
+
+import Layout from '../../../layouts/Layout.astro';
+import Footer from '../../../components/Footer.astro';
+
+// CSS Centralizado
+import '../../../styles/artist.css';
+
+const baseUrl = import.meta.env.BASE_URL;
+const getPath = (path: string) => path === '/' ? baseUrl : `${baseUrl}${path}`;
+
+// === DATA DEL ARTISTA ===
+const artistData = {
+  name: 'Orquesta Académica de Moscú',
+  slug: 'orquesta-academica-moscu',
+  image: getPath('/obras/orquesta-academica-moscu/profile.svg'),
+  nationality: 'Rusa',
+  foundingYear: 2003,
+  location: 'Moscú, Russia',
+  instruments: 'Instrumentos Orquestales',
+  genres: ['Música Clásica', 'Barroco', 'Water Music', 'Repertorio Orquestal']
+};
+
+const digitalId = {
+  status: 'verified',
+  id: 'DK-OAM-2024-001',
+  chain: 'Polygon Network',
+  tokenId: 'OAM-DIGITAL-ID-001',
+  metadata: {
+    nationality: 'Rusa',
+    founded: '2003',
+    location: 'Moscú, Russia',
+    philosophy: 'Reinterpretar obras maestras con enfoque innovador y virtuoso',
+    specializations: ['Música Clásica', 'Bandas Sonoras', 'Repertorio Barroco'],
+    recognition: 'Reconocida orquesta de sesión para bandas sonoras cinematográficas'
+  }
+};
+
+const albumData = {
+  title: 'Momentos Musicales Vol 1',
+  subtitle: 'Barroco Inglés',
+  artist: 'Orquesta Académica de Moscú',
+  composedBy: 'Georg Frideric Handel',
+  duration: '56 min 25 s',
+  tracksCount: 11,
+  description: 'Presenta una de las obras instrumentales más queridas y reconocidas del repertorio clásico: "Water Music". Una colección de movimientos orquestales llenos de energía y vitalidad que evoca la majestuosidad del Támesis y la pompa de la corte real.',
+  features: [
+    'Interpretación fresca y emocionante que resalta la belleza y complejidad de las obras clásicas',
+    'Visión contemporánea combinada con la tradición en la ejecución orquestal',
+    'Sonido distintivo que combina técnica excepcional con pasión profunda',
+    'Enfoque innovador y virtuoso del repertorio barroco',
+    'Duración total: 56 minutos de pura maestría orquestal',
+    '11 movimientos cuidadosamente seleccionados'
+  ],
+  spotifyUrl: 'https://open.spotify.com/album/7Fbc099ry3XRa2kMoEAzb8',
+  youtubeMusic: 'https://music.youtube.com/playlist?list=OLAK5uy_mh_KL0I9yRm2hy01hmk1PQtjpKmkrk_J8',
+  appleMusic: 'https://music.apple.com/ve/album/water-music-suite-n1-in-f-allegro-moderatto-orquesta/1798805918?i=1798806366',
+  tracks: [
+    '1. Obertura',
+    '2. Adagio Staccato',
+    '3. Allegro Staccato',
+    '4. Andante - Allegro Staccato',
+    '5. A tempo di Minuetto',
+    '6. Air',
+    '7. Minuet',
+    '8. Bourrée',
+    '9. Hornpipe',
+    '10. Allegro Moderatto',
+    '11. Allegro (bonus track)'
+  ]
+};
+
+const orchestraInfo = {
+  intro: 'La Orquesta Académica de Moscú, fundada en 2003 por jóvenes y apasionados músicos, se ha destacado por su enfoque innovador y virtuoso de la música clásica.',
+  founding: 'Fundada en 2003 por un grupo de jóvenes y apasionados músicos con la misión de acercar la música clásica a un público más amplio.',
+  approach: 'Se dedica a reinterpretar obras maestras del repertorio clásico, imprimiendo un sello distintivo que combina la tradición con una visión contemporánea.',
+  mission: 'Acercar la música clásica a un público más amplio con interpretaciones frescas y emocionantes.',
+  members: 'Sus miembros poseen un dominio técnico excepcional y una profunda pasión por la música.',
+  cinemaWork: 'Ha incursionado en el mundo del cine como orquesta de sesión para bandas sonoras, demostrando su adaptabilidad, precisión y profesionalismo.',
+  recognition: 'Su adaptabilidad, precisión y profesionalismo la han consolidado como una de las agrupaciones musicales más interesantes y prometedoras de la escena rusa.',
+  achievements: 'Ha conquistado tanto al público como a la crítica especializada, estableciéndose como referencia en el repertorio clásico orquestal.'
+};
+
+const handelContext = {
+  composerName: 'Georg Frideric Handel',
+  composerBio: 'Georg Frideric Handel (1685-1759) fue uno de los compositores más influyentes del período barroco. Nacido en Halle, Alemania, se estableció en Londres donde alcanzó la fama mundial.',
+  waterMusicHistory: 'La "Water Music" de Handel es una obra maestra envuelta en misterio y leyenda. Aunque la anécdota tradicional de que Handel la estrenó en 1715 durante una procesión real en el Támesis para ganarse el perdón del rey Jorge I es una "leyenda dorada", la obra sigue siendo una colección de movimientos orquestales llenos de energía y vitalidad.',
+  culturalImpact: 'La música de Handel trasciende lo religioso y cultural, resonando en diversos medios como el cine y videojuegos. Como él mismo decía: "Me lamentaría si solo entretuviera a la gente; mi objetivo es hacerlos mejores."',
+  majorWorks: ['Water Music (1717)', 'Messiah (1741)', 'Rinaldo (1711)', 'Agrippina (1709)']
+};
+
+const achievements = [
+  'Fundación exitosa en 2003 con enfoque innovador',
+  'Reconocida orquesta de sesión para bandas sonoras cinematográficas',
+  'Consolidación como una de las agrupaciones más prometedoras de la escena rusa',
+  'Interpretación magistral del repertorio barroco inglés',
+  'Logro de críticas positivas tanto del público como de la crítica especializada',
+  'Más de 20 años de experiencia en el repertorio clásico orquestal'
+];
+
+const repertoireHighlights = [
+  'Water Music Suite de Handel',
+  'Repertorio barroco inglés',
+  'Bandas sonoras cinematográficas',
+  'Obras maestras del repertorio clásico',
+  'Composiciones con enfoque contemporáneo'
+];
+
+const socialMedia = {
+  facebook: 'https://www.facebook.com/profile.php?id=100063061250762',
+  instagram: 'https://www.instagram.com/dagklassical/',
+  youtube: 'https://www.youtube.com/results?search_query=dag+klassical'
+};
+
+const pageTitle = `${artistData.name} | DAG Klassical`;
+const pageDescription = `Perfil completo de la ${artistData.name}, intérprete de Water Music de Handel con Digital ID verificado.`;
+
+// Structured Data para SEO
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": artistData.name,
+  "foundingDate": artistData.foundingYear,
+  "genre": artistData.genres,
+  "url": getPath(`/musica/artistas/${artistData.slug}/`),
+  "member": {
+    "@type": "MusicGroup",
+    "name": "Orquesta Académica de Moscú"
+  },
+  "album": {
+    "@type": "MusicAlbum",
+    "name": albumData.title,
+    "byArtist": albumData.artist
+  },
+  "sameAs": Object.values(socialMedia)
+};
+---
+
+<Layout title={pageTitle}>
+  <script type="application/ld+json">
+    {JSON.stringify(structuredData)}
+  </script>
+
+  <div class="artist-page">
+    {/* Breadcrumb Navigation */}
+    <nav class="breadcrumb">
+      <a href={getPath('/musica/artistas/')}>← Volver a Artistas</a>
+    </nav>
+
+    {/* Digital ID Verification Banner */}
+    {digitalId.status === 'verified' && (
+      <div class="digital-id-banner verified">
+        <div class="digital-id-content">
+          <div class="digital-id-badge-large">
+            <span class="badge-icon">✓</span>
+            <span class="badge-text">Digital ID Verificado</span>
+          </div>
+          <div class="digital-id-info">
+            <h3>Identidad Blockchain Confirmada</h3>
+            <p>ID: {digitalId.id} | Red: {digitalId.chain}</p>
+            <p class="verification-note">✓ Orquesta Certificada • ✓ Repertorio Verificado • ✓ Trayectoria Documentada</p>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Artist Hero Section */}
+    <section class="artist-hero">
+      <div class="artist-hero-content">
+        <div class="artist-image-container">
+          <img src={artistData.image} alt={artistData.name} class="artist-image" />
+          <div class="digital-id-badge verified">
+            <span class="verified-icon">✓</span>
+            <span class="verified-text">Verificada</span>
+          </div>
+        </div>
+        
+        <div class="artist-info">
+          <h1 class="artist-name">{artistData.name}</h1>
+          <p class="artist-subtitle">Orquesta • Water Music • Barroco Inglés</p>
+          <p class="artist-description">Fundada en {artistData.foundingYear} • {artistData.location}</p>
+          
+          <div class="artist-badges">
+            {artistData.genres.map((genre) => (
+              <span class="artist-badge artist-badge-secondary">{genre}</span>
+            ))}
+          </div>
+          
+          <div class="artist-stats">
+            <div class="artist-stat-item">
+              <span class="artist-stat-value">✓</span>
+              <span class="artist-stat-label">Digital ID</span>
+            </div>
+            <div class="artist-stat-item">
+              <span class="artist-stat-value">1</span>
+              <span class="artist-stat-label">Álbum NFT</span>
+            </div>
+            <div class="artist-stat-item">
+              <span class="artist-stat-value">21</span>
+              <span class="artist-stat-label">Años</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Orchestra Overview */}
+    <section class="artist-biography">
+      <h2>La Orquesta</h2>
+      <div class="biography-content">
+        <p class="intro">{orchestraInfo.intro}</p>
+        <p><strong>Fundación:</strong> {orchestraInfo.founding}</p>
+        <p><strong>Enfoque Musical:</strong> {orchestraInfo.approach}</p>
+        <p><strong>Misión:</strong> {orchestraInfo.mission}</p>
+        <p><strong>Carrera Cinematográfica:</strong> {orchestraInfo.cinemaWork}</p>
+      </div>
+    </section>
+
+    {/* Achievements */}
+    <section class="artist-section">
+      <h2>Logros y Reconocimientos</h2>
+      <ul class="nft-features-list">
+        {achievements.map((achievement) => (
+          <li>🏆 {achievement}</li>
+        ))}
+      </ul>
+    </section>
+
+    {/* Repertoire Highlights */}
+    <section class="artist-section">
+      <h2>Repertorio Destacado</h2>
+      <div class="collections-grid">
+        {repertoireHighlights.map((highlight) => (
+          <div class="collection-card">
+            <div class="collection-info">
+              <h4 class="collection-title">🎼 {highlight}</h4>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Featured Album: Water Music */}
+    <section class="artist-section">
+      <h2>Álbum Destacado</h2>
+      <div class="album-card featured">
+        <div class="album-header">
+          <div>
+            <h3 class="album-title">{albumData.title}</h3>
+            <p class="album-year">{albumData.subtitle}</p>
+            <p class="album-year">Composición de: {handelContext.composerName}</p>
+          </div>
+          <span class="album-status-badge">Disponible</span>
+        </div>
+        
+        <div class="album-content">
+          <div class="album-image-container">
+            <div class="album-image-badge available">NFT Activo</div>
+          </div>
+          <div class="album-info">
+            <p class="album-description">{albumData.description}</p>
+            
+            <div class="nft-features">
+              <h4>Características del Álbum:</h4>
+              <ul class="nft-features-list">
+                {albumData.features.map((feature) => (
+                  <li>✨ {feature}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="streaming-links">
+              <h4>Disponible en:</h4>
+              <div class="social-links-grid">
+                <a href={albumData.spotifyUrl} target="_blank" class="social-link">
+                  <span class="social-platform">Spotify</span>
+                  <span class="social-url">Escuchar ahora</span>
+                </a>
+                <a href={albumData.youtubeMusic} target="_blank" class="social-link">
+                  <span class="social-platform">YouTube Music</span>
+                  <span class="social-url">Ver playlist</span>
+                </a>
+                <a href={albumData.appleMusic} target="_blank" class="social-link">
+                  <span class="social-platform">Apple Music</span>
+                  <span class="social-url">Comprar/Stream</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="tracklist">
+              <h4>Lista de Tracks ({albumData.tracksCount} piezas, {albumData.duration}):</h4>
+              <div class="tracks-grid">
+                {albumData.tracks.map((track, index) => (
+                  <div class="track-item">
+                    <span class="track-number">{track.split('.')[0]}</span>
+                    <span class="track-title">{track.substring(track.indexOf('.') + 1).trim()}</span>
+                    <span class="track-duration">5:15</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Handel Historical Context */}
+    <section class="artist-section">
+      <h2>Contexto Histórico: Georg Frideric Handel</h2>
+      <div class="biography-highlight">
+        <h4>🎼 Contexto del Compositor</h4>
+        <p>{handelContext.composerBio}</p>
+        <p>{handelContext.waterMusicHistory}</p>
+        <p>{handelContext.culturalImpact}</p>
+        
+        <h4>Obras Destacadas de Handel:</h4>
+        <div class="artist-meta-list">
+          {handelContext.majorWorks.map((work) => (
+            <span class="artist-meta-chip">{work}</span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Contact & Social Media */}
+    <section class="artist-section">
+      <h2>Conecta con la Orquesta</h2>
+      <div class="artist-social">
+        <div class="social-links-grid">
+          <a href={socialMedia.facebook} target="_blank" class="social-link">
+            <span class="social-platform">Facebook</span>
+            <span class="social-url">Síguenos</span>
+          </a>
+          <a href={socialMedia.instagram} target="_blank" class="social-link">
+            <span class="social-platform">Instagram</span>
+            <span class="social-url">@dagklassical</span>
+          </a>
+          <a href={socialMedia.youtube} target="_blank" class="social-link">
+            <span class="social-platform">YouTube</span>
+            <span class="social-url">Canal DAG Klassical</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA Section */}
+    <section class="artist-section">
+      <div class="cta-content">
+        <h2>¿Interesado en la Orquesta Académica de Moscú?</h2>
+        <p>Descubre más sobre nuestro programa de Digital ID y certificación blockchain para orquestas.</p>
+        <div class="cta-buttons">
+          <a href="/dag-www/blockchain/digital-id/" class="cta-primary">Crear Digital ID</a>
+          <a href="/dag-www/musica/artistas/" class="cta-secondary">Ver Más Artistas</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Footer />
+</Layout>
