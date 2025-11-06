@@ -1,0 +1,142 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Función para limpiar y formatear el path
+const formatBreadcrumb = (segment) => {
+  if (!segment || segment === '') return '';
+  
+  // Reemplazos para mejor legibilidad
+  const replacements = {
+    'dag-www': 'Inicio',
+    'musica': 'Música',
+    'nosotros': 'Nosotros',
+    'artistas': 'Artistas',
+    'discografia': 'Discografía',
+    'lanzamientos': 'Lanzamientos',
+    'enciclopedia': 'Enciclopedia',
+    'dag-klassical': 'DAG Classical',
+    'danilo-alvarez': 'Danilo Álvarez',
+    'equipo': 'Equipo',
+    'terminos': 'Términos'
+  };
+  
+  // Capitalizar primera letra y aplicar reemplazos
+  const formatted = replacements[segment] || segment.charAt(0).toUpperCase() + segment.slice(1);
+  return formatted.replace(/-/g, ' ');
+};
+
+// Generar breadcrumbs dinámicamente
+let breadcrumbs = [];
+if (currentPath && currentPath !== '/') {
+  // Remover /dag-www/ del inicio y dividir por /
+  const cleanPath = currentPath.replace(/^\/dag-www\//, '').replace(/^\//, '');
+  const segments = cleanPath.split('/').filter(Boolean);
+  
+  let currentHref = '/dag-www/';
+  breadcrumbs.push({
+    label: 'Inicio',
+    href: currentHref,
+    isLast: segments.length === 0
+  });
+  
+  segments.forEach((segment, index) => {
+    currentHref += segment + '/';
+    breadcrumbs.push({
+      label: formatBreadcrumb(segment),
+      href: currentHref,
+      isLast: index === segments.length - 1
+    });
+  });
+}
+---
+
+<nav class:list={['breadcrumb-nav', className]} aria-label="Breadcrumb navigation">
+  <ol class="breadcrumb-list">
+    {breadcrumbs.map((item, index) => (
+      <li class:list={['breadcrumb-item', { active: item.isLast }]}>
+        {!item.isLast ? (
+          <a href={item.href} class="breadcrumb-link">
+            {item.label}
+          </a>
+        ) : (
+          <span class="breadcrumb-current">{item.label}</span>
+        )}
+        {!item.isLast && (
+          <svg class="breadcrumb-separator" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb-nav {
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    background: #F5F3EF;
+    border-radius: 2px;
+    border-left: 3px solid #A01008;
+  }
+
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  .breadcrumb-link {
+    color: #6F7270;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: #A01008;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-current {
+    color: #A01008;
+    font-weight: 600;
+  }
+
+  .breadcrumb-separator {
+    width: 1rem;
+    height: 1rem;
+    color: #6F7270;
+    margin: 0 0.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .breadcrumb-nav {
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .breadcrumb-list {
+      font-size: 0.8rem;
+    }
+    
+    .breadcrumb-separator {
+      width: 0.875rem;
+      height: 0.875rem;
+    }
+  }
+</style>

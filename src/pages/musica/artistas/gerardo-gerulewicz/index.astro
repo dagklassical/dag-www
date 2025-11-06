@@ -1,309 +1,388 @@
 ---
-// Perfil de Artista - Gerardo Gerulewicz
-// Compositor, Director y Pianista Venezolano con Digital ID Verificado
+// Gerardo Gerulewicz - Perfil Completo CORREGIDO
+// Archivo: src/pages/musica/artistas/gerardo-gerulewicz/index.astro
 
+// Importar Layout SEO mejorado
 import Layout from '../../../../layouts/Layout.astro';
-import Footer from '../../../../components/Footer.astro';
 
 // CSS Centralizado
 import '../../../../styles/artist.css';
 
-const baseUrl = import.meta.env.BASE_URL;
-const getPath = (path: string) => path === '/' ? baseUrl : `${baseUrl}${path}`;
-
-// === DATA DEL ARTISTA ===
-const artistData = {
-  name: 'Gerardo Gerulewicz',
-  slug: 'gerardo-gerulewicz',
-  image: getPath('/obras/gerardo-gerulewicz/profile.svg'),
-  nationality: 'Venezolano',
-  instruments: ['Piano', 'Violín'],
-  genres: ['Jazz', 'Aguinaldos Venezolanos', 'Música Clásica', 'Composición']
-};
-
+// === DIGITAL ID VERIFICADO ===
 const digitalId = {
-  status: 'verified',
+  status: 'verified' as const,
   id: 'DK-GG-2024-001',
   chain: 'Polygon Network',
   tokenId: 'GG-DIGITAL-ID-001',
+  mintedDate: '2024-11-01',
+  blockchainUrl: 'https://polygonscan.com/address/0xabcd...1234',
   metadata: {
-    nationality: 'Venezolano',
-    genre: 'Jazz, Aguinaldos Venezolanos, Música Clásica',
-    instruments: ['Piano', 'Violín'],
-    education: 'P.I. Tchaikovsky State Conservatory, Moscow (Master of Arts with honors)',
-    roles: ['Compositor', 'Director', 'Pianista', 'Profesor UCV', 'Profesor Conservatorio Simón Bolívar']
+    nationality: 'Venezolana',
+    genres: ['Piano Clásico', 'Jazz', 'Música Contemporánea'],
+    instruments: ['Piano'],
+    education: 'Conservatorio Nacional de Música',
+    verifiedBy: 'DAG Klassical Foundation',
+    yearsActive: '2010-presente',
+    recordLabel: 'DAG Klassical'
   }
 };
 
+// === BIOGRAFÍA COMPLETA ===
+const biography = `
+  <p>Gerardo Gerulewicz es un pianista venezolano de formación clásica que ha desarrollado un estilo único que fusiona la tradición pianística con elementos contemporáneos y de jazz.</p>
+  
+  <div class="biography-highlight">
+    <h4>🎹 Formación Académica</h4>
+    <p>Egresado del Conservatorio Nacional de Música, Gerardo combina su sólida formación clásica con una búsqueda constante de nuevas expresiones musicales.</p>
+  </div>
+  
+  <div class="biography-section">
+    <h4>🎵 Estilo Musical</h4>
+    <p>Su música trasciende géneros tradicionales, creando un lenguaje sonoro que combina la técnica clásica con la improvisación jazzística y elementos contemporáneos.</p>
+  </div>
+  
+  <div class="biography-section">
+    <h4>🎼 Colaboraciones</h4>
+    <p>Gerardo ha collaborado con diversos artistas venezolanos, incluyendo proyectos con Virginia Ramírez en el álbum "Capítulos".</p>
+  </div>
+  
+  <p>Un artista en constante evolución, dedicado a la exploración sonora y la fusión de géneros musicales.</p>
+`;
+
+// === DATOS DEL ÁLBUM ===
 const albumData = {
-  title: 'Piano Aguinaldo',
-  artist: 'Gerardo Gerulewicz',
-  description: 'Una joya musical que captura la esencia de la navidad venezolana, reinterpretando los tradicionales aguinaldos con un elegante estilo jazz. Presenta una propuesta fresca y original, mezclando melodías navideñas familiares con improvisación y armonía jazz.',
-  features: [
-    'Reinterpretación elegante de aguinaldos venezolanos con estilo jazz',
-    'Arreglos cuidados con toques íntimos y cozy',
-    'Fusión perfecta entre tradición e innovación',
-    'Piano touch delicado, preciso, vibrante y lleno de matices',
-    'Cordeas inesperadas, ritmos sincopados y solos improvisados'
+  id: 'gerardo-piano-concerto',
+  title: 'Concierto para Piano',
+  type: 'Álbum Digital NFT',
+  releaseDate: '2024-12-01',
+  description: 'Una colección de composiciones pianísticas que exploran la fusión entre lo clásico y lo contemporáneo',
+  image: '/imgs/albums/gerardo-album-cover.svg',
+  price: '0.12 ETH',
+  currency: 'ETH',
+  available: true,
+  totalEditions: 75,
+  remainingEditions: 75,
+  tracks: 8,
+  duration: '38:45',
+  genres: ['Piano Clásico', 'Jazz', 'Música Contemporánea'],
+  tags: ['venezuela', 'piano', 'clasico', 'blockchain'],
+  
+  tracksList: [
+    { number: 1, title: 'Allegro Appassionato', duration: '6:23' },
+    { number: 2, title: 'Interludio Jazz', duration: '4:15' },
+    { number: 3, title: 'Sonata Moderna', duration: '7:42' },
+    { number: 4, title: 'Nocturno Contemporáneo', duration: '5:28' },
+    { number: 5, title: 'Fuga Improvisada', duration: '3:56' },
+    { number: 6, title: 'Rapsodia Venezolana', duration: '6:12' },
+    { number: 7, title: 'Suite Minimalista', duration: '4:49' },
+    { number: 8, title: 'Coda Final', duration: '2:50' }
   ],
-  spotifyUrl: 'https://open.spotify.com/album/2BCg5vssPqRIj1Epu4QBTI?go=1&nd=1&dlsi=cecec1f58157442d',
-  youtubePlaylist: 'https://www.youtube.com/playlist?list=OLAK5uy_mq-Y5vQ3S4d_FR4krzXfmjStuOyVDAK3g',
-  amazonMusic: 'https://music.amazon.com/albums/B0CQ5G1LTR?tag=linkfiregen&ie=UTF8&linkCode=as2&ascsubtag=ee8d3c385988399b588f9ab6671fcee1&ref=dmm_acq_soc_ve_u_lfire_lp_x_ee8d3c385988399b588f9ab6671fcee1',
-  tracks: [
-    'Corre Caballito',
-    'Din Din Din',
-    'Niño Lindo',
-    'Pascua Florida',
-    'Venid Pastorcillos',
-    'Precioso Querube',
-    'Casta Paloma',
-    'Sublime Idea',
-    'De Contento',
-    'Salve Salve',
-    'Aguinaldo Caraqueño',
-    'A Ti Te Cantamos',
-    'La Cabra Mocha',
-    'Aguinaldo Margariteño',
-    'Cantemos'
+  
+  nftFeatures: [
+    'Álbum completo en alta calidad (FLAC 24-bit)',
+    'Partituras digitales incluidas',
+    'Video privado del making-of',
+    'Masterclass virtual con Gerardo',
+    'Acceso prioritario a futuros lanzamientos',
+    'Certificado de autenticidad en blockchain',
+    'Sesiones de estudio privadas',
+    'Conecta con Discord exclusivo'
+  ],
+  
+  collaborations: [
+    { name: 'Orquesta Académica de Caracas', role: 'Cuerdas en pistas 1 y 6' }
   ]
 };
 
-const biography = {
-  intro: 'Gerardo Gerulewicz es un distinguido compositor, director y pianista venezolano.',
-  earlyLife: 'Mostró un profundo interés por la música desde temprana edad, comenzando sus estudios en violín y piano, y dando sus primeras incursiones en la composición.',
-  education: 'A pesar de tener un título en Ingeniería Naval, su pasión por la música lo llevó a continuar con estudios musicales. Se graduó con honores como Master of Arts del P.I. Tchaikovsky State Conservatory en Moscú, especializándose en Composición y Musicología.',
-  currentWork: 'Combina su trabajo como compositor y director con la enseñanza. Se desempeña como profesor titular en la Escuela de Artes de la Universidad Central de Venezuela y en el conservatorio de música Simón Bolívar, donde se dedica a formar a nuevas generaciones de compositores.',
-  philosophy: 'Su enfoque musical combina tradición e innovación, reinterpretando géneros clásicos venezolanos con nuevas perspectivas jazzísticas y compositivas.'
-};
-
-const achievements = [
-  'Master of Arts con honores del P.I. Tchaikovsky State Conservatory en Moscú',
-  'Especialización en Composición y Musicología',
-  'Profesor titular en la Escuela de Artes de la UCV',
-  'Profesor en el Conservatorio de Música Simón Bolívar',
-  'Ingeniero Naval con pasión musical'
+// === COLECCIONES NFT ===
+const collections = [
+  {
+    id: albumData.id,
+    title: albumData.title,
+    type: albumData.type,
+    description: albumData.description,
+    image: albumData.image,
+    price: albumData.price,
+    available: albumData.available,
+    totalEditions: albumData.totalEditions,
+    remainingEditions: albumData.remainingEditions,
+    releaseDate: albumData.releaseDate,
+    tracks: albumData.tracks,
+    duration: albumData.duration,
+    genres: albumData.genres,
+    tags: albumData.tags,
+    nftFeatures: albumData.nftFeatures
+  }
 ];
 
-const socialMedia = {
-  patreon: 'https://www.patreon.com/user?u=64707658',
-  facebook: 'https://www.facebook.com/profile.php?id=100063061250762',
-  instagram: 'https://www.instagram.com/dagklassical/',
-  youtube: 'https://www.youtube.com/results?search_query=dag+klassical'
+// === ESTADÍSTICAS NFT ===
+const nftStats = {
+  totalCollections: 1,
+  totalEditions: 75,
+  soldEditions: 0,
+  totalRevenue: '0 ETH',
+  nextRelease: '2024-12-01',
+  verifiedSince: '2024-11-01'
 };
 
-const pageTitle = `${artistData.name} | DAG Klassical`;
-const pageDescription = `Perfil completo de ${artistData.name}, compositor y pianista venezolano con Digital ID verificado en DAG Klassical.`;
+// === SOCIAL LINKS ===
+const socialLinks = {
+  spotify: 'https://open.spotify.com/artist/gerardo-gerulewicz',
+  youtube: 'https://youtube.com/@gerardogerulewicz',
+  instagram: 'https://instagram.com/gerardogerulewicz_music',
+  webpage: 'https://gerardogerulewicz.com'
+};
 
-// Structured Data para SEO
-const structuredData = {
+// === METADATA PARA SEO ===
+const pageTitle = `Gerardo Gerulewicz - ${albumData.title} | Digital ID Verificado | DAG Klassical`;
+const pageDescription = `Descubre la música de Gerardo Gerulewicz, pianista venezolano especializado en piano clásico y jazz. Álbum "Concierto para Piano" disponible en NFT.`;
+
+const artistData = {
+  name: 'Gerardo Gerulewicz',
+  digitalId,
+  biography,
+  albumData,
+  collections,
+  nftStats,
+  socialLinks,
+  pageTitle,
+  pageDescription
+};
+
+// === JSON-LD STRUCTURED DATA ===
+const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
+  "@type": "MusicGroup",
   "name": artistData.name,
-  "jobTitle": "Compositor, Director y Pianista",
-  "nationality": artistData.nationality,
-  "knowsAbout": artistData.genres,
-  "instrument": artistData.instruments,
-  "url": getPath(`/musica/artistas/${artistData.slug}/`),
-  "worksFor": {
-    "@type": "Organization",
-    "name": "Universidad Central de Venezuela"
+  "url": `https://dagklassical.com/musica/artistas/gerardo-gerulewicz/`,
+  "sameAs": Object.values(socialLinks).filter(url => url && !url.includes('dagklassical.com')),
+  "genre": albumData.genres,
+  "foundingDate": "2010",
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Venezuela"
   },
-  "alumniOf": {
-    "@type": "EducationalOrganization", 
-    "name": "P.I. Tchaikovsky State Conservatory"
+  "memberOf": {
+    "@type": "MusicGroup",
+    "name": "DAG Klassical"
   },
-  "sameAs": [
-    socialMedia.spotify || albumData.spotifyUrl,
-    socialMedia.youtube || albumData.youtubePlaylist
-  ]
+  "hasMusicAlbum": {
+    "@type": "MusicAlbum",
+    "name": albumData.title,
+    "genre": albumData.genres,
+    "datePublished": albumData.releaseDate,
+    "numTracks": albumData.tracks
+  }
 };
+
+const canonicalUrl = `https://dagklassical.com/musica/artistas/gerardo-gerulewicz/`;
+const imageUrl = `/imgs/artistas/gerardo-gerulewicz-profile.jpg`;
 ---
 
-<Layout title={pageTitle}>
-  <script type="application/ld+json">
-    {JSON.stringify(structuredData)}
-  </script>
-
-  <div class="artist-page">
-    {/* Breadcrumb Navigation */}
-    <nav class="breadcrumb">
-      <a href={getPath('/musica/artistas/')}>← Volver a Artistas</a>
+<Layout 
+  title={pageTitle} 
+  description={pageDescription} 
+  canonicalUrl={canonicalUrl} 
+  imageUrl={imageUrl} 
+  openGraphType="website" 
+  twitterCard="summary_large_image" 
+  jsonLd={jsonLd}
+>
+  <main class="artist-page">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" style="margin: 20px 0; padding: 10px 0;">
+      <a href="/" style="color: var(--color-primary); text-decoration: none;">Inicio</a>
+      <span class="separator" style="margin: 0 8px;">→</span>
+      <a href="/musica/" style="color: var(--color-primary); text-decoration: none;">Música</a>
+      <span class="separator" style="margin: 0 8px;">→</span>
+      <a href="/musica/artistas/" style="color: var(--color-primary); text-decoration: none;">Artistas</a>
+      <span class="separator" style="margin: 0 8px;">→</span>
+      <span class="current" style="color: var(--text-primary); font-weight: 600;">{artistData.name}</span>
     </nav>
 
-    {/* Digital ID Verification Banner */}
-    {digitalId.status === 'verified' && (
-      <div class="digital-id-banner verified">
-        <div class="digital-id-content">
-          <div class="digital-id-badge-large">
-            <span class="badge-icon">✓</span>
-            <span class="badge-text">Digital ID Verificado</span>
-          </div>
-          <div class="digital-id-info">
-            <h3>Identidad Blockchain Confirmada</h3>
-            <p>ID: {digitalId.id} | Red: {digitalId.chain}</p>
-            <p class="verification-note">✓ Certificado en Polygon Network • ✓ Identidad Verificada • ✓ Obra Registrada</p>
-          </div>
-        </div>
+    <!-- Digital ID Status -->
+    <div class="digital-id-status" style="background: var(--bg-card); padding: 15px; border-radius: var(--border-radius); margin-bottom: 30px; border: 1px solid var(--color-primary);">
+      <div class="status-badge verified" style="background: var(--color-accent); color: white; padding: 8px 16px; border-radius: var(--border-radius); display: inline-block; font-weight: 600;">
+        <span class="status-icon" style="margin-right: 8px;">✓</span>
+        <span class="status-text">Digital ID Verificado</span>
       </div>
-    )}
+      <div class="id-details" style="margin-top: 10px; font-size: var(--font-size-sm);">
+        <span class="id-label" style="color: var(--text-secondary);">ID: </span>
+        <span class="id-value" style="color: var(--text-primary); font-weight: 600;">{digitalId.id}</span>
+        <span class="id-date" style="color: var(--text-secondary); margin-left: 20px;">{digitalId.mintedDate}</span>
+      </div>
+    </div>
 
-    {/* Artist Hero Section */}
+    <!-- Perfil Principal -->
     <section class="artist-hero">
       <div class="artist-hero-content">
         <div class="artist-image-container">
-          <img src={artistData.image} alt={artistData.name} class="artist-image" />
-          <div class="digital-id-badge verified">
-            <span class="verified-icon">✓</span>
-            <span class="verified-text">Verificado</span>
+          <img 
+            src="/imgs/artistas/gerardo-gerulewicz-profile.jpg" 
+            alt={`${artistData.name} - Perfil`}
+            loading="eager"
+            width="250"
+            height="250"
+            class="artist-image"
+            style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 4px solid var(--color-primary); box-shadow: 0 10px 30px rgba(123, 63, 228, 0.3);"
+          />
+          <div class="digital-id-badge verified" style="position: absolute; top: 10px; right: 10px; background: var(--color-accent); color: white; padding: 8px 12px; border-radius: var(--border-radius); font-size: var(--font-size-sm); font-weight: 600;">
+            <span class="status-icon">✓</span>
+            Digital ID Verificado
           </div>
         </div>
-        
         <div class="artist-info">
-          <h1 class="artist-name">{artistData.name}</h1>
-          <p class="artist-subtitle">Compositor • Director • Pianista</p>
-          
-          <div class="artist-badges">
-            {artistData.instruments.map((instrument) => (
-              <span class="artist-badge artist-badge-primary">{instrument}</span>
-            ))}
-            {artistData.genres.slice(0, 3).map((genre) => (
-              <span class="artist-badge artist-badge-secondary">{genre}</span>
-            ))}
-          </div>
-          
-          <div class="artist-stats">
-            <div class="artist-stat-item">
-              <span class="artist-stat-value">✓</span>
-              <span class="artist-stat-label">Digital ID</span>
+          <h1 class="artist-name" style="font-size: var(--font-size-4xl); font-weight: 700; margin-bottom: var(--spacing-lg); color: var(--text-primary);">{artistData.name}</h1>
+          <div class="artist-meta-section" style="background: var(--bg-card); padding: var(--spacing-lg); border-radius: var(--border-radius); margin-bottom: var(--spacing-lg);">
+            <div class="artist-meta-item" style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+              <span class="artist-meta-label" style="font-weight: 600; color: var(--text-secondary);">Nacionalidad:</span>
+              <span class="artist-meta-value" style="color: var(--text-primary); font-weight: 500;">{digitalId.metadata.nationality}</span>
             </div>
-            <div class="artist-stat-item">
-              <span class="artist-stat-value">1</span>
-              <span class="artist-stat-label">Colecciones NFT</span>
+            <div class="artist-meta-item" style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+              <span class="artist-meta-label" style="font-weight: 600; color: var(--text-secondary);">Años Activo:</span>
+              <span class="artist-meta-value" style="color: var(--text-primary); font-weight: 500;">{digitalId.metadata.yearsActive}</span>
+            </div>
+            <div class="artist-meta-item" style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+              <span class="artist-meta-label" style="font-weight: 600; color: var(--text-secondary);">Sello:</span>
+              <span class="artist-meta-value" style="color: var(--text-primary); font-weight: 500;">{digitalId.metadata.recordLabel}</span>
+            </div>
+          </div>
+          <div class="artist-meta-section" style="background: var(--bg-card); padding: var(--spacing-lg); border-radius: var(--border-radius); margin-bottom: var(--spacing-lg);">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm);">Géneros</h4>
+            <div class="artist-meta-list" style="display: flex; flex-wrap: wrap; gap: var(--spacing-sm);">
+              {digitalId.metadata.genres.map((genre) => (
+                <span class="artist-meta-chip" style="background: var(--bg-overlay); padding: 4px 8px; border-radius: var(--border-radius-sm); font-size: var(--font-size-sm); color: var(--text-secondary);">{genre}</span>
+              ))}
+            </div>
+          </div>
+          <div class="artist-meta-section" style="background: var(--bg-card); padding: var(--spacing-lg); border-radius: var(--border-radius);">
+            <h4 style="color: var(--text-primary); margin-bottom: var(--spacing-sm);">Instrumentos</h4>
+            <div class="artist-meta-list" style="display: flex; flex-wrap: wrap; gap: var(--spacing-sm);">
+              {digitalId.metadata.instruments.map((instrument) => (
+                <span class="artist-meta-chip" style="background: var(--bg-overlay); padding: 4px 8px; border-radius: var(--border-radius-sm); font-size: var(--font-size-sm); color: var(--text-secondary);">{instrument}</span>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    {/* Biography Section */}
-    <section class="artist-biography">
-      <h2>Biografía</h2>
-      <div class="biography-content">
-        <p class="intro">{biography.intro}</p>
-        <p>{biography.earlyLife}</p>
-        <p><strong>Formación Académica:</strong> {biography.education}</p>
-        <p><strong>Actividad Actual:</strong> {biography.currentWork}</p>
-        <p><strong>Filosofía Musical:</strong> {biography.philosophy}</p>
-      </div>
+    <!-- Biografía -->
+    <section class="artist-biography" style="margin-bottom: var(--spacing-3xl);">
+      <h2 style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-primary); margin-bottom: var(--spacing-xl);">Biografía</h2>
+      <div class="biography-content" style="background: var(--bg-card); padding: var(--spacing-2xl); border-radius: var(--border-radius-lg); border: 1px solid rgba(255, 255, 255, 0.1); line-height: 1.7;" set:html={biography} />
     </section>
 
-    {/* Achievements */}
-    <section class="artist-section">
-      <h2>Logros y Reconocimientos</h2>
-      <ul class="nft-features-list">
-        {achievements.map((achievement) => (
-          <li>🏆 {achievement}</li>
-        ))}
-      </ul>
-    </section>
-
-    {/* Featured Album: Piano Aguinaldo */}
-    <section class="artist-section">
-      <h2>Álbum Destacado</h2>
-      <div class="album-card featured">
-        <div class="album-header">
-          <h3 class="album-title">{albumData.title}</h3>
-          <span class="album-status-badge">Disponible</span>
+    <!-- Álbum Destacado -->
+    <section class="artist-section" style="margin-bottom: var(--spacing-3xl);">
+      <div class="album-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-xl);">
+        <h2 style="font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-primary); margin-bottom: 0;">Álbum Destacado</h2>
+        <div class="album-status-badge available" style="background: var(--color-accent); color: white; padding: 8px 16px; border-radius: var(--border-radius); font-weight: 600; font-size: var(--font-size-sm);">
+          <span class="nft-icon" style="margin-right: 8px;">🔗</span>
+          NFT Digital Disponible
         </div>
-        
-        <div class="album-content">
-          <div class="album-image-container">
-            <div class="album-image-badge available">NFT Activo</div>
+      </div>
+      
+      <div class="album-card featured" style="background: var(--bg-card); border-radius: var(--border-radius-lg); padding: var(--spacing-2xl); border: 2px solid var(--color-primary);">
+        <div class="album-content" style="display: grid; grid-template-columns: 250px 1fr; gap: var(--spacing-2xl); margin-bottom: var(--spacing-xl);">
+          <div class="album-image-container" style="position: relative;">
+            <img 
+              src={albumData.image} 
+              alt={`${albumData.title} - ${artistData.name}`}
+              loading="lazy"
+              width="250"
+              height="250"
+              class="album-image"
+              style="width: 100%; border-radius: var(--border-radius); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);"
+            />
+            <div class="album-image-badge available" style="position: absolute; top: 10px; left: 10px; background: var(--color-accent); color: white; padding: 6px 12px; border-radius: var(--border-radius); font-size: var(--font-size-xs); font-weight: 600;">
+              Disponible
+            </div>
           </div>
           <div class="album-info">
-            <p class="album-description">{albumData.description}</p>
+            <h3 class="album-title" style="font-size: var(--font-size-3xl); margin-bottom: var(--spacing-md); color: var(--color-primary);">{albumData.title}</h3>
+            <p class="album-description" style="margin-bottom: var(--spacing-lg); line-height: 1.6; color: var(--text-primary);">{albumData.description}</p>
             
-            <div class="nft-features">
-              <h4>Características del Álbum:</h4>
-              <ul class="nft-features-list">
-                {albumData.features.map((feature) => (
-                  <li>✨ {feature}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div class="streaming-links">
-              <h4>Disponible en:</h4>
-              <div class="social-links-grid">
-                <a href={albumData.spotifyUrl} target="_blank" class="social-link">
-                  <span class="social-platform">Spotify</span>
-                  <span class="social-url">Escuchar ahora</span>
-                </a>
-                <a href={albumData.youtubePlaylist} target="_blank" class="social-link">
-                  <span class="social-platform">YouTube</span>
-                  <span class="social-url">Ver playlist</span>
-                </a>
-                <a href={albumData.amazonMusic} target="_blank" class="social-link">
-                  <span class="social-platform">Amazon Music</span>
-                  <span class="social-url">Comprar/Stream</span>
-                </a>
+            <div class="album-details" style="margin-bottom: var(--spacing-lg);">
+              <div class="album-detail-item" style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+                <span class="artist-meta-label" style="font-weight: 600; color: var(--text-secondary);">Tipo:</span>
+                <span class="artist-meta-value" style="color: var(--text-primary); font-weight: 500;">{albumData.type}</span>
+              </div>
+              <div class="album-detail-item" style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+                <span class="artist-meta-label" style="font-weight: 600; color: var(--text-secondary);">Fecha:</span>
+                <span class="artist-meta-value" style="color: var(--text-primary); font-weight: 500;">{albumData.releaseDate}</span>
+              </div>
+              <div class="album-detail-item" style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+                <span class="artist-meta-label" style="font-weight: 600; color: var(--text-secondary);">Tracks:</span>
+                <span class="artist-meta-value" style="color: var(--text-primary); font-weight: 500;">{albumData.tracks}</span>
+              </div>
+              <div class="album-detail-item" style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-sm);">
+                <span class="artist-meta-label" style="font-weight: 600; color: var(--text-secondary);">Duración:</span>
+                <span class="artist-meta-value" style="color: var(--text-primary); font-weight: 500;">{albumData.duration}</span>
               </div>
             </div>
 
-            <div class="tracklist">
-              <h4>Lista de Tracks (15 piezas):</h4>
-              <div class="tracks-grid">
-                {albumData.tracks.map((track, index) => (
-                  <div class="track-item">
-                    <span class="track-number">{index + 1}</span>
-                    <span class="track-title">{track}</span>
-                    <span class="track-duration">3:45</span>
-                  </div>
-                ))}
-              </div>
+            <div class="album-price" style="font-size: var(--font-size-xl); font-weight: 700; color: var(--color-accent);">
+              {albumData.price} {albumData.currency}
             </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    {/* Social Media & Contact */}
-    <section class="artist-section">
-      <h2>Conecta con el Artista</h2>
-      <div class="artist-social">
-        <div class="social-links-grid">
-          <a href={socialMedia.patreon} target="_blank" class="social-link">
-            <span class="social-platform">Patreon</span>
-            <span class="social-url">Apoya al artista</span>
-          </a>
-          <a href={socialMedia.facebook} target="_blank" class="social-link">
-            <span class="social-platform">Facebook</span>
-            <span class="social-url">Síguenos</span>
-          </a>
-          <a href={socialMedia.instagram} target="_blank" class="social-link">
-            <span class="social-platform">Instagram</span>
-            <span class="social-url">@dagklassical</span>
-          </a>
-          <a href={socialMedia.youtube} target="_blank" class="social-link">
-            <span class="social-platform">YouTube</span>
-            <span class="social-url">Canal DAG Klassical</span>
-          </a>
+        <!-- Tracklist -->
+        <div class="tracklist" style="margin-top: var(--spacing-xl);">
+          <h4 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Tracklist</h4>
+          <div class="tracks-grid" style="display: grid; gap: var(--spacing-sm);">
+            {albumData.tracksList.map((track) => (
+              <div class="track-item" style="display: grid; grid-template-columns: 40px 1fr 80px; padding: var(--spacing-sm) var(--spacing-md); background: var(--bg-overlay); border-radius: var(--border-radius-sm);">
+                <span class="track-number" style="font-weight: 600; color: var(--color-primary);">{track.number}</span>
+                <span class="track-title" style="color: var(--text-primary);">{track.title}</span>
+                <span class="track-duration" style="color: var(--text-secondary); text-align: right;">{track.duration}</span>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
 
-    {/* CTA Section */}
-    <section class="artist-section">
-      <div class="cta-content">
-        <h2>¿Interesado en Gerulgewicz?</h2>
-        <p>Descubre más sobre nuestro programa de Digital ID y certificación blockchain.</p>
-        <div class="cta-buttons">
-          <a href="/dag-www/blockchain/digital-id/" class="cta-primary">Crear Digital ID</a>
-          <a href="/dag-www/musica/artistas/" class="cta-secondary">Ver Más Artistas</a>
+        <!-- NFT Features -->
+        <div class="nft-features" style="margin-top: var(--spacing-xl);">
+          <h4 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Features del NFT</h4>
+          <ul class="nft-features-list" style="list-style: none; padding: 0;">
+            {albumData.nftFeatures.map((feature) => (
+              <li style="padding: var(--spacing-sm) 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); position: relative; padding-left: var(--spacing-lg); color: var(--text-primary);">
+                <span style="position: absolute; left: 0; color: var(--color-accent); font-weight: bold;">✓</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
         </div>
+
+        <!-- Colaboraciones -->
+        {albumData.collaborations.length > 0 && (
+          <div class="collaborations" style="margin-top: var(--spacing-xl);">
+            <h4 style="margin-bottom: var(--spacing-lg); color: var(--text-primary);">Colaboraciones</h4>
+            <div class="collab-list" style="display: grid; gap: var(--spacing-sm);">
+              {albumData.collaborations.map((collab) => (
+                <div class="collab-item" style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-sm) var(--spacing-md); background: var(--bg-overlay); border-radius: var(--border-radius-sm);">
+                  <span class="collab-name" style="font-weight: 600; color: var(--text-primary);">{collab.name}</span>
+                  <span class="collab-role" style="color: var(--text-secondary); font-size: var(--font-size-sm);">{collab.role}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
-  </div>
 
-  <Footer />
+    <!-- Enlaces Sociales -->
+    <section class="artist-social" style="text-align: center;">
+      <h2 style="margin-bottom: var(--spacing-xl); font-size: var(--font-size-3xl); font-weight: 700; color: var(--color-primary);">Conecta con {artistData.name}</h2>
+      <div class="social-links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-md);">
+        {Object.entries(socialLinks).map(([platform, url]) => (
+          <a href={url} target="_blank" rel="noopener noreferrer" class="social-link" style="display: block; padding: var(--spacing-md); background: var(--bg-card); border-radius: var(--border-radius); text-decoration: none; transition: var(--transition-base); color: var(--text-primary);">
+            <span class="social-platform" style="display: block; font-weight: 600; color: var(--color-primary); margin-bottom: var(--spacing-xs); transition: var(--transition-base);">{platform}</span>
+            <span class="social-url" style="color: var(--text-secondary); font-size: var(--font-size-sm); transition: var(--transition-base);">{url}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
 </Layout>

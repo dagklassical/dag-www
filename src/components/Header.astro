@@ -1,537 +1,640 @@
 ---
-// Header Component - DAG Klassical (CSS CENTRALIZADO)
-// Archivo: src/components/Header.astro
-// Propósito: Header único con CSS centralizado y JavaScript embebido
+import PagefindSearch from './PagefindSearch.astro';
+const currentPath = Astro.url.pathname;
 
-// CSS Centralizado Importado - VERSIÓN CORREGIDA
-import '../styles/components/header-fixed.css';
+// Definir submenús con rutas correctas
+const submenuItems = {
+  'musica': [
+    { title: 'Artistas', href: '/dag-www/musica/artistas/', description: 'Conoce nuestros artistas destacados' },
+    { title: 'Discografía', href: '/dag-www/musica/discografia/', description: 'Albums y canciones completas' },
+    { title: 'Lanzamientos', href: '/dag-www/musica/lanzamientos/', description: 'Últimos lanzamientos musicales' },
+    { title: 'Enciclopedia', href: '/dag-www/musica/enciclopedia/', description: 'Conocimiento musical clásico' }
+  ],
+  'nosotros': [
+    { title: 'DAG Classical', href: '/dag-www/nosotros/dag-klassical/', description: 'Nuestra historia y misión' },
+    { title: 'Danilo Álvarez', href: '/dag-www/nosotros/danilo-alvarez/', description: 'Director creativo' },
+    { title: 'Equipo', href: '/dag-www/nosotros/equipo/', description: 'Conoce al equipo artístico' },
+    { title: 'Términos', href: '/dag-www/nosotros/terminos/', description: 'Términos y condiciones' }
+  ]
+};
+
+const isActivePath = (path) => currentPath.includes(path);
+const isActiveSubmenu = (paths) => paths.some(path => isActivePath(path));
 ---
 
 <header class="header">
   <div class="container">
-    <nav class="nav">
-      <!-- Logo y Brand -->
-      <a href="/dag-www/" class="nav-brand">
-        <img src="/dag-www/logo-dag.svg" alt="DAG Klassical" class="nav-logo" />
-        <span class="text-gradient">DAG Klassical</span>
+    <div class="header-content">
+      <!-- Logo con logotipo oficial -->
+      <a href="/dag-www/" class="logo">
+        <img src="logo-dag-klassical-003.png" alt="DAG Classical" class="logo-img" />
       </a>
       
-      <!-- Menú Principal (Desktop) -->
-      <ul class="nav-menu" id="nav-menu">
-        <!-- Inicio (Solo ícono con tooltip) -->
-        <li class="nav-item">
-          <a href="/dag-www/" class="nav-link icon-only" data-active={Astro.url.pathname === '/dag-www/' ? 'true' : 'false'} title="Inicio">
-            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-              <polyline points="9,22 9,12 15,12 15,22"/>
-            </svg>
-            <span class="nav-text">Inicio</span>
-          </a>
-        </li>
-        
-        <!-- Contacto (Solo ícono con tooltip) -->
-        <li class="nav-item">
-          <a href="/dag-www/contacto/" class="nav-link icon-only" data-active={Astro.url.pathname === '/dag-www/contacto' ? 'true' : 'false'} title="Contacto">
-            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            <span class="nav-text">Contacto</span>
-          </a>
-        </li>
-        
-        <!-- Música con Landing + Dropdown -->
-        <li class="nav-item dropdown" data-section="Música">
-          <span class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/musica') ? 'true' : 'false'}>
-            <span class="nav-text">Música</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <polyline points="6,9 12,15 18,9"></polyline>
-            </svg>
-          </span>
-          <div class="dropdown-menu">
-            <a href="/dag-www/musica/" class="dropdown-item landing-link">🎵 Ver Todo</a>
-            <a href="/dag-www/musica/artistas/" class="dropdown-item">Artistas</a>
-            <a href="/dag-www/musica/discografia/" class="dropdown-item">Discografía</a>
-            <a href="/dag-www/musica/lanzamientos/" class="dropdown-item">Lanzamientos</a>
-            <a href="/dag-www/musica/preventa/" class="dropdown-item">Preventa</a>
-          </div>
-        </li>
-        
-        <!-- Blockchain con Landing + Dropdown -->
-        <li class="nav-item dropdown" data-section="Blockchain">
-          <span class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/blockchain') ? 'true' : 'false'}>
-            <span class="nav-text">Blockchain</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <polyline points="6,9 12,15 18,9"></polyline>
-            </svg>
-          </span>
-          <div class="dropdown-menu">
-            <a href="/dag-www/blockchain/" class="dropdown-item landing-link">🔗 Ver Todo</a>
-            <a href="/dag-www/blockchain/digital-id/" class="dropdown-item">Digital ID</a>
-            <a href="/dag-www/blockchain/tienda-nft/" class="dropdown-item">Tienda NFT</a>
-            <a href="/dag-www/blockchain/tickets/" class="dropdown-item">Tickets</a>
-            <a href="/dag-www/blockchain/polygon-networks/" class="dropdown-item">Polygon Networks</a>
-          </div>
-        </li>
-        
-        <!-- Noticias -->
-        <li class="nav-item">
-          <a href="/dag-www/noticias/" class="nav-link" data-active={Astro.url.pathname.startsWith('/dag-www/noticias') ? 'true' : 'false'}>
-            <span class="nav-text">Noticias</span>
-          </a>
-        </li>
-        
-        <!-- Nosotros con Landing + Dropdown -->
-        <li class="nav-item dropdown" data-section="Nosotros">
-          <span class="nav-link dropdown-toggle" data-active={Astro.url.pathname.startsWith('/dag-www/nosotros') ? 'true' : 'false'}>
-            <span class="nav-text">Nosotros</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-              <polyline points="6,9 12,15 18,9"></polyline>
-            </svg>
-          </span>
-          <div class="dropdown-menu">
-            <a href="/dag-www/nosotros/" class="dropdown-item landing-link">👥 Ver Todo</a>
-            <a href="/dag-www/nosotros/dag-klassical/" class="dropdown-item">DAG Klassical</a>
-            <a href="/dag-www/nosotros/danilo-alvarez/" class="dropdown-item">Danilo Álvarez</a>
-            <a href="/dag-www/nosotros/equipo/" class="dropdown-item">Equipo</a>
-            <a href="/dag-www/nosotros/terminos/" class="dropdown-item">Términos</a>
-          </div>
-        </li>
-      </ul>
-      
-      <!-- Acciones de navegación -->
-      <div class="nav-mobile-actions">
-        <!-- Botón de Búsqueda -->
-        <button class="search-toggle" id="search-toggle" aria-expanded="false" aria-label="Abrir búsqueda">
-          <svg class="search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-          </svg>
-          <svg class="search-close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display: none;">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
+      <!-- Navegación Desktop con Submenús -->
+      <nav class="nav-desktop" role="navigation" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li>
+            <a href="/dag-www/" class:list={['nav-link', { active: currentPath === '/dag-www/' || currentPath === '/' }]}>
+              Inicio
+            </a>
+          </li>
+          
+          <!-- Música con Submenu -->
+          <li class="nav-item has-submenu">
+            <a href="/dag-www/musica/" class:list={['nav-link', { active: isActivePath('/musica') }]}>
+              Música
+              <svg class="submenu-arrow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z"/>
+              </svg>
+            </a>
+            <div class="submenu">
+              <div class="submenu-content">
+                <div class="submenu-section">
+                  <h4>Explora</h4>
+                  {submenuItems.musica.map(item => (
+                    <a href={item.href} class="submenu-item">
+                      <div class="submenu-item-title">{item.title}</div>
+                      <div class="submenu-item-desc">{item.description}</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <!-- Nosotros con Submenu -->
+          <li class="nav-item has-submenu">
+            <a href="/dag-www/nosotros/" class:list={['nav-link', { active: isActivePath('/nosotros') }]}>
+              Nosotros
+              <svg class="submenu-arrow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z"/>
+              </svg>
+            </a>
+            <div class="submenu">
+              <div class="submenu-content">
+                <div class="submenu-section">
+                  <h4>Descubre</h4>
+                  {submenuItems.nosotros.map(item => (
+                    <a href={item.href} class="submenu-item">
+                      <div class="submenu-item-title">{item.title}</div>
+                      <div class="submenu-item-desc">{item.description}</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <!-- Enlaces directos -->
+          <li>
+            <a href="/dag-www/noticias/" class:list={['nav-link', { active: isActivePath('/noticias') }]}>
+              Noticias
+            </a>
+          </li>
+        </ul>
+      </nav>
 
-        <!-- Menú Hamburguesa -->
-        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="Abrir menú">
-          <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <line x1="3" y1="6" x2="21" y2="6"/>
-            <line x1="3" y1="12" x2="21" y2="12"/>
-            <line x1="3" y1="18" x2="21" y2="18"/>
+      <!-- Barra de herramientas (Buscar + Wallet) -->
+      <div class="header-tools">
+        <PagefindSearch />
+        
+        <!-- Wallet Button -->
+        <a href="/dag-www/wallet/" class="wallet-btn">
+          <svg class="wallet-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 18v1c0 1.1-.9 2-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
           </svg>
-          <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="display: none;">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
-          </svg>
-        </button>
-      </div>
-      
-      <!-- Botones de Acción Desktop (Wallet + Búsqueda) -->
-      <div class="nav-actions">
-        <a href="#" class="btn-wallet">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <rect x="1" y="3" width="20" height="16" rx="2"/>
-            <path d="M1 7h20"/>
-            <path d="M16 12h4"/>
-          </svg>
-          <span class="wallet-text">Wallet</span>
+          Wallet
         </a>
-        
-        <!-- Botón de Búsqueda (Ícono + Tooltip) -->
-        <button class="btn-search" id="search-toggle-desktop" title="Buscar">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-          </svg>
-        </button>
       </div>
 
-      <!-- Campo de Búsqueda Desktop (Modal/Popup) -->
-      <div class="search-container" id="search-container-desktop" style="display: none;">
-        <div class="search-input-wrapper">
-          <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-          </svg>
-          <input 
-            type="text" 
-            class="search-input" 
-            placeholder="Buscar artistas, música, contenido..."
-            id="search-input-desktop"
-          />
-        </div>
-        <div class="search-results" id="search-results">
-          <!-- Resultados de búsqueda se mostrarán aquí -->
-        </div>
-      </div>
-      
-      <!-- Campo de Búsqueda Mobile (Dropdown) -->
-      <div class="search-container mobile-search-container" id="search-container-mobile" style="display: none;">
-        <div class="search-input-wrapper">
-          <svg class="search-input-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <circle cx="11" cy="11" r="8"/>
-            <path d="M21 21l-4.35-4.35"/>
-          </svg>
-          <input 
-            type="text" 
-            class="search-input" 
-            placeholder="Buscar artistas, música, contenido..."
-            id="search-input-mobile"
-          />
-        </div>
-        <div class="search-results" id="search-results-mobile">
-          <!-- Resultados de búsqueda se mostrarán aquí -->
-        </div>
-      </div>
-      
-      <!-- Backdrop para modal de búsqueda desktop -->
-      <div id="search-backdrop" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1000;"></div>
-    </nav>
+      <!-- Menu hamburguesa para móvil -->
+      <button class="mobile-menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </header>
 
+<!-- Menu móvil -->
+<div class="mobile-menu">
+  <div class="mobile-menu-header">
+    <a href="/dag-www/" class="logo-mobile">
+      <img src="/dag-www/logo-dag-klassical.png" alt="DAG Classical" />
+    </a>
+    <button class="mobile-menu-close" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="mobile-nav">
+    <a href="/dag-www/" class="mobile-nav-link">Inicio</a>
+    
+    <div class="mobile-section">
+      <button class="mobile-section-toggle" data-section="musica">
+        <span>Música</span>
+        <svg class="mobile-arrow" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+      <div class="mobile-subsection" id="musica">
+        {submenuItems.musica.map(item => (
+          <a href={item.href} class="mobile-subsection-link">{item.title}</a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="mobile-section">
+      <button class="mobile-section-toggle" data-section="nosotros">
+        <span>Nosotros</span>
+        <svg class="mobile-arrow" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+      <div class="mobile-subsection" id="nosotros">
+        {submenuItems.nosotros.map(item => (
+          <a href={item.href} class="mobile-subsection-link">{item.title}</a>
+        ))}
+      </div>
+    </div>
+    
+    <a href="/dag-www/noticias/" class="mobile-nav-link">Noticias</a>
+    <a href="/dag-www/wallet/" class="mobile-nav-link">Wallet</a>
+  </nav>
+</div>
+
+<!-- Overlay para cerrar menú móvil -->
+<div class="mobile-overlay"></div>
 
 <script>
-  // JavaScript para menú hamburguesa y búsqueda - VERSIÓN CORREGIDA
-  const navToggle = document.getElementById('nav-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  const searchToggle = document.getElementById('search-toggle');
-  const searchContainer = document.getElementById('search-container');
-  const searchContainerDesktop = document.getElementById('search-container-desktop');
-  const searchContainerMobile = document.getElementById('search-container-mobile');
-  const searchInputDesktop = document.getElementById('search-input-desktop');
-  const searchInputMobile = document.getElementById('search-input-mobile');
-  const searchInput = searchInputDesktop; // Para compatibilidad con funciones existentes
+  // Toggle del menú móvil
+  const mobileToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileOverlay = document.querySelector('.mobile-overlay');
+  const mobileClose = document.querySelector('.mobile-menu-close');
   
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', () => {
-      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-      
-      navToggle.setAttribute('aria-expanded', !isExpanded);
-      navMenu.classList.toggle('active');
-      navToggle.classList.toggle('active');
-      
-      // Cerrar búsqueda si está abierta
-      if (searchContainer.classList.contains('active')) {
-        searchContainer.classList.remove('active');
-        searchToggle.setAttribute('aria-expanded', 'false');
-        searchToggle.classList.remove('active');
-      }
-      
-      // Prevenir scroll cuando menú está abierto
-      document.body.style.overflow = isExpanded ? '' : 'hidden';
-    });
-    
-    // Cerrar menú al hacer clic en un enlace
-    const navLinks = navMenu.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-  }
-
-  // Funcionalidad de búsqueda
-  if (searchToggle && (searchContainer || searchContainerMobile)) {
-    searchToggle.addEventListener('click', () => {
-      const isExpanded = searchToggle.getAttribute('aria-expanded') === 'true';
-      
-      searchToggle.setAttribute('aria-expanded', !isExpanded);
-      searchToggle.classList.toggle('active');
-      
-      // Usar contenedor móvil para pantallas pequeñas
-      const currentContainer = window.innerWidth <= 1024 ? searchContainerMobile : searchContainerDesktop;
-      
-      if (currentContainer) {
-        currentContainer.classList.toggle('active');
-      }
-      
-      // Cerrar menú si está abierto
-      if (navMenu && navMenu.classList.contains('active')) {
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      
-      // Focus en input cuando se abre
-      if (!isExpanded && searchInput) {
-        setTimeout(() => searchInput.focus(), 100);
-      }
+  // Abrir menú
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   }
   
-  // Manejar visibilidad de contenedores según breakpoint
-  function updateSearchVisibility() {
-    const isDesktop = window.innerWidth > 1024;
-    
-    // En desktop, el contenedor de búsqueda se controla por el botón de búsqueda
-    if (searchContainerDesktop) {
-      searchContainerDesktop.style.display = isDesktop ? 'none' : 'flex';
-    }
-    if (searchContainerMobile) {
-      searchContainerMobile.style.display = !isDesktop ? 'block' : 'none';
-    }
+  // Cerrar menú
+  const closeMenu = () => {
+    mobileMenu.classList.remove('active');
+    mobileOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+  
+  if (mobileClose) {
+    mobileClose.addEventListener('click', closeMenu);
   }
   
-  // Actualizar visibilidad al cargar y al redimensionar
-  updateSearchVisibility();
-  window.addEventListener('resize', updateSearchVisibility);
-  
-  // Manejar clic en botón de búsqueda desktop
-  const searchToggleDesktop = document.getElementById('search-toggle-desktop');
-  if (searchToggleDesktop) {
-    searchToggleDesktop.addEventListener('click', () => {
-      if (searchContainerDesktop) {
-        const isCurrentlyVisible = searchContainerDesktop.style.display !== 'none';
-        const backdrop = document.getElementById('search-backdrop');
-        
-        if (isCurrentlyVisible) {
-          // Ocultar modal y backdrop
-          searchContainerDesktop.style.display = 'none';
-          if (backdrop) backdrop.style.display = 'none';
-        } else {
-          // Mostrar modal y backdrop
-          searchContainerDesktop.style.display = 'block';
-          if (backdrop) backdrop.style.display = 'block';
-          
-          // Focus en el input
-          const searchInput = document.getElementById('search-input-desktop');
-          if (searchInput) {
-            searchInput.focus();
-          }
-        }
-      }
-    });
-    
-    // Cerrar modal al hacer clic en backdrop
-    const backdrop = document.getElementById('search-backdrop');
-    if (backdrop) {
-      backdrop.addEventListener('click', () => {
-        searchContainerDesktop.style.display = 'none';
-        backdrop.style.display = 'none';
-      });
-    }
-    
-    // Cerrar modal al hacer clic fuera
-    document.addEventListener('click', (e) => {
-      if (searchContainerDesktop && searchContainerDesktop.style.display !== 'none') {
-        const isClickInsideSearch = searchContainerDesktop.contains(e.target);
-        const isClickOnToggle = searchToggleDesktop.contains(e.target);
-        const isClickOnBackdrop = backdrop && backdrop.contains(e.target);
-        
-        if (!isClickInsideSearch && !isClickOnToggle && !isClickOnBackdrop) {
-          searchContainerDesktop.style.display = 'none';
-          if (backdrop) backdrop.style.display = 'none';
-        }
-      }
-    });
-    
-    // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && searchContainerDesktop && searchContainerDesktop.style.display !== 'none') {
-        searchContainerDesktop.style.display = 'none';
-        if (backdrop) backdrop.style.display = 'none';
-      }
-    });
-  }
-
-  // Funcionalidad de dropdowns - Desktop (hover) y Mobile (click)
-  const dropdowns = document.querySelectorAll('.dropdown');
-  dropdowns.forEach(dropdown => {
-    const toggle = dropdown.querySelector('.dropdown-toggle');
-    
-    if (toggle) {
-      // Desktop: hover para abrir dropdown
-      toggle.addEventListener('mouseenter', (e) => {
-        if (window.innerWidth >= 1025) {
-          dropdown.classList.add('desktop-open');
-        }
-      });
-      
-      // Cerrar dropdown al salir del mouse
-      dropdown.addEventListener('mouseleave', (e) => {
-        if (window.innerWidth >= 1025) {
-          dropdown.classList.remove('desktop-open');
-        }
-      });
-      
-      // Mobile: click para toggle (cuando el menú móvil esté abierto)
-      toggle.addEventListener('click', (e) => {
-        if (window.innerWidth <= 1024 && navMenu && navMenu.classList.contains('active')) {
-          e.preventDefault();
-          e.stopPropagation();
-          
-          // Cerrar otros dropdowns
-          dropdowns.forEach(otherDropdown => {
-            if (otherDropdown !== dropdown && otherDropdown.classList.contains('mobile-open')) {
-              otherDropdown.classList.remove('mobile-open');
-            }
-          });
-          
-          // Toggle este dropdown
-          dropdown.classList.toggle('mobile-open');
-        }
-      });
-    }
-  });
-
-  // Cerrar dropdowns al hacer clic fuera
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('.dropdown')) {
-      dropdowns.forEach(dropdown => {
-        dropdown.classList.remove('mobile-open');
-      });
-    }
-  });
-
-  // Mostrar nombre de sección activa en header móvil
-  function updateActiveSection() {
-    if (window.innerWidth <= 1024 && navMenu && navMenu.classList.contains('active')) {
-      const path = window.location.pathname;
-      let activeSection = '';
-      
-      if (path.startsWith('/dag-www/musica')) activeSection = 'Música';
-      else if (path.startsWith('/dag-www/blockchain')) activeSection = 'Blockchain';
-      else if (path.startsWith('/dag-www/noticias')) activeSection = 'Noticias';
-      else if (path.startsWith('/dag-www/nosotros')) activeSection = 'Nosotros';
-      else if (path === '/dag-www/' || path === '/dag-www') activeSection = 'Inicio';
-      else if (path.startsWith('/dag-www/contacto')) activeSection = 'Contacto';
-      
-      // Actualizar el header con la sección activa
-      let activeHeader = navMenu.querySelector('.active-section-header');
-      if (!activeHeader && activeSection) {
-        activeHeader = document.createElement('div');
-        activeHeader.className = 'active-section-header';
-        activeHeader.textContent = activeSection;
-        navMenu.insertBefore(activeHeader, navMenu.firstChild);
-      } else if (activeHeader && activeSection) {
-        activeHeader.textContent = activeSection;
-        activeHeader.style.display = 'block';
-      } else if (activeHeader && !activeSection) {
-        activeHeader.style.display = 'none';
-      }
-    }
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', closeMenu);
   }
   
-  // Actualizar al abrir el menú
-  if (navToggle) {
-    navToggle.addEventListener('click', updateActiveSection);
-  }
-
-  // Cerrar búsqueda al hacer clic fuera
-  document.addEventListener('click', (e) => {
-    const isClickOnSearch = e.target.closest('.search-container') || e.target.closest('.search-toggle');
-    
-    if (!isClickOnSearch) {
-      // Cerrar ambos contenedores de búsqueda
-      [searchContainer, searchContainerDesktop, searchContainerMobile].forEach(container => {
-        if (container) container.classList.remove('active');
-      });
-      searchToggle.classList.remove('active');
-      searchToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  // Funcionalidad de búsqueda básica (simulada) - MEJORADA
-  function performSearch(query, inputElement) {
-    console.log('🔍 Search query:', query);
-    const resultsContainer = document.getElementById('search-results');
-    const resultsContainerMobile = document.getElementById('search-results-mobile');
-    
-    if (query.length > 2) {
-      console.log('🎯 Showing search results for:', query);
-      const resultsHTML = `
-        <div class="search-result-item">
-          <strong>Resultados para:</strong> "${query}"
-        </div>
-        <div class="search-result-item">Virginia Ramírez</div>
-        <div class="search-result-item">Sinfonía Digital</div>
-        <div class="search-result-item">NFT Musical</div>
-        <div class="search-result-item">Músicos Clásicos</div>
-        <div class="search-result-item">Álbumes Digitales</div>
-      `;
+  // Toggle de secciones móviles
+  document.querySelectorAll('.mobile-section-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const section = toggle.getAttribute('data-section');
+      const subsection = document.getElementById(section);
       
-      // Mostrar resultados en ambos contenedores
-      if (resultsContainer) {
-        resultsContainer.innerHTML = resultsHTML;
-        resultsContainer.style.display = 'block';
-      }
-      if (resultsContainerMobile) {
-        resultsContainerMobile.innerHTML = resultsHTML;
-        resultsContainerMobile.style.display = 'block';
-      }
-    } else {
-      // Ocultar resultados en ambos contenedores
-      [resultsContainer, resultsContainerMobile].forEach(container => {
-        if (container) container.style.display = 'none';
-      });
-    }
-  }
-
-  // Sincronizar ambas búsquedas
-  function syncSearchInputs(source, target) {
-    target.value = source.value;
-  }
-
-  if (searchInputDesktop && searchInputMobile) {
-    searchInputDesktop.addEventListener('input', (e) => {
-      syncSearchInputs(e.target, searchInputMobile);
-      performSearch(e.target.value.trim(), e.target);
-    });
-    
-    searchInputMobile.addEventListener('input', (e) => {
-      syncSearchInputs(e.target, searchInputDesktop);
-      performSearch(e.target.value.trim(), e.target);
-    });
-  }
-  
-  // También manejar el input único para compatibilidad
-  if (searchInput && !searchInputDesktop) {
-    searchInput.addEventListener('input', (e) => {
-      performSearch(e.target.value.trim(), e.target);
-    });
-  }
-
-  // Manejar escape para cerrar modales
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      // Cerrar menú hamburguesa
-      if (navMenu && navMenu.classList.contains('active')) {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('active');
-        navToggle.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      
-      // Cerrar búsqueda (ambos contenedores)
-      [searchContainer, searchContainerDesktop, searchContainerMobile].forEach(container => {
-        if (container && container.classList.contains('active')) {
-          container.classList.remove('active');
+      // Cerrar otras secciones
+      document.querySelectorAll('.mobile-subsection').forEach(sub => {
+        if (sub.id !== section) {
+          sub.classList.remove('active');
         }
       });
-      searchToggle.classList.remove('active');
-      searchToggle.setAttribute('aria-expanded', 'false');
       
-      // Cerrar dropdowns móviles
-      dropdowns.forEach(dropdown => {
-        dropdown.classList.remove('mobile-open');
-      });
-    }
+      // Toggle sección actual
+      subsection.classList.toggle('active');
+    });
   });
   
-  // Debug: Log de inicialización
-  console.log('✅ Header script initialization complete');
-  console.log('🔧 Elements found:', {
-    navToggle: !!navToggle,
-    navMenu: !!navMenu,
-    searchToggle: !!searchToggle,
-    searchContainerDesktop: !!searchContainerDesktop,
-    searchContainerMobile: !!searchContainerMobile,
-    searchInputDesktop: !!searchInputDesktop,
-    searchInputMobile: !!searchInputMobile
+  // Cerrar menú al hacer click en enlace
+  document.querySelectorAll('.mobile-nav-link, .mobile-subsection-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
   });
 </script>
+
+<style>
+  /* Variables CSS con paleta oficial DAG */
+  :root {
+    --dag-maroon: #A01008;
+    --dag-orange: #F7931A;
+    --dag-white: #FFFFFF;
+    --dag-gray: #6F7270;
+    --dag-light-gray: #F5F3EF;
+    --dag-light: #FAFAFA;
+    --header-height: 80px;
+    --border-radius: 2px;
+    --transition: all 0.3s ease;
+  }
+
+  .header {
+    background: var(--dag-white);
+    border-bottom: 1px solid var(--dag-light-gray);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(160, 16, 8, 0.08);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    gap: 2rem;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .logo:hover {
+    opacity: 0.9;
+  }
+
+  .logo-img {
+    height: 48px;
+    width: auto;
+    border-radius: var(--border-radius);
+  }
+
+  /* Navegación Desktop */
+  .nav-desktop {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--dag-gray);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--dag-maroon);
+    background: var(--dag-light-gray);
+  }
+
+  .nav-link.active {
+    color: var(--dag-maroon);
+    font-weight: 600;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: var(--dag-orange);
+    border-radius: 1px;
+  }
+
+  /* Submenús */
+  .has-submenu {
+    position: relative;
+  }
+
+  .submenu-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .has-submenu:hover .submenu-arrow {
+    transform: rotate(180deg);
+  }
+
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dag-white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px rgba(160, 16, 8, 0.12);
+    border: 1px solid var(--dag-light-gray);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    min-width: 280px;
+    z-index: 1001;
+  }
+
+  .has-submenu:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(8px);
+  }
+
+  .submenu-content {
+    padding: 1.5rem;
+  }
+
+  .submenu-section h4 {
+    margin: 0 0 1rem 0;
+    color: var(--dag-maroon);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .submenu-item {
+    display: block;
+    padding: 0.75rem 0;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    border-bottom: 1px solid var(--dag-light-gray);
+  }
+
+  .submenu-item:last-child {
+    border-bottom: none;
+  }
+
+  .submenu-item:hover {
+    padding-left: 0.75rem;
+    background: var(--dag-light-gray);
+  }
+
+  .submenu-item-title {
+    color: var(--dag-maroon);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .submenu-item-desc {
+    color: var(--dag-gray);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  /* Herramientas del header */
+  .header-tools {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .wallet-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, var(--dag-maroon), #B51B0A);
+    color: var(--dag-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+
+  .wallet-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(160, 16, 8, 0.3);
+    background: linear-gradient(135deg, #B51B0A, var(--dag-maroon));
+  }
+
+  .wallet-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  /* Menú hamburguesa */
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--dag-maroon);
+    margin: 3px 0;
+    transition: var(--transition);
+    border-radius: 1px;
+  }
+
+  /* Menú móvil */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100vh;
+    background: var(--dag-white);
+    z-index: 2000;
+    transition: right 0.3s ease;
+    box-shadow: -8px 0 32px rgba(160, 16, 8, 0.1);
+  }
+
+  .mobile-menu.active {
+    right: 0;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--dag-light-gray);
+  }
+
+  .logo-mobile img {
+    height: 40px;
+    width: auto;
+    border-radius: var(--border-radius);
+  }
+
+  .mobile-menu-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--dag-gray);
+  }
+
+  .mobile-nav {
+    padding: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 1rem 0;
+    color: var(--dag-gray);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--dag-light-gray);
+    transition: var(--transition);
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--dag-maroon);
+    padding-left: 0.5rem;
+  }
+
+  .mobile-section {
+    border-bottom: 1px solid var(--dag-light-gray);
+  }
+
+  .mobile-section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 0;
+    background: none;
+    border: none;
+    color: var(--dag-gray);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .mobile-section-toggle:hover {
+    color: var(--dag-maroon);
+  }
+
+  .mobile-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-section-toggle[aria-expanded="true"] .mobile-arrow {
+    transform: rotate(180deg);
+  }
+
+  .mobile-subsection {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-subsection.active {
+    max-height: 300px;
+  }
+
+  .mobile-subsection-link {
+    display: block;
+    padding: 0.75rem 0 0.75rem 1rem;
+    color: var(--dag-gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+
+  .mobile-subsection-link:hover {
+    color: var(--dag-maroon);
+    padding-left: 1.5rem;
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(160, 16, 8, 0.5);
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .nav-desktop {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: flex;
+    }
+
+    .header-tools {
+      gap: 0.5rem;
+    }
+
+    .wallet-btn {
+      padding: 0.625rem 1rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .header-content {
+      gap: 1rem;
+    }
+
+    .logo-img {
+      height: 40px;
+    }
+
+    .mobile-menu {
+      width: 280px;
+    }
+  }
+</style>

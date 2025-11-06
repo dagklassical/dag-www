@@ -3,7 +3,6 @@
 // Archivo: src/layouts/Layout.astro
 // Propósito: Layout base con SEO avanzado y structured data automático
 // Mejoras: JSON-LD, Open Graph avanzado, Twitter Cards, canonical URLs
-
 interface Props {
   title: string;
   description?: string;
@@ -17,7 +16,6 @@ interface Props {
   canonical?: string;
   structuredData?: any; // JSON-LD personalizado
 }
-
 // Props del layout
 const { 
   title, 
@@ -32,21 +30,21 @@ const {
   canonical,
   structuredData
 } = Astro.props;
-
 // CSS Centralizado Importado
 import '../styles/global.css';
 import '../styles/layout.css';
+import '../styles/breadcrumbs.css';
+import '../styles/astro-navbar.css';
 // Componentes Centralizados
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 // Configuración de URLs y metadatos
 const baseUrl = import.meta.env.BASE_URL || 'https://dagklassical.com';
 const fullUrl = url || `${baseUrl}${Astro.url.pathname}`;
 const fullTitle = title.includes('DAG Klassical') ? title : `${title} | DAG Klassical`;
 const fullImage = image.startsWith('http') ? image : `${baseUrl}${image}`;
 const canonicalUrl = canonical || fullUrl;
-
 // Structured Data automático según el tipo de página
 const generateStructuredData = () => {
   const baseData = {
@@ -62,7 +60,6 @@ const generateStructuredData = () => {
       "https://youtube.com/dagklassical"
     ]
   };
-
   // Structured Data específico según el tipo
   if (type === 'music.album' && albumName && artistName) {
     return {
@@ -83,7 +80,6 @@ const generateStructuredData = () => {
       }
     };
   }
-
   if (type === 'profile' && artistName) {
     return {
       "@context": "https://schema.org",
@@ -100,7 +96,6 @@ const generateStructuredData = () => {
       }
     };
   }
-
   if (type === 'music.song' && albumName && artistName) {
     return {
       "@context": "https://schema.org",
@@ -119,18 +114,12 @@ const generateStructuredData = () => {
       "datePublished": releaseDate
     };
   }
-
   // Structured Data para organización (página principal)
   return baseData;
 };
-
 // Structured Data final (usar personalizado o generar automáticamente)
-const finalStructuredData = structuredData || generateStructuredData();
-
 // Metadatos adicionales
-const jsonLdScript = JSON.stringify(finalStructuredData, null, 2);
 ---
-
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -197,6 +186,9 @@ const jsonLdScript = JSON.stringify(finalStructuredData, null, 2);
     <!-- Header Centralizado -->
     <Header />
     
+    <!-- Breadcrumbs Navigation -->
+    <Breadcrumbs />
+    
     <!-- Contenido Principal -->
     <main id="main-content" class="main-content">
       <slot />
@@ -208,8 +200,6 @@ const jsonLdScript = JSON.stringify(finalStructuredData, null, 2);
     <!-- JSON-LD debugging (solo en desarrollo) -->
     {import.meta.env.DEV && (
       <script>
-        console.log('Structured Data:', {jsonLdScript});
-        console.log('Final Structured Data:', {finalStructuredData});
       </script>
     )}
   </body>

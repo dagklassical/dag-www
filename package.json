@@ -1,1 +1,37 @@
-{"name": "dagklassical-website", "type": "module", "version": "1.0.0", "description": "Sitio web oficial de DAG Klassical - Casa disquera venezolana con arquitectura CSS centralizada", "author": "DAG Klassical", "license": "MIT", "scripts": {"dev": "astro dev", "start": "astro dev", "build": "astro build", "preview": "astro preview", "astro": "astro"}, "dependencies": {"astro": "^3.0.0", "ethers": "^5.7.2"}, "devDependencies": {"@types/node": "^20.0.0"}, "engines": {"node": ">=18.0.0", "npm": ">=9.0.0"}}
+{
+  "name": "dagklassical-website",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Sitio web oficial de DAG Klassical - Casa disquera venezolana con astro-navbar + Pagefind",
+  "author": "DAG Klassical",
+  "license": "MIT",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "build:pagefind": "npx pagefind --site dist",
+    "build:full": "npm-run-all -s build build:pagefind",
+    "dev:pagefind": "npm-run-all -s build:pagefind copy:pagefind:dev dev",
+    "copy:pagefind:dev": "npx shx cp -r dist/pagefind public/",
+    "preview": "astro preview",
+    "astro": "astro",
+    "build:github": "astro build && npx pagefind --site dist",
+    "dev:github": "astro dev --port 4321 --host"
+  },
+  "dependencies": {
+    "astro": "^3.6.0",
+    "astro-navbar": "^2.4.0",
+    "astro-pagefind": "^1.8.5",
+    "ethers": "^5.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "pagefind": "^0.12.0",
+    "npm-run-all": "^4.1.5",
+    "shx": "^0.3.4"
+  },
+  "engines": {
+    "node": ">=18.19.0",
+    "npm": ">=9.0.0"
+  }
+}
