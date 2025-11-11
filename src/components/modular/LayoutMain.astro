@@ -1,0 +1,376 @@
+---
+/**
+ * Layout principal modular para DAG Classical
+ * Basado en Alkaline Layout.astro adaptado para música clásica
+ * 
+ * Props:
+ * - title?: string - Título de la página
+ * - description?: string - Meta descripción
+ * - keywords?: string[] - Palabras clave SEO
+ * - ogImage?: string - Imagen para Open Graph
+ * - canonicalUrl?: string - URL canónica
+ * - showSearch?: boolean - Mostrar búsqueda (default: true)
+ * - showTheme?: boolean - Mostrar toggle de tema (default: true)
+ * - class?: string - Clases adicionales
+ */
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  ogImage?: string;
+  canonicalUrl?: string;
+  showSearch?: boolean;
+  showTheme?: boolean;
+  class?: string;
+}
+
+const {
+  title = "DAG Classical - Música Clásica con Blockchain",
+  description = "Sello discográfico especializado en música clásica, con distribución global y tecnología blockchain para proteger y certificar obras musicales.",
+  keywords = ["música clásica", "blockchain", "distribución musical", "DAG Classical", "Danilo Álvarez"],
+  ogImage = "/og-image.svg",
+  canonicalUrl = "https://dagclassical.com",
+  showSearch = true,
+  showTheme = true,
+  class: className = ""
+} = Astro.props;
+
+// Meta tags base
+const metaTags = [
+  { name: "viewport", content: "width=device-width, initial-scale=1.0" },
+  { name: "generator", content: "Astro" },
+  { name: "description", content },
+  { name: "keywords", content: keywords.join(", ") },
+  { name: "author", content: "DAG Classical Team" },
+  { name: "robots", content: "index, follow" },
+  { name: "theme-color", content: "#2D1B69" },
+  { name: "msapplication-TileColor", content: "#2D1B69" }
+];
+
+// Open Graph tags
+const ogTags = [
+  { property: "og:type", content: "website" },
+  { property: "og:title", content: title },
+  { property: "og:description", content: description },
+  { property: "og:image", content: ogImage },
+  { property: "og:url", content: canonicalUrl },
+  { property: "og:site_name", content: "DAG Classical" },
+  { property: "og:locale", content: "es_ES" }
+];
+
+// Twitter Card tags
+const twitterTags = [
+  { name: "twitter:card", content: "summary_large_image" },
+  { name: "twitter:title", content: title },
+  { name: "twitter:description", content: description },
+  { name: "twitter:image", content: ogImage }
+];
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <!-- SEO Base -->
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Meta tags -->
+    {metaTags.map(tag => (
+      <meta {...tag} />
+    ))}
+    
+    <!-- Open Graph -->
+    {ogTags.map(tag => (
+      <meta {...tag} />
+    ))}
+    
+    <!-- Twitter Card -->
+    {twitterTags.map(tag => (
+      <meta {...tag} />
+    ))}
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" 
+      rel="stylesheet" 
+    />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/styles/modular.css" as="style" />
+    <link rel="stylesheet" href="/styles/modular.css" />
+    
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MusicLabel",
+        "name": "DAG Classical",
+        "description": "Sello discográfico especializado en música clásica con tecnología blockchain",
+        "url": canonicalUrl,
+        "founder": {
+          "@type": "Person",
+          "name": "Danilo Álvarez",
+          "jobTitle": "Fundador y Director General"
+        },
+        "sameAs": [
+          "https://open.spotify.com/artist/dagclassical",
+          "https://music.apple.com/artist/dag-classical",
+          "https://youtube.com/@dagclassical",
+          "https://instagram.com/dagclassical"
+        ],
+        "areaServed": "Worldwide",
+        "serviceType": "Music Distribution and Blockchain Certification"
+      })}
+    </script>
+    
+    <!-- Transitions -->
+    <script>
+      import 'astro:transitions';
+    </script>
+  </head>
+  
+  <body class={`
+    antialiased 
+    bg-white 
+    dark:bg-slate-900 
+    text-slate-900 
+    dark:text-white
+    font-sans
+    transition-colors duration-300
+    ${className}
+  `}>
+    <!-- Skip to content -->
+    <a 
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-violet-600 text-white px-4 py-2 rounded-md z-50"
+    >
+      Saltar al contenido principal
+    </a>
+    
+    <!-- App wrapper -->
+    <div class="min-h-screen flex flex-col">
+      <!-- Header -->
+      <header class="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md">
+        <div class="container mx-auto px-4">
+          <div class="flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+              <img 
+                src="/logo-dag.svg" 
+                alt="DAG Classical" 
+                class="h-8 w-auto"
+                loading="eager"
+              />
+              <span class="text-xl font-serif font-bold text-slate-900 dark:text-white">
+                DAG Classical
+              </span>
+            </a>
+            
+            <!-- Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+              <a href="/musica" class="text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+                Música
+              </a>
+              <a href="/nosotros" class="text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+                Nosotros
+              </a>
+              <a href="/blockchain" class="text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+                Blockchain
+              </a>
+              <a href="/blog" class="text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">
+                Blog
+              </a>
+            </nav>
+            
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+              {showSearch && (
+                <button 
+                  id="search-button"
+                  class="p-2 text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                  aria-label="Buscar"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                  </svg>
+                </button>
+              )}
+              
+              {showTheme && (
+                <button 
+                  id="theme-toggle"
+                  class="p-2 text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                  aria-label="Cambiar tema"
+                >
+                  <svg class="w-5 h-5 sun-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                  </svg>
+                  <svg class="w-5 h-5 moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                  </svg>
+                </button>
+              )}
+              
+              <!-- Mobile menu -->
+              <button 
+                id="mobile-menu-button"
+                class="md:hidden p-2 text-slate-600 dark:text-slate-300"
+                aria-label="Menú"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      <!-- Main content -->
+      <main id="main-content" class="flex-1">
+        <slot />
+      </main>
+      
+      <!-- Footer -->
+      <footer class="border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900">
+        <div class="container mx-auto px-4 py-12">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Company info -->
+            <div class="col-span-1 md:col-span-2">
+              <div class="flex items-center space-x-3 mb-4">
+                <img src="/logo-dag.svg" alt="DAG Classical" class="h-8 w-auto" />
+                <span class="text-xl font-serif font-bold">DAG Classical</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-400 mb-4 max-w-md">
+                Revolucionando la música clásica con tecnología blockchain, distribución global y certificaciones digitales.
+              </p>
+              <div class="flex space-x-4">
+                <a href="https://open.spotify.com/artist/dagclassical" class="text-slate-400 hover:text-green-500 transition-colors">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+                  </svg>
+                </a>
+                <a href="https://music.apple.com/artist/dag-classical" class="text-slate-400 hover:text-gray-600 transition-colors">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.997 6.124c0-.738-.065-1.47-.24-2.19-.317-1.31-1.062-2.31-2.18-3.043C20.54.517 19.263.14 18.137.09c-.396-.017-.79-.026-1.186-.026H7.05c-.396 0-.79.009-1.186.026-.775.035-1.517.18-2.257.49C2.85 1.47 1.89 2.63 1.513 4.03.788 6.044.3 8.253.264 10.54c-.04 2.533.478 4.89 1.43 7.09.3.69.68 1.35 1.14 1.98.65.89 1.46 1.62 2.44 2.21 1.04.62 2.31.98 3.74 1.09.39.03.78.04 1.18.04h9.84c.4 0 .79-.01 1.18-.04 2.02-.16 3.62-.68 4.78-1.56 1.16-.88 1.98-2.13 2.46-3.74.48-1.61.72-3.32.72-5.13V6.124zM18.57 15.49c-.28.44-.65.82-1.12 1.14-.47.32-1.04.54-1.72.67-.16.03-.32.04-.48.04h-3.21c-.16 0-.32-.01-.48-.04-.68-.13-1.25-.35-1.72-.67-.47-.32-.84-.7-1.12-1.14-.28-.44-.49-.93-.63-1.47-.14-.54-.21-1.11-.21-1.7V7.8c0-.59.07-1.16.21-1.7.14-.54.35-1.03.63-1.47.28-.44.65-.82 1.12-1.14.47-.32 1.04-.54 1.72-.67.16-.03.32-.04.48-.04h3.21c.16 0 .32.01.48.04.68.13 1.25.35 1.72.67.47.32.84.7 1.12 1.14.28.44.49.93.63 1.47.14.54.21 1.11.21 1.7v5.49c0 .59-.07 1.16-.21 1.7-.14.54-.35 1.03-.63 1.47z"/>
+                  </svg>
+                </a>
+                <a href="https://youtube.com/@dagclassical" class="text-slate-400 hover:text-red-500 transition-colors">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </a>
+                <a href="https://instagram.com/dagclassical" class="text-slate-400 hover:text-pink-500 transition-colors">
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Links -->
+            <div>
+              <h3 class="font-semibold text-slate-900 dark:text-white mb-4">Navegación</h3>
+              <ul class="space-y-2">
+                <li><a href="/musica" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Música</a></li>
+                <li><a href="/nosotros" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Nosotros</a></li>
+                <li><a href="/blockchain" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Blockchain</a></li>
+                <li><a href="/blog" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Blog</a></li>
+              </ul>
+            </div>
+            
+            <!-- Services -->
+            <div>
+              <h3 class="font-semibold text-slate-900 dark:text-white mb-4">Servicios</h3>
+              <ul class="space-y-2">
+                <li><a href="/blockchain/certificacion" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Certificación</a></li>
+                <li><a href="/distribucion" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Distribución</a></li>
+                <li><a href="/blockchain/music-cards" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Music Cards</a></li>
+                <li><a href="/contacto" class="text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Contacto</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Copyright -->
+          <div class="border-t border-slate-200 dark:border-slate-800 pt-8 mt-8 text-center">
+            <p class="text-slate-600 dark:text-slate-400">
+              © 2024 DAG Classical. Todos los derechos reservados. Desarrollado con ❤️ y tecnología blockchain.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <!-- Back to top button -->
+    <button 
+      id="back-to-top"
+      class="fixed bottom-6 right-6 p-3 bg-violet-600 hover:bg-violet-700 text-white rounded-full shadow-lg transition-all duration-300 opacity-0 invisible z-50"
+      aria-label="Volver arriba"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+      </svg>
+    </button>
+    
+    <!-- Scripts -->
+    <script>
+      // Theme toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+      const sunIcon = document.querySelector('.sun-icon');
+      const moonIcon = document.querySelector('.moon-icon');
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        html.classList.toggle('dark', savedTheme === 'dark');
+        sunIcon?.classList.toggle('hidden', savedTheme === 'dark');
+        moonIcon?.classList.toggle('hidden', savedTheme !== 'dark');
+      }
+      
+      themeToggle?.addEventListener('click', () => {
+        const isDark = html.classList.contains('dark');
+        html.classList.toggle('dark', !isDark);
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        sunIcon?.classList.toggle('hidden', !isDark);
+        moonIcon?.classList.toggle('hidden', isDark);
+      });
+      
+      // Back to top
+      const backToTopButton = document.getElementById('back-to-top');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopButton?.classList.remove('opacity-0', 'invisible');
+        } else {
+          backToTopButton?.classList.add('opacity-0', 'invisible');
+        }
+      });
+      
+      backToTopButton?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      // Search modal (placeholder)
+      const searchButton = document.getElementById('search-button');
+      searchButton?.addEventListener('click', () => {
+        // TODO: Implementar búsqueda
+        console.log('Abrir búsqueda');
+      });
+      
+      // Mobile menu (placeholder)
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      mobileMenuButton?.addEventListener('click', () => {
+        // TODO: Implementar menú móvil
+        console.log('Abrir menú móvil');
+      });
+    </script>
+  </body>
+</html>

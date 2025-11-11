@@ -1,0 +1,299 @@
+---
+/**
+ * Componente PageHeader modular para DAG Classical
+ * Basado en Alkaline PageHeader.astro adaptado para música clásica
+ * 
+ * Props:
+ * - heading: string - Título principal de la página
+ * - description?: string - Descripción o subtítulo
+ * - image?: string - Imagen opcional para mostrar
+ * - imageAlt?: string - Alt text para la imagen
+ * - pattern?: string - Patrón de fondo (dots, notes, wave, etc.)
+ * - patternOpacity?: number - Opacidad del patrón (0-1)
+ * - animate?: boolean - Animaciones de entrada (default: true)
+ * - variant?: "split" | "centered" | "stacked" - Layout variant
+ * - showBreadcrumbs?: boolean - Mostrar breadcrumbs
+ * - class?: string - Clases adicionales
+ * 
+ * Ejemplo de uso:
+ * <PageHeader
+ *   heading="Música Clásica Digital"
+ *   description="Explora nuestra colección con certificación blockchain"
+ *   image="/images/classical-music.jpg"
+ *   pattern="classical-notes"
+ *   variant="split"
+ * />
+ */
+
+interface Props {
+  heading: string;
+  description?: string;
+  image?: string;
+  imageAlt?: string;
+  pattern?: string;
+  patternOpacity?: number;
+  animate?: boolean;
+  variant?: "split" | "centered" | "stacked";
+  showBreadcrumbs?: boolean;
+  class?: string;
+}
+
+const {
+  heading,
+  description,
+  image,
+  imageAlt,
+  pattern = "notes",
+  patternOpacity = 0.1,
+  animate = true,
+  variant = "split",
+  showBreadcrumbs = true,
+  class: className = ""
+} = Astro.props;
+
+// Configuración de patrones de fondo
+const getPatternSVG = (patternName: string) => {
+  const patterns = {
+    notes: `
+      <pattern id="music-notes" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+        <circle cx="15" cy="20" r="2" fill="currentColor" opacity="0.1"/>
+        <circle cx="30" cy="15" r="1.5" fill="currentColor" opacity="0.08"/>
+        <circle cx="45" cy="25" r="2" fill="currentColor" opacity="0.1"/>
+        <path d="M15 22 L15 30 L20 28" stroke="currentColor" stroke-width="1" opacity="0.1"/>
+        <path d="M30 17 L30 23 L35 21" stroke="currentColor" stroke-width="0.8" opacity="0.08"/>
+        <path d="M45 27 L45 35 L50 33" stroke="currentColor" stroke-width="1" opacity="0.1"/>
+      </pattern>
+    `,
+    dots: `
+      <pattern id="dots" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+        <circle cx="20" cy="20" r="1" fill="currentColor" opacity="0.1"/>
+      </pattern>
+    `,
+    wave: `
+      <pattern id="wave" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse">
+        <path d="M0 10 Q 25 0 50 10 T 100 10" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.1"/>
+        <path d="M0 15 Q 25 5 50 15 T 100 15" stroke="currentColor" stroke-width="0.5" fill="none" opacity="0.08"/>
+      </pattern>
+    `,
+    grid: `
+      <pattern id="grid" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse">
+        <path d="M 30 0 L 0 0 0 30" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+      </pattern>
+    `,
+    diamonds: `
+      <pattern id="diamonds" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+        <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.1"/>
+      </pattern>
+    `
+  };
+  return patterns[patternName as keyof typeof patterns] || patterns.notes;
+};
+
+// Configuración de layouts
+const layouts = {
+  split: {
+    container: "flex flex-col lg:flex-row items-center justify-between min-h-[60vh]",
+    content: "flex-1 lg:w-1/2 pr-8",
+    image: "flex-1 lg:w-1/2 mt-8 lg:mt-0",
+    spacing: "p-8 lg:p-16"
+  },
+  centered: {
+    container: "flex flex-col items-center justify-center text-center min-h-[60vh]",
+    content: "max-w-4xl mx-auto",
+    image: "mt-8",
+    spacing: "p-8 lg:p-16"
+  },
+  stacked: {
+    container: "flex flex-col items-center min-h-[70vh]",
+    content: "text-center mb-8",
+    image: "w-full max-w-2xl",
+    spacing: "p-8 lg:p-16"
+  }
+};
+
+const currentLayout = layouts[variant];
+---
+
+<section class={`
+  relative 
+  ${currentLayout.container} 
+  ${currentLayout.spacing}
+  overflow-hidden
+  bg-gradient-to-br 
+  from-slate-50 
+  to-violet-50
+  dark:from-slate-900 
+  dark:to-violet-900
+  ${className}
+`}>
+  {/* Patrón de fondo */}
+  {pattern && (
+    <div 
+      class="absolute inset-0 opacity-30 dark:opacity-20"
+      style={`color: rgb(139 92 246)`} /* violet-500 */
+    >
+      <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        {getPatternSVG(pattern)}
+        <rect width="100%" height="100%" fill={`url(#${pattern})`} />
+      </svg>
+    </div>
+  )}
+  
+  {/* Overlay gradient */}
+  <div class="absolute inset-0 bg-gradient-to-r from-white/90 to-transparent dark:from-slate-900/90 dark:to-transparent"></div>
+
+  {/* Contenido principal */}
+  <div class={`${currentLayout.content} relative z-10`}>
+    {/* Breadcrumbs opcionales */}
+    {showBreadcrumbs && (
+      <nav class="mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2 text-sm text-slate-600 dark:text-slate-400">
+          <li><a href="/" class="hover:text-violet-600 dark:hover:text-violet-400 transition-colors">Inicio</a></li>
+          <li><span class="mx-2">/</span></li>
+          <li class="text-slate-900 dark:text-white font-medium">{heading}</li>
+        </ol>
+      </nav>
+    )}
+
+    {/* Título principal */}
+    <h1 
+      class={`
+        text-4xl md:text-5xl lg:text-6xl 
+        font-bold 
+        font-serif 
+        text-slate-900 
+        dark:text-white
+        leading-tight
+        tracking-tight
+        mb-4
+        ${animate ? 'animate-fade-in-up' : ''}
+      `}
+      style={`animation-delay: ${animate ? '0.1s' : '0s'}`}
+    >
+      {heading}
+    </h1>
+
+    {/* Línea decorativa */}
+    <div 
+      class={`
+        w-20 h-1 
+        bg-gradient-to-r 
+        from-violet-500 
+        to-amber-500 
+        rounded-full 
+        mb-6
+        ${animate ? 'animate-fade-in-up' : ''}
+      `}
+      style={`animation-delay: ${animate ? '0.2s' : '0s'}`}
+    ></div>
+
+    {/* Descripción */}
+    {description && (
+      <p 
+        class={`
+          text-lg md:text-xl 
+          text-slate-700 
+          dark:text-slate-300
+          leading-relaxed
+          max-w-2xl
+          ${animate ? 'animate-fade-in-up' : ''}
+        `}
+        style={`animation-delay: ${animate ? '0.3s' : '0s'}`}
+      >
+        {description}
+      </p>
+    )}
+
+    {/* Call to action opcional */}
+    <div 
+      class={`
+        mt-8
+        ${animate ? 'animate-fade-in-up' : ''}
+      `}
+      style={`animation-delay: ${animate ? '0.4s' : '0s'}`}
+    >
+      <slot name="cta" />
+    </div>
+  </div>
+
+  {/* Imagen opcional */}
+  {image && (
+    <div 
+      class={`
+        ${currentLayout.image} 
+        relative
+        ${animate ? 'animate-fade-in' : ''}
+      `}
+    >
+      <div class="relative">
+        {/* Glow effect */}
+        <div class="absolute -inset-4 bg-gradient-to-r from-violet-400 to-amber-400 rounded-2xl blur-xl opacity-20 dark:opacity-30"></div>
+        
+        {/* Imagen principal */}
+        <div class="relative overflow-hidden rounded-2xl shadow-2xl">
+          <img
+            src={image}
+            alt={imageAlt || heading}
+            class="w-full h-auto object-cover"
+            loading="eager"
+          />
+          
+          {/* Overlay con patrón */}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+        </div>
+        
+        {/* Elementos decorativos */}
+        <div class="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-violet-400 to-amber-400 rounded-full opacity-20 blur-xl"></div>
+        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-amber-400 to-violet-400 rounded-full opacity-20 blur-xl"></div>
+      </div>
+    </div>
+  )}
+</section>
+
+<style>
+  /* Animaciones personalizadas */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .lg\\:flex-row {
+      flex-direction: column;
+    }
+    
+    .lg\\:w-1\\/2 {
+      width: 100%;
+    }
+    
+    .lg\\:pr-8 {
+      padding-right: 0;
+    }
+  }
+</style>    

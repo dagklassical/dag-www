@@ -1,0 +1,325 @@
+---
+// Importaciones
+import SearchResults from './SearchResults.astro';
+import SearchFilters from './SearchFilters.astro';
+import { searchEngine, type SearchableItem } from '../../lib/search';
+
+// Props
+interface Props {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+const { isOpen = false, onClose } = Astro.props;
+
+// Estado del componente
+let searchQuery = '';
+let searchResults: SearchableItem[] = [];
+let isLoading = false;
+let showFilters = false;
+let selectedFilters = {
+  type: '',
+  category: '',
+  tags: [] as string[]
+};
+
+// Cargar índice de búsqueda
+const loadSearchIndex = async () => {
+  try {
+    const response = await fetch('/search-index.json');
+    const indexData = await response.json();
+    searchEngine.loadIndex(indexData.items);
+  } catch (error) {
+    console.error('Error cargando índice de búsqueda:', error);
+  }
+};
+
+// Ejecutar búsqueda
+const executeSearch = async (query: string) => {
+  if (!query.trim()) {
+    searchResults = [];
+    return;
+  }
+
+  isLoading = true;
+  
+  // Simular delay para UX
+  await new Promise(resolve => setTimeout(resolve, 100));
+  
+  searchResults = searchEngine.search(query, {
+    filters: selectedFilters,
+    limit: 20
+  });
+  
+  isLoading = false;
+};
+
+// Manejar teclas
+const handleKeyDown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape' && onClose) {
+    onClose();
+  }
+};
+
+// Atajos de teclado
+if (typeof window !== 'undefined') {
+  document.addEventListener('keydown', (e) => {
+    // Cmd+K / Ctrl+K para abrir búsqueda
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      // Este evento será manejado desde Header
+    }
+  });
+}
+
+// Inicializar
+if (typeof window !== 'undefined' && isOpen) {
+  loadSearchIndex();
+}
+
+// Efectos
+if (searchQuery !== searchQuery) {
+  executeSearch(searchQuery);
+}
+---
+
+{isOpen && (
+  <div class="search-modal-overlay fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-start justify-center pt-20">
+    <div class="search-modal bg-white dark:bg-gray-900 rounded-xl shadow-2xl w-full max-w-2xl mx-4 max-h-[80vh] overflow-hidden">
+      <!-- Header del modal -->
+      <div class="search-header p-6 border-b border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+            Buscar en DAG Classical
+          </h2>
+          <button 
+            class="search-close text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            onclick={onClose}
+            aria-label="Cerrar búsqueda"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Input de búsqueda -->
+        <div class="search-input-container relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          <input
+            type="text"
+            class="search-input w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            placeholder="Buscar música, artistas, blog, contenido..."
+            bind:value={searchQuery}
+            autofocus
+          />
+          
+          <!-- Atajos de teclado -->
+          <div class="absolute inset-y-0 right-0 pr-3 flex items-center space-x-2">
+            <kbd class="hidden sm:inline-block px-2 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded">
+              ⌘K
+            </kbd>
+            <button
+              class="search-filters-toggle p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+              class:list={{ 'text-blue-500': showFilters }}
+              onclick={() => showFilters = !showFilters}
+              aria-label="Alternar filtros"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel de filtros -->
+      {showFilters && (
+        <div class="search-filters-panel border-b border-gray-200 dark:border-gray-700">
+          <SearchFilters 
+            bind:selectedFilters={selectedFilters}
+            onFilterChange={() => executeSearch(searchQuery)}
+          />
+        </div>
+      )}
+
+      <!-- Contenido del modal -->
+      <div class="search-content flex-1 overflow-y-auto">
+        {isLoading ? (
+          <div class="search-loading flex items-center justify-center py-12">
+            <div class="loading-spinner w-8 h-8 border-2 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+            <span class="ml-3 text-gray-600 dark:text-gray-400">Buscando...</span>
+          </div>
+        ) : searchQuery && searchResults.length > 0 ? (
+          <div class="search-results-container">
+            <div class="results-header p-4 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+              <p class="text-sm text-gray-600 dark:text-gray-400">
+                {searchResults.length} resultado{searchResults.length !== 1 ? 's' : ''} para "{searchQuery}"
+              </p>
+            </div>
+            <SearchResults 
+              results={searchResults}
+              query={searchQuery}
+            />
+          </div>
+        ) : searchQuery && searchResults.length === 0 ? (
+          <div class="search-empty text-center py-12">
+            <div class="text-gray-400 mb-4">
+              <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+              No se encontraron resultados
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              Intenta con otros términos de búsqueda
+            </p>
+          </div>
+        ) : (
+          <div class="search-welcome p-6 text-center">
+            <div class="text-gray-400 mb-4">
+              <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
+              Busca en todo el contenido
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-4">
+              Encuentra música, artistas, blog posts y más...
+            </p>
+            <div class="search-suggestions flex flex-wrap justify-center gap-2">
+              <button 
+                class="suggestion-tag px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                onclick={() => { searchQuery = 'Bach'; executeSearch(searchQuery); }}
+              >
+                Bach
+              </button>
+              <button 
+                class="suggestion-tag px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                onclick={() => { searchQuery = 'blockchain'; executeSearch(searchQuery); }}
+              >
+                blockchain
+              </button>
+              <button 
+                class="suggestion-tag px-3 py-1 text-sm bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                onclick={() => { searchQuery = 'música clásica'; executeSearch(searchQuery); }}
+              >
+                música clásica
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
+      <!-- Footer del modal -->
+      <div class="search-footer p-4 bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between text-sm text-gray-600 dark:text-gray-400">
+          <div class="flex items-center space-x-4">
+            <span>↑↓ navegar</span>
+            <span>↵ seleccionar</span>
+            <span>esc cerrar</span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span>Powered by DAG Classical Search</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
+<style>
+  .search-modal-overlay {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  .search-modal {
+    animation: slideDown 0.3s ease-out;
+    max-height: calc(100vh - 160px);
+  }
+  
+  .search-content {
+    max-height: 60vh;
+  }
+  
+  .loading-spinner {
+    animation: spin 1s linear infinite;
+  }
+  
+  .suggestion-tag {
+    transition: all 0.2s ease;
+  }
+  
+  .suggestion-tag:hover {
+    transform: translateY(-1px);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from { 
+      opacity: 0; 
+      transform: translateY(-20px) scale(0.95); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0) scale(1); 
+    }
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  @media (max-width: 640px) {
+    .search-modal {
+      margin: 0;
+      border-radius: 0;
+      height: 100vh;
+      max-height: 100vh;
+    }
+    
+    .search-content {
+      max-height: calc(100vh - 200px);
+    }
+  }
+</style>
+
+<script>
+  // Manejo del escape key global
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      // Cerrar modal si está abierto
+      const closeBtn = document.querySelector('.search-close');
+      if (closeBtn) {
+        closeBtn.click();
+      }
+    }
+  });
+  
+  // Prevenir scroll del body cuando modal está abierto
+  document.addEventListener('DOMContentLoaded', () => {
+    const modalOverlay = document.querySelector('.search-modal-overlay');
+    if (modalOverlay) {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+            const isOpen = !modalOverlay.classList.contains('hidden');
+            document.body.style.overflow = isOpen ? 'hidden' : '';
+          }
+        });
+      });
+      observer.observe(modalOverlay, { attributes: true });
+    }
+  });
+</script>
