@@ -1,0 +1,640 @@
+---
+import PagefindSearch from './PagefindSearch.astro';
+const currentPath = Astro.url.pathname;
+
+// Definir submenús con rutas correctas
+const submenuItems = {
+  'musica': [
+    { title: 'Artistas', href: '/dag-www/musica/artistas/', description: 'Conoce nuestros artistas destacados' },
+    { title: 'Discografía', href: '/dag-www/musica/discografia/', description: 'Albums y canciones completas' },
+    { title: 'Lanzamientos', href: '/dag-www/musica/lanzamientos/', description: 'Últimos lanzamientos musicales' },
+    { title: 'Enciclopedia', href: '/dag-www/musica/enciclopedia/', description: 'Conocimiento musical clásico' }
+  ],
+  'nosotros': [
+    { title: 'DAG Klassical', href: '/dag-www/nosotros/dag-klassical/', description: 'Nuestra historia y misión' },
+    { title: 'Danilo Álvarez', href: '/dag-www/nosotros/danilo-alvarez/', description: 'Director creativo' },
+    { title: 'Equipo', href: '/dag-www/nosotros/equipo/', description: 'Conoce al equipo artístico' },
+    { title: 'Términos', href: '/dag-www/nosotros/terminos/', description: 'Términos y condiciones' }
+  ]
+};
+
+const isActivePath = (path) => currentPath.includes(path);
+const isActiveSubmenu = (paths) => paths.some(path => isActivePath(path));
+---
+
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <!-- Logo con logotipo oficial -->
+      <a href="/dag-www/" class="logo">
+        <img src="/logo-dag-klassical-003.png" alt="DAG Klassical" class="logo-img" />
+      </a>
+      
+      <!-- Navegación Desktop con Submenús -->
+      <nav class="nav-desktop" role="navigation" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li>
+            <a href="/dag-www/" class:list={['nav-link', { active: currentPath === '/dag-www/' || currentPath === '/' }]}>
+              Inicio
+            </a>
+          </li>
+          
+          <!-- Música con Submenu -->
+          <li class="nav-item has-submenu">
+            <a href="/dag-www/musica/" class:list={['nav-link', { active: isActivePath('/musica') }]}>
+              Música
+              <svg class="submenu-arrow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z"/>
+              </svg>
+            </a>
+            <div class="submenu">
+              <div class="submenu-content">
+                <div class="submenu-section">
+                  <h4>Explora</h4>
+                  {submenuItems.musica.map(item => (
+                    <a href={item.href} class="submenu-item">
+                      <div class="submenu-item-title">{item.title}</div>
+                      <div class="submenu-item-desc">{item.description}</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <!-- Nosotros con Submenu -->
+          <li class="nav-item has-submenu">
+            <a href="/dag-www/nosotros/" class:list={['nav-link', { active: isActivePath('/nosotros') }]}>
+              Nosotros
+              <svg class="submenu-arrow" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 10l5 5 5-5z"/>
+              </svg>
+            </a>
+            <div class="submenu">
+              <div class="submenu-content">
+                <div class="submenu-section">
+                  <h4>Descubre</h4>
+                  {submenuItems.nosotros.map(item => (
+                    <a href={item.href} class="submenu-item">
+                      <div class="submenu-item-title">{item.title}</div>
+                      <div class="submenu-item-desc">{item.description}</div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <!-- Enlaces directos -->
+          <li>
+            <a href="/dag-www/noticias/" class:list={['nav-link', { active: isActivePath('/noticias') }]}>
+              Noticias
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Barra de herramientas (Buscar + Wallet) -->
+      <div class="header-tools">
+        <PagefindSearch />
+        
+        <!-- Wallet Button -->
+        <a href="/dag-www/wallet/" class="wallet-btn">
+          <svg class="wallet-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 18v1c0 1.1-.9 2-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+          </svg>
+          Wallet
+        </a>
+      </div>
+
+      <!-- Menu hamburguesa para móvil -->
+      <button class="mobile-menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Menu móvil -->
+<div class="mobile-menu">
+  <div class="mobile-menu-header">
+    <a href="/dag-www/" class="logo-mobile">
+      <img src="/logo-dag-klassical-003.png" alt="DAG Klassical" />
+    </a>
+    <button class="mobile-menu-close" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="mobile-nav">
+    <a href="/dag-www/" class="mobile-nav-link">Inicio</a>
+    
+    <div class="mobile-section">
+      <button class="mobile-section-toggle" data-section="musica">
+        <span>Música</span>
+        <svg class="mobile-arrow" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+      <div class="mobile-subsection" id="musica">
+        {submenuItems.musica.map(item => (
+          <a href={item.href} class="mobile-subsection-link">{item.title}</a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="mobile-section">
+      <button class="mobile-section-toggle" data-section="nosotros">
+        <span>Nosotros</span>
+        <svg class="mobile-arrow" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7 10l5 5 5-5z"/>
+        </svg>
+      </button>
+      <div class="mobile-subsection" id="nosotros">
+        {submenuItems.nosotros.map(item => (
+          <a href={item.href} class="mobile-subsection-link">{item.title}</a>
+        ))}
+      </div>
+    </div>
+    
+    <a href="/dag-www/noticias/" class="mobile-nav-link">Noticias</a>
+    <a href="/dag-www/wallet/" class="mobile-nav-link">Wallet</a>
+  </nav>
+</div>
+
+<!-- Overlay para cerrar menú móvil -->
+<div class="mobile-overlay"></div>
+
+<script>
+  // Toggle del menú móvil
+  const mobileToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileMenu = document.querySelector('.mobile-menu');
+  const mobileOverlay = document.querySelector('.mobile-overlay');
+  const mobileClose = document.querySelector('.mobile-menu-close');
+  
+  // Abrir menú
+  if (mobileToggle) {
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+      mobileOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  
+  // Cerrar menú
+  const closeMenu = () => {
+    mobileMenu.classList.remove('active');
+    mobileOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+  
+  if (mobileClose) {
+    mobileClose.addEventListener('click', closeMenu);
+  }
+  
+  if (mobileOverlay) {
+    mobileOverlay.addEventListener('click', closeMenu);
+  }
+  
+  // Toggle de secciones móviles
+  document.querySelectorAll('.mobile-section-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const section = toggle.getAttribute('data-section');
+      const subsection = document.getElementById(section);
+      
+      // Cerrar otras secciones
+      document.querySelectorAll('.mobile-subsection').forEach(sub => {
+        if (sub.id !== section) {
+          sub.classList.remove('active');
+        }
+      });
+      
+      // Toggle sección actual
+      subsection.classList.toggle('active');
+    });
+  });
+  
+  // Cerrar menú al hacer click en enlace
+  document.querySelectorAll('.mobile-nav-link, .mobile-subsection-link').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>
+
+<style>
+  /* Variables CSS con paleta oficial DAG */
+  :root {
+    --dag-maroon: #A01008;
+    --dag-orange: #F7931A;
+    --dag-white: #FFFFFF;
+    --dag-gray: #6F7270;
+    --dag-light-gray: #F5F3EF;
+    --dag-light: #FAFAFA;
+    --header-height: 80px;
+    --border-radius: 2px;
+    --transition: all 0.3s ease;
+  }
+
+  .header {
+    background: var(--dag-white);
+    border-bottom: 1px solid var(--dag-light-gray);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(160, 16, 8, 0.08);
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    gap: 2rem;
+  }
+
+  /* Logo */
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: var(--transition);
+  }
+
+  .logo:hover {
+    opacity: 0.9;
+  }
+
+  .logo-img {
+    height: 48px;
+    width: auto;
+    border-radius: var(--border-radius);
+  }
+
+  /* Navegación Desktop */
+  .nav-desktop {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: var(--dag-gray);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--dag-maroon);
+    background: var(--dag-light-gray);
+  }
+
+  .nav-link.active {
+    color: var(--dag-maroon);
+    font-weight: 600;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background: var(--dag-orange);
+    border-radius: 1px;
+  }
+
+  /* Submenús */
+  .has-submenu {
+    position: relative;
+  }
+
+  .submenu-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .has-submenu:hover .submenu-arrow {
+    transform: rotate(180deg);
+  }
+
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--dag-white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px rgba(160, 16, 8, 0.12);
+    border: 1px solid var(--dag-light-gray);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    min-width: 280px;
+    z-index: 1001;
+  }
+
+  .has-submenu:hover .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(8px);
+  }
+
+  .submenu-content {
+    padding: 1.5rem;
+  }
+
+  .submenu-section h4 {
+    margin: 0 0 1rem 0;
+    color: var(--dag-maroon);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .submenu-item {
+    display: block;
+    padding: 0.75rem 0;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    border-bottom: 1px solid var(--dag-light-gray);
+  }
+
+  .submenu-item:last-child {
+    border-bottom: none;
+  }
+
+  .submenu-item:hover {
+    padding-left: 0.75rem;
+    background: var(--dag-light-gray);
+  }
+
+  .submenu-item-title {
+    color: var(--dag-maroon);
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .submenu-item-desc {
+    color: var(--dag-gray);
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  /* Herramientas del header */
+  .header-tools {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .wallet-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(135deg, var(--dag-maroon), #B51B0A);
+    color: var(--dag-white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+
+  .wallet-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(160, 16, 8, 0.3);
+    background: linear-gradient(135deg, #B51B0A, var(--dag-maroon));
+  }
+
+  .wallet-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  /* Menú hamburguesa */
+  .mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--dag-maroon);
+    margin: 3px 0;
+    transition: var(--transition);
+    border-radius: 1px;
+  }
+
+  /* Menú móvil */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -320px;
+    width: 320px;
+    height: 100vh;
+    background: var(--dag-white);
+    z-index: 2000;
+    transition: right 0.3s ease;
+    box-shadow: -8px 0 32px rgba(160, 16, 8, 0.1);
+  }
+
+  .mobile-menu.active {
+    right: 0;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--dag-light-gray);
+  }
+
+  .logo-mobile img {
+    height: 40px;
+    width: auto;
+    border-radius: var(--border-radius);
+  }
+
+  .mobile-menu-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--dag-gray);
+  }
+
+  .mobile-nav {
+    padding: 1.5rem;
+  }
+
+  .mobile-nav-link {
+    display: block;
+    padding: 1rem 0;
+    color: var(--dag-gray);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--dag-light-gray);
+    transition: var(--transition);
+  }
+
+  .mobile-nav-link:hover {
+    color: var(--dag-maroon);
+    padding-left: 0.5rem;
+  }
+
+  .mobile-section {
+    border-bottom: 1px solid var(--dag-light-gray);
+  }
+
+  .mobile-section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 0;
+    background: none;
+    border: none;
+    color: var(--dag-gray);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .mobile-section-toggle:hover {
+    color: var(--dag-maroon);
+  }
+
+  .mobile-arrow {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-section-toggle[aria-expanded="true"] .mobile-arrow {
+    transform: rotate(180deg);
+  }
+
+  .mobile-subsection {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .mobile-subsection.active {
+    max-height: 300px;
+  }
+
+  .mobile-subsection-link {
+    display: block;
+    padding: 0.75rem 0 0.75rem 1rem;
+    color: var(--dag-gray);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+  }
+
+  .mobile-subsection-link:hover {
+    color: var(--dag-maroon);
+    padding-left: 1.5rem;
+  }
+
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(160, 16, 8, 0.5);
+    z-index: 1999;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .nav-desktop {
+      display: none;
+    }
+
+    .mobile-menu-toggle {
+      display: flex;
+    }
+
+    .header-tools {
+      gap: 0.5rem;
+    }
+
+    .wallet-btn {
+      padding: 0.625rem 1rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .header-content {
+      gap: 1rem;
+    }
+
+    .logo-img {
+      height: 40px;
+    }
+
+    .mobile-menu {
+      width: 280px;
+    }
+  }
+</style>

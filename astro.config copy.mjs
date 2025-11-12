@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 
-// Detectar si estamos en desarrollo automáticamente
 const isDev = process.env.NODE_ENV === 'development';
 
 export default defineConfig({
