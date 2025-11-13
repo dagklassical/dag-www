@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
-    domains: [],
+    unoptimized: true,
   },
+  basePath: '/dag-www',
+  assetPrefix: '/dag-www',
 }
 
 module.exports = nextConfig
