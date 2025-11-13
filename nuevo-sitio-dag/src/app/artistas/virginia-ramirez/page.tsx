@@ -4,20 +4,20 @@ export default function VirginiaRamirezPage() {
   return (
     <div className="min-h-screen gradient-bg">
       {/* Header */}
-      <header className="bg-dag-ivory shadow-sm border-b border-dag-golden">
+      <header className="bg-orange-50 shadow-sm border-b border-yellow-400">
         <div className="container-max section-padding">
           <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-dag-burgundy hover:text-dag-caramel transition-colors">
+            <Link href="/" className="text-xl font-bold text-red-800 hover:text-amber-800 transition-colors">
               DAG Klassical
             </Link>
             <nav className="hidden md:flex space-x-8">
-              <Link href="/" className="text-dag-caramel hover:text-dag-burgundy px-3 py-2 text-sm font-medium transition-colors">
+              <Link href="/" className="text-amber-800 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors">
                 Inicio
               </Link>
-              <Link href="/artistas" className="text-dag-caramel hover:text-dag-burgundy px-3 py-2 text-sm font-medium transition-colors">
+              <Link href="/artistas" className="text-amber-800 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors">
                 Artistas
               </Link>
-              <Link href="/eventos" className="text-dag-caramel hover:text-dag-burgundy px-3 py-2 text-sm font-medium transition-colors">
+              <Link href="/eventos" className="text-amber-800 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors">
                 Eventos
               </Link>
               <Link
@@ -37,23 +37,23 @@ export default function VirginiaRamirezPage() {
           <h1 className="heading-primary">
             Virginia Ramírez
           </h1>
-          <p className="text-2xl text-dag-caramel mb-12 font-medium">
+          <p className="text-2xl text-amber-800 mb-12 font-medium">
             Nueva Artista Destacada • Estreno Exclusivo
           </p>
           
           <div className="card max-w-4xl mx-auto">
             <div className="space-y-8">
               <p className="text-body text-lg leading-relaxed">
-                Estamos emocionados de presentar a <strong className="text-dag-burgundy">Virginia Ramírez</strong>, 
+                Estamos emocionados de presentar a <strong className="text-red-800">Virginia Ramírez</strong>, 
                 una artista excepcional que se une a nuestro roster exclusivo de talentos clásicos 
                 contemporáneos.
               </p>
               
-              <div className="bg-dag-butmilk border-2 border-dag-golden rounded-xl p-8">
+              <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-8">
                 <div className="flex items-center justify-center mb-4">
                   <span className="text-4xl">🎼</span>
                 </div>
-                <h3 className="heading-secondary text-dag-burgundy mb-4">Estreno Especial</h3>
+                <h3 className="heading-secondary text-red-800 mb-4">Estreno Especial</h3>
                 <p className="text-body text-lg">
                   Pronto encontrarás aquí el trabajo exclusivo y las interpretaciones únicas 
                   de Virginia Ramírez en nuestro catálogo de música clásica contemporánea.

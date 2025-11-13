@@ -14,11 +14,11 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-dag-burgundy text-dag-white hover:bg-opacity-90 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105;
+    @apply bg-red-800 text-white hover:bg-opacity-90 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105;
   }
   
   .btn-secondary {
-    @apply bg-dag-golden text-dag-burgundy hover:bg-opacity-90 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105;
+    @apply bg-yellow-600 text-red-800 hover:bg-opacity-90 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105;
   }
   
   .section-padding {
@@ -30,23 +30,23 @@
   }
   
   .heading-primary {
-    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-dag-burgundy mb-6;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-red-800 mb-6;
   }
   
   .heading-secondary {
-    @apply text-2xl md:text-3xl lg:text-4xl font-semibold text-dag-caramel mb-4;
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold text-amber-800 mb-4;
   }
   
   .text-body {
-    @apply text-dag-caramel leading-relaxed;
+    @apply text-amber-800 leading-relaxed;
   }
   
   .card {
-    @apply bg-dag-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
+    @apply bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-dag-ivory via-dag-butmilk to-dag-golden;
+    @apply bg-gradient-to-br from-orange-50 via-yellow-50 to-yellow-400;
   }
 
   /* Animación pulse para Virginia */
@@ -59,9 +59,9 @@
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
-  /* Virginia CTA Button - Usando sistema burgundy/golden */
+  /* Virginia CTA Button - Clases estándar Tailwind */
   .btn-virginia {
-    @apply bg-dag-burgundy text-dag-white hover:bg-opacity-90 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 animate-pulse;
-    @apply border border-dag-golden hover:shadow-lg;
+    @apply bg-red-800 text-white hover:bg-opacity-90 px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:scale-105 animate-pulse;
+    @apply border border-yellow-400 hover:shadow-lg;
   }
 }
