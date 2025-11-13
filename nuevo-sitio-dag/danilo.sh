@@ -1,3 +1,13 @@
+#!/bin/bash
+
+# CAMBIOS DANILO - Script simple
+cd /home/apradoc/dev/gitlab/dagklassical/dag-www/nuevo-sitio-dag
+
+# 1. Backup
+cp src/components/Header.tsx src/components/Header.tsx.backup
+
+# 2. Header sin iconos + logo real
+cat > src/components/Header.tsx << 'EOF'
 'use client'
 
 import { useState } from 'react'
@@ -88,3 +98,19 @@ export default function Header() {
     </header>
   )
 }
+EOF
+
+# 3. Logo (busca en varias ubicaciones)
+for dir in "." ".." "../user_input_files"; do
+    if [ -f "$dir/logo-dag-klassical-003.png" ]; then
+        cp "$dir/logo-dag-klassical-003.png" public/
+        echo "Logo copiado desde: $dir"
+        break
+    fi
+done
+
+# 4. Border radius más sutil
+sed -i 's/rounded-lg/rounded-xl/g' src/app/globals.css
+sed -i 's/rounded-lg/rounded-xl/g' src/app/page.tsx
+
+echo "✅ Cambios aplicados - npm run dev"

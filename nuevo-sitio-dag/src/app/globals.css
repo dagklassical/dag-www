@@ -79,11 +79,11 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-dag-burgundy text-dag-white hover:bg-opacity-90 px-6 py-3 rounded-lg font-normal transition-all duration-300 hover:scale-105;
+    @apply bg-dag-burgundy text-dag-white hover:bg-opacity-90 px-6 py-3 rounded-xl font-normal transition-all duration-300 hover:scale-105;
   }
   
   .btn-secondary {
-    @apply bg-dag-golden text-dag-burgundy hover:bg-opacity-90 px-6 py-3 rounded-lg font-normal transition-all duration-300 hover:scale-105;
+    @apply bg-dag-golden text-dag-burgundy hover:bg-opacity-90 px-6 py-3 rounded-xl font-normal transition-all duration-300 hover:scale-105;
   }
   
   .section-padding {
