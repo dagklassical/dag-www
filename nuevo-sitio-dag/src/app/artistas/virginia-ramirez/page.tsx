@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function VirginiaPage() {
   return (
     <div className="min-h-screen bg-white p-8">
