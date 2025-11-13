@@ -1,172 +1,167 @@
-# DAG Klassical - Disquera Blockchain
+# DAG Klassical - Sitio Web Profesional
 
-> **Una disquera independiente potenciada por tecnología blockchain en Polygon**
+## 🎯 Descripción
 
----
+Sitio web moderno y profesional para DAG Klassical desarrollado con Next.js, TypeScript y Tailwind CSS. 
 
-## 🎵 Descripción del Proyecto
+## ✨ Características
 
-DAG Klassical es una plataforma integral que combina:
+- **Framework Moderno**: Next.js 14 con App Router
+- **Diseño Responsivo**: Completamente responsive con Tailwind CSS
+- **Colores Oficiales**: Paleta de colores DAG integrada
+- **Navegación Profesional**: Menú hamburguesa y navegación clean
+- **Componentes Modulares**: Estructura escalable y mantenible
+- **SEO Optimizado**: Meta tags y estructura semántica
+- **Performance**: Optimizado para velocidad y carga rápida
 
-- **Sitio web tradicional** para la disquera
-- **Marketplace de NFTs musicales** en blockchain Polygon
-- **Gestión de contenido** descentralizada via GitHub
+## 🎨 Paleta de Colores DAG
 
-## 🏗️ Arquitectura del Sistema
-
-```ascii
-Frontend (Astro) ←→ Polygon Blockchain ←→ Smart Contracts
-     ↑                    ↑                    ↑
-GitHub Pages         RPC Provider      MusicCardNFT.sol
-                                      Marketplace.sol
+```css
+/* Colores oficiales DAG */
+--dag-burgundy: #890500      /* Rojo Borgoña Intenso */
+--dag-golden: #FFD75C        /* Amarillo Dorado Vibrante */
+--dag-ivory: #F9F9D6         /* Marfil Suave */
+--dag-buttermilk: #F5F2C3    /* Amarillo Mantequilla Pálido */
+--dag-caramel: #A28453       /* Marrón Caramelo Cálido */
+--dag-white: #FFFFFF         /* Blanco Puro */
 ```
 
-### 🔗 Repositorios del ecosistema
+## 📁 Estructura del Proyecto
 
-- **[dag-www](https://github.com/dagklassical/dag-www)** - Sitio web principal
-- **[dag-klassical-blockchain](https://github.com/dagklassical/dag-klassical-blockchain)** - Smart contracts
-- **[dag-klassical-api](https://github.com/dagklassical/dag-klassical-api)** - Backend API (opcional)
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── globals.css        # Estilos globales
+│   ├── layout.tsx         # Layout principal
+│   ├── page.tsx           # Página de inicio
+│   ├── artistas/          # Página de artistas
+│   ├── compositores/      # Página de compositores
+│   ├── noticias/          # Página de noticias
+│   ├── eventos/           # Página de eventos
+│   └── contacto/          # Página de contacto
+├── components/            # Componentes reutilizables
+│   ├── Header.tsx         # Navegación principal
+│   └── Footer.tsx         # Pie de página
+└── lib/                   # Utilidades y helpers
+```
 
-## 📚 Documentación del Proyecto
+## 🚀 Instalación y Uso
 
-### 📖 Guías por audiencia
-
-| Guía | Audiencia | Propósito | Estado |
-|------|-----------|-----------|--------|
-| [**Gestión de Contenido**](GUIA_GESTION_CONTENIDO.md) | Content Managers, Editores | Administrar contenido del sitio | ✅ Completa |
-| [**Integración Blockchain**](GUIA_BLOCKCHAIN_SETUP.md) | Desarrolladores | Configurar conexión con Polygon | 🚧 En desarrollo |
-| [**Marketplace NFT**](GUIA_MARKETPLACE_NFT.md) | Business, Desarrolladores | Implementar tienda de NFTs | ⏳ Pendiente |
-| [**Deploy y Producción**](GUIA_DEPLOYMENT.md) | DevOps, Administradores | Publicar y mantener el sitio | ⏳ Pendiente |
-
-### 🎯 Guías por fase del proyecto
-
-#### **Fase 1-2: Sitio Web Base** ✅
-
-- [Gestión de Contenido](GUIA_GESTION_CONTENIDO.md)
-- Arquitectura Astro + GitHub Pages
-- Sistema de gestión sin CMS externo
-
-#### **Fase 3: Integración Blockchain** 🚧
-
-- [Integración Blockchain](GUIA_BLOCKCHAIN_SETUP.md)
-- [Marketplace NFT](GUIA_MARKETPLACE_NFT.md)
-- Conexión con contratos en Polygon
-
-#### **Fase 4: Producción** ⏳
-
-- [Deploy y Producción](GUIA_DEPLOYMENT.md)
-- Optimizaciones finales
-- Monitoreo y mantenimiento
-
-## 🚀 Stack Tecnológico
-
-### **Frontend**
-
-- **Astro** - Framework principal del sitio
-- **JavaScript/TypeScript** - Lógica del cliente
-- **Ethers.js** - Interacción con blockchain
-- **Tailwind CSS** - Estilos (opcional)
-
-### **Blockchain**
-
-- **Polygon Network** - Blockchain principal
-- **Solidity** - Smart contracts
-- **Hardhat** - Framework de desarrollo
-- **MetaMask** - Wallet de usuario
-
-### **Infraestructura**
-
-- **GitHub Pages** - Hosting gratuito
-- **GitHub Actions** - CI/CD automático
-- **Polygon RPC** - Conexión blockchain
-
-## 📋 Quick Start
-
-### **Para editores de contenido:**
-
-1. Lee la [Guía de Gestión de Contenido](GUIA_GESTION_CONTENIDO.md)
-2. Accede al repositorio en GitHub
-3. Edita archivos `.md` directamente en la web
-
-### **Para desarrolladores:**
-
-1. Clona el repositorio
-2. Instala dependencias: `npm install`
-3. Desarrollo local: `npm run dev`
-4. Sigue la [Guía de Integración Blockchain](GUIA_BLOCKCHAIN_SETUP.md)
-
-## 🌐 Enlaces Importantes
-
-### **Sitios de producción:**
-
-- **Sitio principal:** <https://dagklassical.github.io/dag-www>
-- **Marketplace NFT:** <https://dagklassical.github.io/dag-www/marketplace>
-
-### **Blockchain:**
-
-- **Red:** Polygon Mainnet
-- **Contratos:** [Ver en blockchain explorer](https://polygonscan.com/)
-
-### **Desarrollo:**
-
-- **Repositorio principal:** <https://github.com/dagklassical/dag-www>
-- **Issues y roadmap:** <https://github.com/dagklassical/dag-www/issues>
-
-## 🛠️ Comandos Útiles
-
+### 1. Instalar dependencias
 ```bash
-# Desarrollo local
-npm run dev          # Servidor de desarrollo
-npm run build        # Build de producción
-npm run preview      # Preview del build
-
-# Git workflow
-git checkout -b feat/nueva-funcionalidad
-git commit -m "feat: descripción del cambio"
-git push origin feat/nueva-funcionalidad
-
-# Blockchain (desde dag-klassical-blockchain)
-npx hardhat compile  # Compilar contratos
-npx hardhat test     # Ejecutar tests
-npx hardhat deploy   # Deploy a testnet
+npm install
 ```
 
-## 📞 Soporte y Contacto
+### 2. Ejecutar en desarrollo
+```bash
+npm run dev
+```
 
-- **Issues técnicos:** [GitHub Issues](https://github.com/dagklassical/dag-www/issues)
-- **Documentación:** Este mismo repositorio
-- **Equipo de desarrollo:** DAG Klassical
+### 3. Construir para producción
+```bash
+npm run build
+```
+
+### 4. Ejecutar en producción
+```bash
+npm start
+```
+
+## 📱 Páginas Implementadas
+
+### ✅ Página de Inicio
+- Hero section con branding DAG
+- Secciones de características
+- Últimas noticias
+- Call-to-action
+
+### ✅ Artistas
+- Grid de artistas con filtros
+- Información detallada por artista
+- Diseño responsivo
+
+### ✅ Eventos
+- Calendario de eventos
+- Sistema de reservas
+- Filtros por categoría
+- Información detallada
+
+### ✅ Noticias
+- Grid de noticias con categorías
+- Artículos destacados
+- Sistema de paginación
+
+### ✅ Contacto
+- Formulario de contacto funcional
+- Información de contacto
+- Integración con redes sociales
+
+### 🔄 Compositores (Próximamente)
+- Sección preparada para implementación
+
+## 🎯 Características Técnicas
+
+### Componentes
+- **Header**: Navegación responsive con menú hamburguesa
+- **Footer**: Pie de página completo con enlaces y redes sociales
+- **Layout**: Layout principal con meta tags SEO
+
+### Estilos
+- **Tailwind CSS**: Framework CSS utility-first
+- **Colores DAG**: Paleta oficial implementada
+- **Responsive**: Diseño mobile-first
+- **Animaciones**: Transiciones suaves y micro-interacciones
+
+### SEO y Performance
+- **Meta tags**: Optimizado para motores de búsqueda
+- **TypeScript**: Tipado estático para mejor desarrollo
+- **Next.js 14**: Última versión con App Router
+- **Lazy loading**: Optimización de imágenes
+
+## 🔧 Configuración
+
+### Variables de Entorno
+Crea un archivo `.env.local`:
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_NAME=DAG Klassical
+```
+
+### Personalización
+1. **Colores**: Modifica `tailwind.config.js` para cambiar la paleta
+2. **Fuentes**: Cambia la fuente en `layout.tsx`
+3. **Contenido**: Edita las páginas en `src/app/`
+
+## 🌐 Deployment
+
+### Vercel (Recomendado)
+```bash
+npm install -g vercel
+vercel
+```
+
+### Netlify
+```bash
+npm run build
+# Sube la carpeta .next o dist/
+```
+
+### GitHub Pages
+```bash
+npm run build
+# Configurar actions para build automático
+```
+
+## 📞 Soporte
+
+Para preguntas o problemas:
+- Email: contact@dagklassical.com
+- Documentación: Ver archivos en `/docs`
 
 ## 📄 Licencia
 
-Este proyecto está licenciado bajo [MIT License](LICENSE).
+© 2025 DAGKLASSICAL.COM - Todos los derechos reservados
 
 ---
 
-## 🎯 Roadmap
-
-### **✅ Completado**
-
-- [x] Configuración inicial del repositorio
-- [x] Deploy automático en GitHub Pages
-- [x] Sistema de gestión de contenido
-- [x] Estructura base del sitio
-
-### **🚧 En desarrollo (Fase 3)**
-
-- [ ] Integración con Polygon blockchain
-- [ ] Conexión a smart contracts
-- [ ] Marketplace de NFTs musicales
-- [ ] Integración con wallets
-
-### **⏳ Pendiente (Fase 4)**
-
-- [ ] Optimizaciones de performance
-- [ ] SEO avanzado
-- [ ] Analytics y métricas
-- [ ] Testing de carga
-
----
-
-**Última actualización:** 14 de octubre, 2025  
-**Versión de la documentación:** 1.0
+**Desarrollado por MiniMax Agent** con Next.js, TypeScript y Tailwind CSS
