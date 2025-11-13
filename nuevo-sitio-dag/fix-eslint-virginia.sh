@@ -1,3 +1,9 @@
+#!/bin/bash
+
+echo "🔧 Corrigiendo errores de ESLint en página Virginia..."
+
+# Actualizar página Virginia con comillas escapadas correctamente
+cat > src/app/artistas/virginia-ramirez/page.tsx << 'EOF'
 import Link from 'next/link'
 
 export default function VirginiaRamirez() {
@@ -140,3 +146,17 @@ export default function VirginiaRamirez() {
     </div>
   )
 }
+EOF
+
+echo "✅ Errores de ESLint corregidos"
+
+# Guardar cambio y probar build
+echo "💾 Guardando correcciones..."
+git add .
+git commit -m "🔧 Corregir errores ESLint comillas dobles página Virginia"
+
+# Probar build
+echo "🔨 Probando build..."
+npm run build
+
+echo "✅ Página Virginia corregida y funcionando!"
