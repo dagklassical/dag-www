@@ -16,6 +16,7 @@ module.exports = {
         'dag-buttermilk': '#FFF1B3',
       },
       fontFamily: {
+        'playfair': ['var(--font-playfair)', 'Playfair Display', 'serif'],
         'inter': ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
       },
       safelist: [
@@ -23,9 +24,6 @@ module.exports = {
         'bg-dag-burgundy', 'bg-dag-golden', 'bg-dag-white', 'bg-dag-ivory', 'bg-dag-caramel',
         'border-dag-burgundy', 'border-dag-golden', 'border-dag-white', 'border-dag-ivory',
         'hover:text-dag-golden', 'hover:bg-dag-white', 'hover:bg-dag-golden',
-        'title-elegant', 'title-section', 'title-subsection', 'title-minor', 'title-light', 'text-highlight',
-        'text-elegant', 'text-small', 'title-premium',
-        'font-extralight', 'font-thin', 'font-light', 'font-normal', 'font-medium'
       ]
     },
   },

@@ -1,14 +1,20 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Playfair_Display, Inter } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-// Configuración Inter en todos sus pesos
+// Configuración de fuentes elegantes
+const playfair = Playfair_Display({ 
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  weight: ['400', '500', '600', '700', '800', '900']
+})
+
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-inter',
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
+  weight: ['300', '400', '500', '600', '700']
 })
 
 export const metadata: Metadata = {
@@ -29,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${inter.variable}`}>
+    <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
       <body className={`${inter.className} antialiased font-inter`}>
         <div className="min-h-screen flex flex-col bg-dag-ivory">
           <Header />
