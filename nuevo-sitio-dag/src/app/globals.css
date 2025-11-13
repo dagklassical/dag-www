@@ -1,0 +1,30 @@
+/* Estilos mínimos para Virginia CTA - Solo animaciones */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Gradientes personalizados para Virginia (usando colores estándar) */
+.bg-gradient-from-red-800 {
+  background-image: linear-gradient(to right, rgb(153, 27, 27), rgb(220, 38, 38));
+}
+
+.bg-gradient-to-red-600 {
+  background-image: linear-gradient(to right, rgb(220, 38, 38));
+}
+
+.hover\:bg-gradient-from-red-600:hover {
+  background-image: linear-gradient(to right, rgb(220, 38, 38));
+}
+
+.hover\:bg-gradient-to-red-800:hover {
+  background-image: linear-gradient(to right, rgb(153, 27, 27));
+}
