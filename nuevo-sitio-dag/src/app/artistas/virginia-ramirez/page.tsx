@@ -2,37 +2,9 @@ import Link from 'next/link'
 
 export default function VirginiaRamirezPage() {
   return (
-    <div className="min-h-screen gradient-bg">
-      {/* Header */}
-      <header className="bg-orange-50 shadow-sm border-b border-yellow-400">
-        <div className="container-max section-padding">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-red-800 hover:text-amber-800 transition-colors">
-              DAG Klassical
-            </Link>
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/" className="text-amber-800 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors">
-                Inicio
-              </Link>
-              <Link href="/artistas" className="text-amber-800 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors">
-                Artistas
-              </Link>
-              <Link href="/eventos" className="text-amber-800 hover:text-red-800 px-3 py-2 text-sm font-medium transition-colors">
-                Eventos
-              </Link>
-              <Link
-                href="/artistas/virginia-ramirez"
-                className="btn-virginia"
-              >
-                Virginia • Estreno
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="container-max section-padding py-12">
+    <div className="min-h-screen gradient-bg py-12">
+      {/* Solo el contenido - Header ya está en layout.tsx */}
+      <div className="container-max section-padding">
         <div className="text-center">
           <h1 className="heading-primary">
             Virginia Ramírez
@@ -77,7 +49,7 @@ export default function VirginiaRamirezPage() {
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   )
 }

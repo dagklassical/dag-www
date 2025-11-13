@@ -1,10 +1,13 @@
-import './globals.css'
 import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
 import Header from '../components/Header'
 
+const inter = Inter({ subsets: ['latin'] })
+
 export const metadata: Metadata = {
-  title: 'DAG Klassical - Redefiniendo la experiencia de la música clásica',
-  description: 'DAG Klassical redefine la experiencia de la música clásica a través de tecnología blockchain y NFTs exclusivos.',
+  title: 'DAG Klassical - Música Clásica Contemporánea',
+  description: 'Descubre talentos exclusivos de música clásica contemporánea',
 }
 
 export default function RootLayout({
@@ -14,11 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>
+      <body className={inter.className}>
         <Header />
-        <div className="main-container">
+        <main>
           {children}
-        </div>
+        </main>
       </body>
     </html>
   )
