@@ -8,47 +8,34 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'dag-burgundy': '#800020',
-        'dag-golden': '#DAA520',
-        'dag-white': '#FFFFFF',
-        'dag-ivory': '#F5F5DC',
-        'dag-caramel': '#8B4513',
-        'dag-buttermilk': '#FFF1B3',
+        // Colores oficiales DAG
+        'dag': {
+          'burgundy': '#890500',
+          'golden': '#FFD75C',
+          'ivory': '#F9F9D6',
+          'buttermilk': '#F5F2C3',
+          'caramel': '#A28453',
+          'white': '#FFFFFF',
+        }
       },
       fontFamily: {
-        'inter': ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        'sans': ['Inter', 'system-ui', 'sans-serif'],
       },
-      safelist: [
-        'text-dag-burgundy', 'text-dag-golden', 'text-dag-white', 'text-dag-ivory', 'text-dag-caramel',
-        'bg-dag-burgundy', 'bg-dag-golden', 'bg-dag-white', 'bg-dag-ivory', 'bg-dag-caramel',
-        'border-dag-burgundy', 'border-dag-golden', 'border-dag-white', 'border-dag-ivory',
-        'hover:text-dag-golden', 'hover:bg-dag-white', 'hover:bg-dag-golden',
-        'title-elegant', 'title-section', 'title-subsection', 'title-minor', 'title-light', 'text-highlight',
-        'text-elegant', 'text-small', 'title-premium',
-        'font-extralight', 'font-thin', 'font-light', 'font-normal', 'font-medium'
-      ]
+      animation: {
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'slide-up': 'slideUp 0.5s ease-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+      },
     },
   },
-  plugins: [
-    function({ addUtilities }) {
-      const newUtilities = {
-        '.text-dag-burgundy': { color: '#800020' },
-        '.text-dag-golden': { color: '#DAA520' },
-        '.text-dag-white': { color: '#FFFFFF' },
-        '.text-dag-ivory': { color: '#F5F5DC' },
-        '.text-dag-caramel': { color: '#8B4513' },
-        '.bg-dag-burgundy': { backgroundColor: '#800020' },
-        '.bg-dag-golden': { backgroundColor: '#DAA520' },
-        '.bg-dag-white': { backgroundColor: '#FFFFFF' },
-        '.bg-dag-ivory': { backgroundColor: '#F5F5DC' },
-        '.bg-dag-caramel': { backgroundColor: '#8B4513' },
-        '.bg-dag-buttermilk': { backgroundColor: '#FFF1B3' },
-        '.border-dag-burgundy': { borderColor: '#800020' },
-        '.border-dag-golden': { borderColor: '#DAA520' },
-        '.border-dag-white': { borderColor: '#FFFFFF' },
-        '.border-dag-ivory': { borderColor: '#F5F5DC' },
-      }
-      addUtilities(newUtilities)
-    }
-  ],
+  plugins: [],
 }

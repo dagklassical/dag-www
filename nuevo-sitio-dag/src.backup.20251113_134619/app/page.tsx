@@ -60,13 +60,39 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/artistas" className="btn-primary inline-flex items-center space-x-2">
-                <Music className="w-5 h-5" />
                 <span>Explorar Artistas</span>
               </Link>
               <Link href="/eventos" className="btn-secondary inline-flex items-center space-x-2">
-                <Calendar className="w-5 h-5" />
                 <span>Ver Eventos</span>
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Virginia Ramírez Launch Banner */}
+      <section className="py-16 bg-gradient-to-r from-dag-golden to-dag-buttermilk border-y-4 border-dag-burgundy">
+        <div className="container-max section-padding">
+          <div className="text-center space-y-6">
+            <div className="inline-flex items-center space-x-2 bg-dag-burgundy text-white px-4 py-2 rounded-full text-sm font-medium">
+              <span>LANZAMIENTO MAÑANA • 15 DE NOVIEMBRE</span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-light text-dag-burgundy">
+              Virginia Ramírez
+            </h2>
+            <p className="text-xl text-dag-caramel max-w-2xl mx-auto">
+              Descubre "Reflejos Contemporáneos" - El álbum que revoluciona la música clásica con tecnología blockchain
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/virginia-ramirez" 
+                className="bg-dag-burgundy text-white px-8 py-3 rounded-xl font-medium hover:bg-dag-burgundy/90 transition-colors inline-flex items-center space-x-2"
+              >
+                <span>Explorar Álbum</span>
+              </Link>
+              <button className="border-2 border-dag-burgundy text-dag-burgundy px-8 py-3 rounded-xl font-medium hover:bg-dag-burgundy hover:text-white transition-colors">
+                Pre-reservar Music Card
+              </button>
             </div>
           </div>
         </div>
