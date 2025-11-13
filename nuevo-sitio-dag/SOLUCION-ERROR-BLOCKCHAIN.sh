@@ -1,3 +1,24 @@
+#!/bin/bash
+
+echo "🔧 ARREGLANDO ERROR EN /blockchain - Unsupported Server Component type"
+echo "=========================================================="
+
+# Verificar si estamos en el directorio correcto
+if [ ! -f "src/app/blockchain/page.tsx" ]; then
+    echo "❌ Error: No se encuentra src/app/blockchain/page.tsx"
+    echo "   Por favor ejecuta este script desde la raíz del proyecto Next.js"
+    exit 1
+fi
+
+echo "📝 Arreglando src/app/blockchain/page.tsx..."
+echo "   ✓ Cambiando font-playfair por title-section (Inter)"
+echo "   ✓ Corrigiendo enlaces rotos a páginas inexistentes"
+
+# Crear backup
+cp src/app/blockchain/page.tsx src/app/blockchain/page.tsx.backup.$(date +%Y%m%d-%H%M%S)
+
+# Aplicar correcciones
+cat > src/app/blockchain/page.tsx << 'EOF'
 import Link from 'next/link'
 import { ArrowRight, Shield, Award, Music } from 'lucide-react'
 
@@ -83,3 +104,20 @@ export default function BlockchainPage() {
     </div>
   )
 }
+EOF
+
+echo ""
+echo "✅ CORRECCIONES APLICADAS EXITOSAMENTE"
+echo "======================================"
+echo ""
+echo "🔧 Cambios realizados:"
+echo "   • Font-playfair → title-section (Inter)"
+echo "   • Enlaces rotos corregidos (/contacto y /noticias)"
+echo "   • Backup creado: src/app/blockchain/page.tsx.backup.*"
+echo ""
+echo "🚀 AHORA PRUEBA:"
+echo "   1. Ve a http://localhost:3000/blockchain"
+echo "   2. Verifica que ya no hay errores"
+echo "   3. Navega por el sitio para confirmar todo funciona"
+echo ""
+echo "💡 Si persiste el error, ejecuta 'npm run build' para ver errores específicos"
