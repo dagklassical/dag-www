@@ -4,19 +4,20 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>
-            DAG <span className="highlight">KLASSICAL</span>
+      <section className="bg-gradient-to-br from-dag-burgundy via-red-900 to-dag-burgundy text-dag-white py-20 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6">
+            DAG <span className="text-dag-golden">KLASSICAL</span>
           </h1>
-          <p style={{ fontSize: '1.25rem', marginBottom: '2rem', color: 'var(--dag-white)' }}>
+          <p className="text-xl md:text-2xl mb-8">
             Donde la tradición clásica encuentra la innovación contemporánea
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/eventos" className="btn btn-secondary">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/eventos" className="btn-secondary">
               Ver Eventos 🎭
             </Link>
-            <Link href="/artistas" className="btn" style={{ backgroundColor: 'transparent', color: 'var(--dag-white)', border: '2px solid var(--dag-golden)' }}>
+            <Link href="/artistas" className="bg-transparent border-2 border-dag-golden text-dag-golden hover:bg-dag-golden hover:text-dag-burgundy px-6 py-3 rounded-lg font-medium transition-all">
               Conocer Artistas
             </Link>
           </div>
@@ -24,36 +25,36 @@ export default function HomePage() {
       </section>
 
       {/* Misión */}
-      <section className="section section-alt">
-        <div className="container">
-          <div className="text-center mb-8">
-            <h2>Nuestra Misión</h2>
-            <p style={{ fontSize: '1.2rem', maxWidth: '800px', margin: '0 auto', color: '#666' }}>
+      <section className="py-16 bg-dag-cream">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="heading-secondary">Nuestra Misión</h2>
+            <p className="text-body text-lg max-w-4xl mx-auto">
               Elevar la experiencia musical clásica a través de presentaciones excepcionales, 
               artistas de clase mundial y una conexión auténtica entre la música y la audiencia.
             </p>
           </div>
 
-          <div className="cards">
+          <div className="grid md:grid-cols-3 gap-8">
             <div className="card text-center">
-              <h3>Artistas Excepcionales</h3>
-              <p>
+              <h3 className="heading-secondary text-xl mb-4">Artistas Excepcionales</h3>
+              <p className="text-body">
                 Colaboramos con músicos de renombre internacional que aportan 
                 técnica magistral y sensibilidad artística única.
               </p>
             </div>
             
             <div className="card text-center">
-              <h3>Experiencias Memorables</h3>
-              <p>
+              <h3 className="heading-secondary text-xl mb-4">Experiencias Memorables</h3>
+              <p className="text-body">
                 Cada evento está cuidadosamente diseñado para crear momentos 
                 de conexión emocional profunda con la música clásica.
               </p>
             </div>
             
             <div className="card text-center">
-              <h3>Innovación Respetuosa</h3>
-              <p>
+              <h3 className="heading-secondary text-xl mb-4">Innovación Respetuosa</h3>
+              <p className="text-body">
                 Adaptamos la música clásica al presente sin perder su esencia, 
                 haciendo que cada pieza resuene con audiencias contemporáneas.
               </p>
@@ -63,33 +64,33 @@ export default function HomePage() {
       </section>
 
       {/* Noticias recientes */}
-      <section className="section">
-        <div className="container">
-          <div className="text-center mb-8">
-            <h2>Últimas Noticias</h2>
-            <p style={{ color: '#666' }}>Mantente al día con nuestros últimos eventos y novedades</p>
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="heading-secondary">Últimas Noticias</h2>
+            <p className="text-body">Mantente al día con nuestros últimos eventos y novedades</p>
           </div>
 
-          <div className="cards">
+          <div className="grid md:grid-cols-2 gap-8">
             <div className="card">
-              <h3>Nueva Colaboración con Virginia Ramírez</h3>
-              <p>
+              <h3 className="heading-secondary text-xl mb-4">Nueva Colaboración con Virginia Ramírez</h3>
+              <p className="text-body mb-4">
                 Nos complace anunciar la incorporación de la soprano Virginia Ramírez 
                 a nuestro elenco de artistas. Su interpretación única de repertorio 
                 clásico y contemporáneo promete cautivar a nuestras audiencias.
               </p>
-              <Link href="/artistas/virginia-ramirez" className="btn btn-primary mt-2" style={{ display: 'inline-block' }}>
+              <Link href="/artistas/virginia-ramirez" className="btn-primary">
                 Conocer a Virginia
               </Link>
             </div>
             
             <div className="card">
-              <h3>Temporada 2025 Confirmada</h3>
-              <p>
+              <h3 className="heading-secondary text-xl mb-4">Temporada 2025 Confirmada</h3>
+              <p className="text-body mb-4">
                 Hemos confirmado una temporada excepcional con 12 conciertos exclusivos, 
                 masterclasses y eventos especiales que celebrarán lo mejor de la música clásica.
               </p>
-              <Link href="/eventos" className="btn btn-secondary mt-2" style={{ display: 'inline-block' }}>
+              <Link href="/eventos" className="btn-secondary">
                 Ver Programación
               </Link>
             </div>
@@ -98,17 +99,17 @@ export default function HomePage() {
       </section>
 
       {/* Call to Action */}
-      <section className="section section-alt">
-        <div className="container text-center">
-          <h2>¿Listo para la Experiencia DAG Klassical?</h2>
-          <p style={{ fontSize: '1.1rem', marginBottom: '2rem', color: '#666' }}>
+      <section className="py-16 bg-dag-cream">
+        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+          <h2 className="heading-secondary mb-6">¿Listo para la Experiencia DAG Klassical?</h2>
+          <p className="text-body text-lg mb-8">
             Descubre cómo la música clásica puede transformar tu percepción del arte y la belleza
           </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/eventos" className="btn btn-primary">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/eventos" className="btn-primary">
               Ver Próximos Eventos
             </Link>
-            <Link href="/contacto" className="btn btn-secondary">
+            <Link href="/contacto" className="btn-secondary">
               Contactar
             </Link>
           </div>
