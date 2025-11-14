@@ -1,12 +1,8 @@
-/** @type {import('next').NextConfig} */
+// next.config.js
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  images: {
-    unoptimized: true,
-  },
-  basePath: '/dag-www',
-  assetPrefix: '/dag-www',
+  basePath: process.env.NODE_ENV === 'production' ? '/dag-www' : '',
 }
 
 module.exports = nextConfig
