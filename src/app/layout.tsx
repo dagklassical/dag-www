@@ -11,9 +11,16 @@ export const metadata: Metadata = {
   description: 'DAG Klassical - Descubre la mejor música clásica contemporánea y tradicional',
   keywords: 'música clásica, DAG, artistas, compositores, conciertos, eventos musicales',
   authors: [{ name: 'DAG Klassical' }],
-  viewport: 'width=device-width, initial-scale=1',
 }
 
+
+// Viewport separado siguiendo Next.js 13+ formato correcto
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
 export default function RootLayout({
   children,
 }: {
