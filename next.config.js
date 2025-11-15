@@ -1,4 +1,4 @@
-// next.config.js - Configuración para servir desde la raíz
+// next.config.js - Configuración correcta para GitHub Pages
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
@@ -6,7 +6,9 @@ const nextConfig = {
   images: { 
     unoptimized: true 
   },
-  // SIN basePath - servir desde la raíz de GitHub Pages
+  // Configurar basePath para que coincida con GitHub Pages
+  basePath: '/dag-www',
+  assetPrefix: '/dag-www',
 }
 
 module.exports = nextConfig
