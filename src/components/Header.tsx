@@ -24,9 +24,9 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative">
-              <Image src="/images/logo-dag-klassical-002.webp" alt="DAG Klassical"
-                width={54} height={54} 
-                className="group-hover:scale-105 transition-transform duration-300"/>
+              <div className="w-12 h-12 bg-dag-burgundy rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <span className="text-dag-white font-bold text-xl">D</span>
+              </div>
             </div>
             <div>
               <div className="text-2xl font-light text-dag-burgundy tracking-wide">DAG</div>
