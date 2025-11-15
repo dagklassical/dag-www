@@ -1,12 +1,10 @@
-// next.config.js - Configuración para servir desde la raíz
+// next.config.js
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
-  distDir: 'out',
   images: { 
     unoptimized: true 
   },
-  // SIN basePath - servir desde la raíz de GitHub Pages
+  // BasePath y assetPrefix eliminados para servir desde la raíz
 }
-
 module.exports = nextConfig
