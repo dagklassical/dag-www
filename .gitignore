@@ -25,3 +25,6 @@ next-config-*.js
 # Development files
 out/
 dist/
+
+# Traste local
+.trash
