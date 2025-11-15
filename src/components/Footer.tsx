@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Facebook, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react'
 
 export default function Footer() {
@@ -25,9 +26,8 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-dag-golden rounded-xl flex items-center justify-center">
-                <span className="text-dag-burgundy font-bold text-xl">D</span>
-              </div>
+              <Image src="/images/logo-dag-klassical-002-oro.webp"
+                alt="DAG Klassical" width={54} height={54} className="opacity-90"/>
               <div>
                 <div className="text-2xl font-light text-dag-white tracking-wide">DAG</div>
                 <div className="text-sm font-medium text-dag-golden -mt-1">KLASSICAL</div>
