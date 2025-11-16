@@ -1,0 +1,10 @@
+// next.config.js - VERSIÓN SIN BASE PATH
+const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  images: { 
+    unoptimized: true 
+  },
+  // basePath y assetPrefix eliminados para servir desde raíz
+}
+module.exports = nextConfig
