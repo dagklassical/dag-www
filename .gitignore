@@ -28,3 +28,9 @@ dist/
 
 # Trash
 trash/
+
+node_modules
+
+# TinaCMS - Carpetas generadas
+public/admin/
+src/pages/demo/

@@ -26,7 +26,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <Image src="/images/logo-dag-klassical-002-oro.webp"
+              <Image src="/images/logo-dagklassical-orig-001.svg"
                 alt="DAG Klassical" width={54} height={54} className="opacity-90"/>
               <div>
                 <div className="text-2xl font-light text-dag-white tracking-wide">DAG</div>

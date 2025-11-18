@@ -1,3 +1,4 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -8,32 +9,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Colores oficiales DAG
-        'dag': {
-          'burgundy': '#890500',
-          'golden': '#FFD75C',
-          'ivory': '#F9F9D6',
-          'buttermilk': '#F5F2C3',
-          'caramel': '#A28453',
-          'white': '#FFFFFF',
-        }
+        'dag-burgundy': '#760F05',     // Rojo Borgoña Intenso (del manual)
+        'dag-black': '#000000',         // Negro puro
+        'dag-white': '#FFFFFF',         // Blanco puro
+        'dag-platinum': '#E0E0E0',      // Plata suave, ideal para bordes y fondos claros
+        'dag-ivory': '#F9F9D6',         // Marfil Suave (opcional, si quieres mantenerlo)
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-      },
-      keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
-        },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
+        sans: ['var(--font-montserrat)', 'sans-serif'], // Asegura Montserrat como fuente por defecto
       },
     },
   },

@@ -1,11 +1,14 @@
-// next.config.js - Versión sin basePath para GitHub Pages
+// next.config.js
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  images: { 
-    unoptimized: true 
+  // Tus configuraciones normales
+  experimental: {
+    // Asegúrate que App Router esté bien soportado
   },
-  // basePath removido para evitar problemas con rutas CSS
-  // assetPrefix removido para evitar problemas con rutas CSS
+  // Opcional: Si usas imágenes externas
+  images: {
+    domains: ['localhost', 'dag-www.vercel.app'], // Ajusta según necesites
+  },
 }
+
 module.exports = nextConfig

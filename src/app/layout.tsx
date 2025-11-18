@@ -1,10 +1,17 @@
+// src/app/layout.tsx
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Montserrat } from 'next/font/google' // Asumiendo ya hiciste este cambio
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+// Quitamos la importación de TinaCMSWrapper por ahora
+// import TinaCMSWrapper from '@/components/TinaCMSWrapper'
 
-const inter = Inter({ subsets: ['latin'] })
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-montserrat',
+})
 
 export const metadata: Metadata = {
   title: 'DAG Klassical - Música Clásica Premium',
@@ -13,22 +20,21 @@ export const metadata: Metadata = {
   authors: [{ name: 'DAG Klassical' }],
 }
 
-
-// Viewport separado siguiendo Next.js 13+ formato correcto
 export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
 }
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="es">
-      <body className={`${inter.className} antialiased`}>
+    <html lang="es" className={montserrat.variable}>
+      <body className={`${montserrat.className} antialiased`}>
         <div className="min-h-screen flex flex-col bg-dag-ivory">
           <Header />
           <main className="flex-grow">
@@ -36,6 +42,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        {/* TinaCMS se manejará de otra manera, no aquí */}
       </body>
     </html>
   )
