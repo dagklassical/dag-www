@@ -1,0 +1,140 @@
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+interface NewsContentProps {
+  content: string
+  className?: string
+}
+
+export default function NewsContent({ content, className = '' }: NewsContentProps) {
+  const [processedContent, setProcessedContent] = useState('')
+
+  useEffect(() => {
+    // Procesar el contenido MDX a HTML básico
+    // En un proyecto completo, usaríamos @mdx-js/runtime o next-mdx-remote
+    // Por ahora, usamos react-markdown como fallback
+    setProcessedContent(content)
+  }, [content])
+
+  return (
+    <div className={`prose prose-lg max-w-none ${className}`}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          // Encabezados con mejor espaciado
+          h1: ({ children }) => (
+            <h1 className="text-4xl font-bold text-dag-burgundy mb-8 mt-12 pb-4 border-b-2 border-dag-golden/20">
+              {children}
+            </h1>
+          ),
+          h2: ({ children }) => (
+            <h2 className="text-3xl font-semibold text-dag-burgundy mb-6 mt-10">
+              {children}
+            </h2>
+          ),
+          h3: ({ children }) => (
+            <h3 className="text-2xl font-medium text-dag-caramel mb-4 mt-8">
+              {children}
+            </h3>
+          ),
+          
+          // Párrafos con interlineado mejorado
+          p: ({ children }) => (
+            <p className="text-gray-700 leading-8 mb-6 text-justify">
+              {children}
+            </p>
+          ),
+          
+          // Enlaces con mejor contraste
+          a: ({ href, children }) => (
+            <a 
+              href={href} 
+              className="text-dag-golden hover:text-dag-burgundy underline font-medium transition-colors duration-300 hover:no-underline"
+              target={href?.startsWith('http') ? '_blank' : undefined}
+              rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {children}
+            </a>
+          ),
+          
+          // Listas con mejor espaciado
+          ul: ({ children }) => (
+            <ul className="list-disc list-outside ml-6 mb-6 space-y-3">
+              {children}
+            </ul>
+          ),
+          ol: ({ children }) => (
+            <ol className="list-decimal list-outside ml-6 mb-6 space-y-3">
+              {children}
+            </ol>
+          ),
+          li: ({ children }) => (
+            <li className="text-gray-700 leading-relaxed pl-2">
+              {children}
+            </li>
+          ),
+          
+          // Citas destacadas
+          blockquote: ({ children }) => (
+            <blockquote className="border-l-6 border-dag-golden bg-dag-ivory p-6 italic text-dag-burgundy my-8 rounded-r-lg shadow-sm">
+              <div className="text-xl leading-relaxed">
+                {children}
+              </div>
+            </blockquote>
+          ),
+          
+          // Código con mejor formato
+          // Código con mejor formato (compatible con nueva versión)
+          code: ({ node, className, children, ...props }) => {
+            const match = \/language-(w+)/.exec(className || ' )
+            const isInline = !match && !className
+            
+            return isInline ? (
+              <code className="bg-dag-ivory text-dag-burgundy px-2 py-1 rounded text-sm font-mono border" {...props}>
+                {children}
+              </code>
+            ) : (
+              <pre className="bg-gray-900 text-gray-100 p-6 rounded-lg overflow-x-auto my-6 shadow-lg">
+                <code className={`text-sm font-mono ${className || '}`}>{children}</code>
+              </pre>
+            )
+          },
+          
+          // Regla horizontal
+          hr: () => (
+            <hr className="my-10 border-dag-golden/30 border-t-2" />
+          ),
+          
+          // Tablas si es necesario
+          table: ({ children }) => (
+            <div className="overflow-x-auto my-6">
+              <table className="min-w-full border border-dag-golden/20 rounded-lg">
+                {children}
+              </table>
+            </div>
+          ),
+          thead: ({ children }) => (
+            <thead className="bg-dag-ivory">
+              {children}
+            </thead>
+          ),
+          th: ({ children }) => (
+            <th className="px-4 py-3 text-left font-semibold text-dag-burgundy border-b border-dag-golden/20">
+              {children}
+            </th>
+          ),
+          td: ({ children }) => (
+            <td className="px-4 py-3 text-gray-700 border-b border-dag-golden/10">
+              {children}
+            </td>
+          ),
+        }}
+      >
+        {processedContent}
+      </ReactMarkdown>
+    </div>
+  )
+}
